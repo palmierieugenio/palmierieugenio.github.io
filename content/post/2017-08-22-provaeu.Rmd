@@ -43,13 +43,13 @@ PROVA PROVA
 PROVA PROVA
 
 Pacchetti:
-```{r, echo=FALSE,message=FALSE,warning=FALSE}
+```{r, echo=T,message=FALSE,warning=FALSE, tidy=TRUE}
 library(ggplot2)
 library(plotly)
 ```
 
 Grafici:
-```{r, warning=FALSE}
+```{r, warning=FALSE, tidy=TRUE}
 
 p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
             geom_bar(position = "dodge")
