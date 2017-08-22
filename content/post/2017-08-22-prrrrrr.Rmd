@@ -13,6 +13,7 @@ PROVA PROVA
 
 
 ```{r}
+library(ggplot2)
 atteso<-function(prove){
 
 consecutivi<-NULL
@@ -47,7 +48,8 @@ test[i]<-atteso(i)
 return(test)
 }
 
+tes<-data.frame(cbind(test(1000),1:1000))
 
-plot(test(1000))
+ggplot(tes, aes(x=X2, y=X1)) + geom_point()
 ```
 
