@@ -11,7 +11,7 @@ footnotereturnlinkcontents = "<sup>^</sup>"
 disqusShortname = "palmierieugenio"
 
 # Enable analytics by entering your Google Analytics tracking ID
-
+googleAnalytics = "UA-105100692-1"
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
@@ -122,8 +122,6 @@ defaultContentLanguageInSubdir = false
   #   google-scholar, arxiv, orcid, researchgate, mendeley
   #
   #   Full list: https://jpswalsh.github.io/academicons/
-[params]
-  googleAnalytics = "UA-105100692-1"
 
   [[params.social]]
     icon = "envelope"
