@@ -1,5 +1,5 @@
-baseurl = "."
-publishDir = "."
+baseurl = "/./"
+publishDir = "./"
 title = ""
 copyright = "&copy; 2017 Eugenio Palmieri"
 theme = "hugo-academic"
