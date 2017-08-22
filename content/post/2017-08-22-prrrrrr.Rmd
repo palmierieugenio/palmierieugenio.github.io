@@ -1,0 +1,53 @@
+---
+title: PRRRRRR
+author: Eugenio Palmieri
+date: '2017-08-22'
+slug: prrrrrr
+categories:
+  - test
+tags:
+  - test
+---
+
+PROVA PROVA
+
+
+```{r}
+atteso<-function(prove){
+
+consecutivi<-NULL
+scores<-NULL
+
+for(i in 1:prove)
+{
+tiri<-1
+punteggio<-2
+
+  while(rbinom(1,1,.5)==1)
+   {
+    tiri<-tiri+1
+    punteggio<-2^tiri
+    }
+consecutivi[i]<-tiri
+scores[i]<-punteggio
+
+}
+somma<-sum(consecutivi)
+atteso<-somma/prove
+return(atteso)
+}
+
+
+test<-function(prove) {
+test<-NULL
+
+for(i in 1:prove) {
+test[i]<-atteso(i)
+}
+return(test)
+}
+
+
+plot(test(1000))
+```
+
