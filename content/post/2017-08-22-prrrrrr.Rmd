@@ -50,6 +50,9 @@ return(test)
 
 tes<-data.frame(cbind(test(1000),1:1000))
 
-ggplot(tes, aes(x=X2, y=X1)) + geom_point()
+library(plotly)
+p <- ggplot(data = tes, aes(x = X2, fill = X1)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
 ```
 
