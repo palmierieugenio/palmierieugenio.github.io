@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test on </title>
+    <link>/./categories/test/</link>
+    <description>Recent content in Test on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>
+    <lastBuildDate>Tue, 22 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/test/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>provaEU</title>
+      <link>/./post/provaeu/</link>
+      <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/provaeu/</guid>
+      <description>&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
+    geom_point()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

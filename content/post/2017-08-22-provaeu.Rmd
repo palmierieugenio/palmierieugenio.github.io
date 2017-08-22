@@ -1,0 +1,18 @@
+---
+title: provaEU
+author: Eugenio Palmieri
+date: '2017-08-22'
+slug: provaeu
+categories:
+  - test
+tags:
+  - test
+---
+
+```{r}
+library(ggplot2)
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
+    geom_point()
+ 
+```
+
