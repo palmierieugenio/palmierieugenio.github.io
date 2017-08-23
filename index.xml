@@ -16,32 +16,270 @@
       <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/./post/provaeu/</guid>
-      <description>&lt;script src=&#34;/././rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/././rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/././rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/././rmarkdown-libs/plotlyjs/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/././rmarkdown-libs/plotlyjs/plotly-latest.min.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA&lt;/p&gt;
+      <description>&lt;p&gt;PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA&lt;/p&gt;
 &lt;p&gt;Pacchetti:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
-library(plotly)
-library(CatterPlots)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;ggplot2&amp;quot;)
+library(&amp;quot;plotly&amp;quot;)
+library(&amp;quot;CatterPlots&amp;quot;)
+library(&amp;quot;dplyr&amp;quot;)
+library(&amp;quot;sp&amp;quot;)
+library(&amp;quot;rgeos&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Get the data from the web !
+CC &amp;lt;- read.table(&amp;quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-CC.txt&amp;quot; ,  header=TRUE)
+nCC &amp;lt;- read.table(&amp;quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-nCC.txt&amp;quot; , header=TRUE)
+CC$type &amp;lt;- &amp;quot;Cool core&amp;quot;
+nCC$type &amp;lt;- &amp;quot;Non-cool core&amp;quot;
+A &amp;lt;- rbind(CC, nCC)
+ 
+ 
+# Make the plot
+ggplot(data=A, aes(x=r.r500, y=sckT, ymin=sckT.lo, ymax=sckT.up, fill=type, linetype=type)) + 
+ geom_line() + 
+ geom_ribbon(alpha=0.5) + 
+ scale_x_log10() + 
+ scale_y_log10() + 
+ xlab(as.expression(expression( paste(&amp;quot;Radius (&amp;quot;, R[500], &amp;quot;)&amp;quot;) ))) + 
+ ylab(&amp;quot;Scaled Temperature&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Grafici:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
-            geom_bar(position = &amp;quot;dodge&amp;quot;)
-ggplotly(p)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## We recommend that you use the dev version of ggplot2 with `ggplotly()`
-## Install it with: `devtools::install_github(&amp;#39;hadley/ggplot2&amp;#39;)`&lt;/code&gt;&lt;/pre&gt;
-&lt;div id=&#34;17547c775cae&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;plotly html-widget&#34;&gt;&lt;/div&gt;
-&lt;script type=&#34;application/json&#34; data-for=&#34;17547c775cae&#34;&gt;{&#34;x&#34;:{&#34;data&#34;:[{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.1125,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[0.60625,1.60625,2.60625,3.60625,4.60625],&#34;y&#34;:[210,96,84,205,146],&#34;text&#34;:[&#34;count:  210&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: I1&#34;,&#34;count:   96&lt;br /&gt;cut: Good&lt;br /&gt;clarity: I1&#34;,&#34;count:   84&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: I1&#34;,&#34;count:  205&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: I1&#34;,&#34;count:  146&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: I1&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(248,118,109,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;I1&#34;,&#34;legendgroup&#34;:&#34;I1&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.1125,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[0.71875,1.71875,2.71875,3.71875,4.71875],&#34;y&#34;:[466,1081,2100,2949,2598],&#34;text&#34;:[&#34;count:  466&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: SI2&#34;,&#34;count: 1081&lt;br /&gt;cut: Good&lt;br /&gt;clarity: SI2&#34;,&#34;count: 2100&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: SI2&#34;,&#34;count: 2949&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: SI2&#34;,&#34;count: 2598&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: SI2&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(205,150,0,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;SI2&#34;,&#34;legendgroup&#34;:&#34;SI2&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.1125,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[0.83125,1.83125,2.83125,3.83125,4.83125],&#34;y&#34;:[408,1560,3240,3575,4282],&#34;text&#34;:[&#34;count:  408&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: SI1&#34;,&#34;count: 1560&lt;br /&gt;cut: Good&lt;br /&gt;clarity: SI1&#34;,&#34;count: 3240&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: SI1&#34;,&#34;count: 3575&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: SI1&#34;,&#34;count: 4282&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: SI1&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(124,174,0,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;SI1&#34;,&#34;legendgroup&#34;:&#34;SI1&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.1125,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[0.94375,1.94375,2.94375,3.94375,4.94375],&#34;y&#34;:[261,978,2591,3357,5071],&#34;text&#34;:[&#34;count:  261&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: VS2&#34;,&#34;count:  978&lt;br /&gt;cut: Good&lt;br /&gt;clarity: VS2&#34;,&#34;count: 2591&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: VS2&#34;,&#34;count: 3357&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: VS2&#34;,&#34;count: 5071&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: VS2&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(0,190,103,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;VS2&#34;,&#34;legendgroup&#34;:&#34;VS2&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.112500000000001,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[1.05625,2.05625,3.05625,4.05625,5.05625],&#34;y&#34;:[170,648,1775,1989,3589],&#34;text&#34;:[&#34;count:  170&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: VS1&#34;,&#34;count:  648&lt;br /&gt;cut: Good&lt;br /&gt;clarity: VS1&#34;,&#34;count: 1775&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: VS1&#34;,&#34;count: 1989&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: VS1&#34;,&#34;count: 3589&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: VS1&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(0,191,196,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;VS1&#34;,&#34;legendgroup&#34;:&#34;VS1&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.112500000000001,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[1.16875,2.16875,3.16875,4.16875,5.16875],&#34;y&#34;:[69,286,1235,870,2606],&#34;text&#34;:[&#34;count:   69&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: VVS2&#34;,&#34;count:  286&lt;br /&gt;cut: Good&lt;br /&gt;clarity: VVS2&#34;,&#34;count: 1235&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: VVS2&#34;,&#34;count:  870&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: VVS2&#34;,&#34;count: 2606&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: VVS2&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(0,169,255,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;VVS2&#34;,&#34;legendgroup&#34;:&#34;VVS2&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.112500000000001,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[1.28125,2.28125,3.28125,4.28125,5.28125],&#34;y&#34;:[17,186,789,616,2047],&#34;text&#34;:[&#34;count:   17&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: VVS1&#34;,&#34;count:  186&lt;br /&gt;cut: Good&lt;br /&gt;clarity: VVS1&#34;,&#34;count:  789&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: VVS1&#34;,&#34;count:  616&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: VVS1&#34;,&#34;count: 2047&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: VVS1&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(199,124,255,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;VVS1&#34;,&#34;legendgroup&#34;:&#34;VVS1&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null},{&#34;orientation&#34;:&#34;v&#34;,&#34;width&#34;:[0.1125,0.1125,0.1125,0.112500000000001,0.112500000000001],&#34;base&#34;:[0,0,0,0,0],&#34;x&#34;:[1.39375,2.39375,3.39375,4.39375,5.39375],&#34;y&#34;:[9,71,268,230,1212],&#34;text&#34;:[&#34;count:    9&lt;br /&gt;cut: Fair&lt;br /&gt;clarity: IF&#34;,&#34;count:   71&lt;br /&gt;cut: Good&lt;br /&gt;clarity: IF&#34;,&#34;count:  268&lt;br /&gt;cut: Very Good&lt;br /&gt;clarity: IF&#34;,&#34;count:  230&lt;br /&gt;cut: Premium&lt;br /&gt;clarity: IF&#34;,&#34;count: 1212&lt;br /&gt;cut: Ideal&lt;br /&gt;clarity: IF&#34;],&#34;type&#34;:&#34;bar&#34;,&#34;marker&#34;:{&#34;autocolorscale&#34;:false,&#34;color&#34;:&#34;rgba(255,97,204,1)&#34;,&#34;line&#34;:{&#34;width&#34;:1.88976377952756,&#34;color&#34;:&#34;transparent&#34;}},&#34;name&#34;:&#34;IF&#34;,&#34;legendgroup&#34;:&#34;IF&#34;,&#34;showlegend&#34;:true,&#34;xaxis&#34;:&#34;x&#34;,&#34;yaxis&#34;:&#34;y&#34;,&#34;hoverinfo&#34;:&#34;text&#34;,&#34;frame&#34;:null}],&#34;layout&#34;:{&#34;margin&#34;:{&#34;t&#34;:26.2283105022831,&#34;r&#34;:7.30593607305936,&#34;b&#34;:40.1826484018265,&#34;l&#34;:48.9497716894977},&#34;plot_bgcolor&#34;:&#34;rgba(235,235,235,1)&#34;,&#34;paper_bgcolor&#34;:&#34;rgba(255,255,255,1)&#34;,&#34;font&#34;:{&#34;color&#34;:&#34;rgba(0,0,0,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:14.6118721461187},&#34;xaxis&#34;:{&#34;domain&#34;:[0,1],&#34;type&#34;:&#34;linear&#34;,&#34;autorange&#34;:false,&#34;tickmode&#34;:&#34;array&#34;,&#34;range&#34;:[0.4,5.6],&#34;ticktext&#34;:[&#34;Fair&#34;,&#34;Good&#34;,&#34;Very Good&#34;,&#34;Premium&#34;,&#34;Ideal&#34;],&#34;tickvals&#34;:[1,2,3,4,5],&#34;ticks&#34;:&#34;outside&#34;,&#34;tickcolor&#34;:&#34;rgba(51,51,51,1)&#34;,&#34;ticklen&#34;:3.65296803652968,&#34;tickwidth&#34;:0.66417600664176,&#34;showticklabels&#34;:true,&#34;tickfont&#34;:{&#34;color&#34;:&#34;rgba(77,77,77,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:11.689497716895},&#34;tickangle&#34;:-0,&#34;showline&#34;:false,&#34;linecolor&#34;:null,&#34;linewidth&#34;:0,&#34;showgrid&#34;:true,&#34;gridcolor&#34;:&#34;rgba(255,255,255,1)&#34;,&#34;gridwidth&#34;:0.66417600664176,&#34;zeroline&#34;:false,&#34;anchor&#34;:&#34;y&#34;,&#34;title&#34;:&#34;cut&#34;,&#34;titlefont&#34;:{&#34;color&#34;:&#34;rgba(0,0,0,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:14.6118721461187},&#34;hoverformat&#34;:&#34;.2f&#34;},&#34;yaxis&#34;:{&#34;domain&#34;:[0,1],&#34;type&#34;:&#34;linear&#34;,&#34;autorange&#34;:false,&#34;tickmode&#34;:&#34;array&#34;,&#34;range&#34;:[-253.55,5324.55],&#34;ticktext&#34;:[&#34;0&#34;,&#34;1000&#34;,&#34;2000&#34;,&#34;3000&#34;,&#34;4000&#34;,&#34;5000&#34;],&#34;tickvals&#34;:[0,1000,2000,3000,4000,5000],&#34;ticks&#34;:&#34;outside&#34;,&#34;tickcolor&#34;:&#34;rgba(51,51,51,1)&#34;,&#34;ticklen&#34;:3.65296803652968,&#34;tickwidth&#34;:0.66417600664176,&#34;showticklabels&#34;:true,&#34;tickfont&#34;:{&#34;color&#34;:&#34;rgba(77,77,77,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:11.689497716895},&#34;tickangle&#34;:-0,&#34;showline&#34;:false,&#34;linecolor&#34;:null,&#34;linewidth&#34;:0,&#34;showgrid&#34;:true,&#34;gridcolor&#34;:&#34;rgba(255,255,255,1)&#34;,&#34;gridwidth&#34;:0.66417600664176,&#34;zeroline&#34;:false,&#34;anchor&#34;:&#34;x&#34;,&#34;title&#34;:&#34;count&#34;,&#34;titlefont&#34;:{&#34;color&#34;:&#34;rgba(0,0,0,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:14.6118721461187},&#34;hoverformat&#34;:&#34;.2f&#34;},&#34;shapes&#34;:[{&#34;type&#34;:&#34;rect&#34;,&#34;fillcolor&#34;:null,&#34;line&#34;:{&#34;color&#34;:null,&#34;width&#34;:0,&#34;linetype&#34;:[]},&#34;yref&#34;:&#34;paper&#34;,&#34;xref&#34;:&#34;paper&#34;,&#34;x0&#34;:0,&#34;x1&#34;:1,&#34;y0&#34;:0,&#34;y1&#34;:1}],&#34;showlegend&#34;:true,&#34;legend&#34;:{&#34;bgcolor&#34;:&#34;rgba(255,255,255,1)&#34;,&#34;bordercolor&#34;:&#34;transparent&#34;,&#34;borderwidth&#34;:1.88976377952756,&#34;font&#34;:{&#34;color&#34;:&#34;rgba(0,0,0,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:11.689497716895},&#34;y&#34;:0.913385826771654},&#34;annotations&#34;:[{&#34;text&#34;:&#34;clarity&#34;,&#34;x&#34;:1.02,&#34;y&#34;:1,&#34;showarrow&#34;:false,&#34;ax&#34;:0,&#34;ay&#34;:0,&#34;font&#34;:{&#34;color&#34;:&#34;rgba(0,0,0,1)&#34;,&#34;family&#34;:&#34;&#34;,&#34;size&#34;:14.6118721461187},&#34;xref&#34;:&#34;paper&#34;,&#34;yref&#34;:&#34;paper&#34;,&#34;textangle&#34;:-0,&#34;xanchor&#34;:&#34;left&#34;,&#34;yanchor&#34;:&#34;bottom&#34;,&#34;legendTitle&#34;:true}],&#34;barmode&#34;:&#34;stack&#34;,&#34;bargap&#34;:0,&#34;hovermode&#34;:&#34;closest&#34;},&#34;source&#34;:&#34;A&#34;,&#34;attrs&#34;:{&#34;17542d71b14&#34;:{&#34;x&#34;:{},&#34;fill&#34;:{},&#34;type&#34;:&#34;ggplotly&#34;}},&#34;cur_data&#34;:&#34;17542d71b14&#34;,&#34;visdat&#34;:{&#34;17542d71b14&#34;:[&#34;function (y) &#34;,&#34;x&#34;]},&#34;config&#34;:{&#34;modeBarButtonsToAdd&#34;:[{&#34;name&#34;:&#34;Collaborate&#34;,&#34;icon&#34;:{&#34;width&#34;:1000,&#34;ascent&#34;:500,&#34;descent&#34;:-50,&#34;path&#34;:&#34;M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z&#34;},&#34;click&#34;:&#34;function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == &#39;?viewer_pane=1&#39;) {\n          alert(&#39;To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html&#39;);\n        } else {\n          window.open(&#39;https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html&#39;, &#39;_blank&#39;);\n        }\n      }&#34;}],&#34;cloud&#34;:false},&#34;highlight&#34;:{&#34;on&#34;:&#34;plotly_click&#34;,&#34;persistent&#34;:false,&#34;dynamic&#34;:false,&#34;selectize&#34;:false,&#34;opacityDim&#34;:0.2,&#34;selected&#34;:{&#34;opacity&#34;:1}},&#34;base_url&#34;:&#34;https://plot.ly&#34;},&#34;evals&#34;:[&#34;config.modeBarButtonsToAdd.0.click&#34;],&#34;jsHooks&#34;:{&#34;render&#34;:[{&#34;code&#34;:&#34;function(el, x) { var ctConfig = crosstalk.var(&#39;plotlyCrosstalkOpts&#39;).set({\&#34;on\&#34;:\&#34;plotly_click\&#34;,\&#34;persistent\&#34;:false,\&#34;dynamic\&#34;:false,\&#34;selectize\&#34;:false,\&#34;opacityDim\&#34;:0.2,\&#34;selected\&#34;:{\&#34;opacity\&#34;:1}}); }&#34;,&#34;data&#34;:null}]}}&lt;/script&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Funs --------------------------------------------------------------------
+ 
+coord_circle &amp;lt;- function(centre = c(0, 0), r = 1, n = 1000) {
+  data_frame(
+    x = seq(from = 0 - r, to = 0 + r, length.out = n %/% 2),
+    y = sqrt(r^2 - x^2)
+  ) %&amp;gt;% bind_rows(., -.) %&amp;gt;%
+    mutate(x = x + centre[1], y = y + centre[2])
+}
+ 
+ 
+create_poly &amp;lt;- function(...) {
+  args &amp;lt;- list(...)
+  SpatialPolygons(
+    lapply(
+      X = seq_along(args),
+      FUN = function(x) {
+        Polygons(list(Polygon(as.data.frame(args[[x]]))), names(args)[x])
+      }
+    )
+  )
+}
+ 
+ 
+echancrure &amp;lt;- function(to_var, by_var, p = 0.1) {
+  ind &amp;lt;- which(by_var &amp;gt;= -0.08 &amp;amp; by_var &amp;lt;= 0.08 &amp;amp; to_var &amp;gt; 0)
+  to_var[ind] &amp;lt;- to_var[ind] - p
+  ind &amp;lt;- which(by_var &amp;gt;= -0.08 &amp;amp; by_var &amp;lt;= 0.08 &amp;amp; to_var &amp;lt; 0)
+  to_var[ind] &amp;lt;- to_var[ind] + p
+  return(to_var)
+}
+ 
+ 
+ 
+# BB-8 geometries ---------------------------------------------------------
+ 
+ 
+# droid_body -------------------------------------------------------------------
+ 
+# shape of the droid_body : two circles and a vertical line
+droid_body &amp;lt;- coord_circle(centre = c(0, 0), r = 1)
+droid_body$xvert &amp;lt;- 0
+droid_body$yvert &amp;lt;- droid_body$x
+droid_body &amp;lt;- bind_cols(
+  droid_body,
+  coord_circle(centre = c(0, 0), r = 0.35, n = nrow(droid_body)) %&amp;gt;% select(xint = x, yint = y)
+)
+ 
+# grey shapes in the central inner circle
+droid_body_rect &amp;lt;- data_frame(
+  x = c(-0.5, 0.5, 0.5, -0.5, c(-0.5, 0.5, 0.5, -0.5) - 0.2, c(-0.5, 0.5, 0.5, -0.5) + 0.2),
+  y = c(-0.6, 0.4, 0.6, -0.4, c(-0.6, 0.4, 0.6, -0.4) + 0.2, c(-0.6, 0.4, 0.6, -0.4) - 0.2),
+  group = rep(1:3, each = 4)
+)
+# a polygon for calculate the intersection between the grey shapes and the inner circle
+polyrect &amp;lt;- create_poly(
+  &amp;quot;polyrect1&amp;quot; = droid_body_rect[droid_body_rect$group == 1, 1:2],
+  &amp;quot;polyrect2&amp;quot; = droid_body_rect[droid_body_rect$group == 2, 1:2],
+  &amp;quot;polyrect3&amp;quot; = droid_body_rect[droid_body_rect$group == 3, 1:2]
+)
+ 
+polycircle &amp;lt;- create_poly(
+  &amp;quot;polycircle&amp;quot; = droid_body[, c(&amp;quot;xint&amp;quot;, &amp;quot;yint&amp;quot;)]
+)
+# plot(polyrect); plot(polycircle, add = TRUE)
+polyrect &amp;lt;- gIntersection(spgeom1 = polyrect, spgeom2 = polycircle)
+# plot(polyrect); plot(polycircle, add = TRUE)
+ 
+# fortify the polygon for ggplot
+droid_body_rect &amp;lt;- fortify(polyrect)
+ 
+ 
+# Central ring (orange)
+ring &amp;lt;- coord_circle(centre = c(0, 0), r = 0.4)
+ring$y &amp;lt;- echancrure(to_var = ring$y, by_var = ring$x, p = 0.1)
+ring$x &amp;lt;- echancrure(to_var = ring$x, by_var = ring$y, p = 0.1)
+ring &amp;lt;- bind_rows(
+  ring %&amp;gt;% mutate(group = (x &amp;gt;= 0) * 1),
+  coord_circle(centre = c(0, 0), r = 0.55, n = nrow(ring)) %&amp;gt;% mutate(y = -y, group = (x &amp;gt;= 0) * 1)
+) %&amp;gt;%
+  filter(group == 1) # oups something went wrong
+ring &amp;lt;- bind_rows(ring, ring %&amp;gt;% mutate(x = -x, group = 2))
+ 
+ 
+ 
+ 
+# ring left and right
+# we make a copy of the right part of the central ring
+ring_left &amp;lt;- ring %&amp;gt;% filter(group == 1)
+# and we shift the ring center
+ring_left$x &amp;lt;- ring_left$x - 1.3
+ 
+# the same ...
+ring_right &amp;lt;- ring %&amp;gt;% filter(group == 2)
+ring_right$x &amp;lt;- ring_right$x + 1.3
+ 
+# we creta a polygon for the intersection with the droid_body circle
+polyring &amp;lt;- create_poly(
+  &amp;quot;polyring_g&amp;quot; = ring_left[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)],
+  &amp;quot;polyring_d&amp;quot; = ring_right[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)]
+)
+ 
+polydroid_body &amp;lt;- create_poly(&amp;quot;polydroid_body&amp;quot; = droid_body[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])
+ 
+# plot(polyring); plot(polydroid_body, add = TRUE)
+ 
+polyring &amp;lt;- gIntersection(spgeom1 = polyring, spgeom2 = polydroid_body)
+fort_ring &amp;lt;- fortify(polyring)
+ 
+ 
+# the horizontal line of the body (in two parts)
+ligne_hori &amp;lt;- data_frame(
+  x = c(-1, range(ring$x), 1),
+  y = 0,
+  group = c(1, 1, 2, 2)
+)
+ 
+ 
+# droid head --------------------------------------------------------------------
+ 
+droid_head &amp;lt;- coord_circle(centre = c(0, 1.02), r = 0.52) %&amp;gt;%
+  filter(y &amp;gt;= 1.02) %&amp;gt;%
+  mutate(group = 1, fill = &amp;quot;white&amp;quot;, col= &amp;quot;black&amp;quot;) %&amp;gt;%
+  bind_rows(
+    data_frame(
+      x = c(-0.52, -0.4, 0.4, 0.52),
+      y = c(1.02, 0.95, 0.95, 1.02),
+      group = 2, fill = &amp;quot;white&amp;quot;, col= &amp;quot;black&amp;quot;
+    )
+  )
+ 
+ 
+ 
+# Grey bars in droid&amp;#39;s head
+poly_head_grey &amp;lt;- create_poly(
+  &amp;quot;poly_head_grey_haut&amp;quot; = data_frame(
+    x = c(-0.52, 0.52, 0.52, -0.52),
+    y = c(1.44, 1.44, 1.51, 1.51)
+  ),
+  &amp;quot;poly_head_grey_bas&amp;quot; = data_frame(
+    x = c(-0.52, 0.52, 0.52, -0.52),
+    y = c(1.02, 1.02, 1.07, 1.07)
+  )
+)
+ 
+polydroid_head &amp;lt;- create_poly(&amp;quot;polydroid_head&amp;quot; = droid_head[droid_head$group == 1, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])
+ 
+poly_head_grey &amp;lt;- gIntersection(spgeom1 = poly_head_grey, spgeom2 = polydroid_head)
+fort_droid_headrectgris &amp;lt;- fortify(poly_head_grey)
+ 
+ 
+ 
+# orange bars
+poly_head_orange &amp;lt;- create_poly(
+  &amp;quot;poly_head_orange1&amp;quot; = data_frame(
+    x = c(-0.52, 0.52, 0.52, -0.52),
+    y = c(1.38, 1.38, 1.42, 1.42)
+  ),
+  &amp;quot;poly_head_orange2&amp;quot; = data_frame(
+    x = c(-0.35, -0.35, -0.2, -0.2),
+    y = c(1.07, 1.15, 1.15, 1.07)
+  ),
+  &amp;quot;poly_head_orange3&amp;quot; = data_frame(
+    x = c(-0.55, -0.55, -0.45, -0.45),
+    y = c(1.07, 1.15, 1.15, 1.07)
+  ),
+  &amp;quot;poly_head_orange4&amp;quot; = data_frame(
+    x = c(0.44, 0.44, 0.47, 0.47),
+    y = c(1.07, 1.15, 1.15, 1.07)
+  )
+)
+ 
+poly_head_orange &amp;lt;- gIntersection(spgeom1 = poly_head_orange, spgeom2 = polydroid_head)
+fort_droid_headrectorange &amp;lt;- fortify(poly_head_orange)
+ 
+ 
+polygones_droid_head &amp;lt;- bind_rows(
+  fort_droid_headrectgris %&amp;gt;% select(-piece) %&amp;gt;%
+    mutate(group = as.numeric(as.character(group)), fill = &amp;quot;#8E8E9C&amp;quot;, col= &amp;quot;black&amp;quot;),
+  fort_droid_headrectorange %&amp;gt;% select(-piece) %&amp;gt;% 
+    mutate(group = as.numeric(as.character(group)) * 2, fill = &amp;quot;#DF8D5D&amp;quot;, col= &amp;quot;black&amp;quot;)
+)
+ 
+ 
+# Eyes
+droid_eyes &amp;lt;- bind_rows(
+  coord_circle(centre = c(0, 1.35), r = 0.14) %&amp;gt;% mutate(group = 1, fill = &amp;quot;white&amp;quot;, col = &amp;quot;white&amp;quot;),
+  coord_circle(centre = c(0, 1.35), r = 0.12) %&amp;gt;% mutate(group = 2, fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;),
+  coord_circle(centre = c(0, 1.35), r = 0.10) %&amp;gt;% mutate(group = 3, fill = &amp;quot;grey40&amp;quot;, col = &amp;quot;grey40&amp;quot;),
+  coord_circle(centre = c(0, 1.35), r = 0.08) %&amp;gt;% mutate(group = 4, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;),
+  coord_circle(centre = c(0, 1.16), r = 0.04) %&amp;gt;% mutate(group = 5, fill = &amp;quot;#76B1DE&amp;quot;, col = &amp;quot;black&amp;quot;),
+  coord_circle(centre = c(0.25, 1.20), r = 0.08) %&amp;gt;% mutate(group = 6, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;),
+  coord_circle(centre = c(0.25, 1.20), r = 0.07) %&amp;gt;% mutate(group = 7, fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;),
+  coord_circle(centre = c(0.25, 1.20), r = 0.06) %&amp;gt;% mutate(group = 8, fill = &amp;quot;grey40&amp;quot;, col = &amp;quot;grey40&amp;quot;),
+  coord_circle(centre = c(0.25, 1.20), r = 0.04) %&amp;gt;% mutate(group = 9, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;)
+)
+ 
+eye_line &amp;lt;- data_frame(
+  x = 0,
+  y = c(1.07, 1.16-0.04)
+)
+ 
+# Antennas
+antennas &amp;lt;- data_frame(
+  x = c(0.01, 0.01, 0.10, 0.10),
+  y = c(sqrt(0.52^2 - 0.01^2) + 1.02, sqrt(0.52^2 - 0.01^2) + 1.02 + 0.15,
+        sqrt(0.52^2 - 0.1^2) + 1.02, sqrt(0.52^2 - 0.1^2) + 1.02 + 0.25),
+  group = c(1, 1, 2, 2)
+)
+ 
+ 
+# bb-8/ggplot2 ------------------------------------------------------------
+ 
+bb8 &amp;lt;- ggplot(data = droid_body) +
+  coord_fixed() +
+  geom_polygon(mapping = aes(x = x, y = y), fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;) +
+  geom_polygon(data = droid_body_rect, mapping = aes(x = long, y = lat, group = group), fill = &amp;quot;#8E8E9C&amp;quot;) +
+  geom_path(mapping = aes(x = xvert, y = yvert)) +
+  geom_path(mapping = aes(x = xint, y = yint)) +
+  geom_polygon(data = ring, mapping = aes(x = x, y = y, group = group), fill = &amp;quot;#DF8D5D&amp;quot;, col = &amp;quot;#DF8D5D&amp;quot;) +
+  geom_path(data = ligne_hori, mapping = aes(x = x, y = y, group = group)) +
+  geom_polygon(data = fort_ring , mapping = aes(x = long, y = lat, group = group), fill = &amp;quot;#DF8D5D&amp;quot;) +
+  geom_polygon(data = droid_head, mapping = aes(x = x, y = y, group = group, fill = fill, col = col)) +
+  geom_polygon(data = polygones_droid_head, mapping = aes(x = long, y = lat, group = group, fill = fill, col = col)) +
+  geom_polygon(data = droid_eyes, mapping = aes(x = x, y = y, group = group, fill = fill, col = col)) +
+  scale_fill_identity() + scale_color_identity() +
+  geom_line(data = eye_line, mapping = aes(x = x, y = y)) +
+  geom_line(data = antennas, mapping = aes(x = x, y = y, group = group), col = &amp;quot;black&amp;quot;)
+ 
+ 
+bb8&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# or
+bb8 + theme_void()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
     geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- -10:10
 y &amp;lt;- -x^2 + 10
 meow &amp;lt;- multicat(xs=x, ys=rnorm(21),
@@ -49,7 +287,7 @@ meow &amp;lt;- multicat(xs=x, ys=rnorm(21),
                  catcolor=list(c(0,0,0,1)),
                  canvas=c(-0.1,1.1, -0.1, 1.1),
                  xlab=&amp;quot;some cats&amp;quot;, ylab=&amp;quot;other cats&amp;quot;, main=&amp;quot;Random Cats&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
