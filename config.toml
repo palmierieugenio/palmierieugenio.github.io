@@ -126,7 +126,7 @@ defaultContentLanguageInSubdir = false
   [[params.social]]
     icon = "facebook"
     icon_pack = "fa"
-    link = "//www.facebook.com//eugeniopalmieri"
+    link = "//www.facebook.com/eugeniopalmieri"
 
   [[params.social]]
     icon = "github"
