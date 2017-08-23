@@ -22,13 +22,13 @@ weight = 1
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "Magistrale di Statistica, Scienze Attuariali e Finanziarie"
-  institution = "Universita' di Firenze"
+  course = "Master's degree in Statistics, Actuarial and Financial Sciences"
+  institution = "Florence University"
   year = 2065
 
 [[education.courses]]
-  course = "Triennale in Sviluppo economico e cooperazione internazionale"
-  institution = "Universita' di Firenze"
+  course = "Bachelor in Development Economics and International Cooperation"
+  institution = "Florence University"
   year = 2016
  
 +++

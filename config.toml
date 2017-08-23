@@ -21,14 +21,14 @@ defaultContentLanguageInSubdir = false
 
 [params]
   name = "Eugenio Palmieri"
-  role = "Studente di Statistica"
-  organization = "Universita' di Firenze"
+  role = "Statistic Student"
+  organization = "Florence University"
   organization_url = "http://www.safs.unifi.it/"
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "eugenio.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
   email = "eugenio-palmieri@hotmail.it"
   address = "Firenze, Italia"
-  office_hours = "Quando mi sveglio"
+  office_hours = "When I get up"
   skype = "eugenio.palmieri92"
   telegram = "Eugenio92"
 
