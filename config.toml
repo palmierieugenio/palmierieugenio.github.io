@@ -1,6 +1,6 @@
 baseurl = "/./"
 publishDir = "./"
-title = ""
+title = "Titolo Blog"
 copyright = "&copy; 2017 Eugenio Palmieri"
 theme = "hugo-academic"
 enableEmoji = true

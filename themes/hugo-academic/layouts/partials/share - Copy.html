@@ -3,7 +3,7 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"
+         href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | html }}"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
