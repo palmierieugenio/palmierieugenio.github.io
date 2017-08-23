@@ -139,11 +139,14 @@ defaultContentLanguageInSubdir = false
     link = "mailto:eugenio-palmieri@hotmail.it"
 
   [[params.social]]
+    icon = "rss"
+    icon_pack = "fa"
+    link = "https://palmierieugenio.github.io/index.xml"
+
+  [[params.social]]
     icon = "stack-exchange"
     icon_pack = "fa"
     link = "https://stackexchange.com/users/8704836/eugenio-palmieri?tab=activity"
-
-
 
 
 # Navigation Links
