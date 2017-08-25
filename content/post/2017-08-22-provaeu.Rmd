@@ -55,7 +55,7 @@ PROVA PROVA
 PROVA PROVA
 PROVA PROVA
 
-[test pdf](http://palmierieugenio.github.io/palmierieugenio/pdf/kantorovich.pdf).
+[test pdf](https://github.com/palmierieugenio/palmierieugenio.github.io/blob/master/pdf/kantorovich.pdf).
 
 ```python
 # Example of code highlighting
