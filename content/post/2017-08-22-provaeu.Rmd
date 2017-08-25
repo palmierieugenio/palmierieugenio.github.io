@@ -41,6 +41,19 @@ PROVA PROVA
 PROVA PROVA
 PROVA PROVA
 PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVAPROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
+PROVA PROVA
 
 Pacchetti:
 ```{r, echo=T,message=FALSE,warning=FALSE, tidy=TRUE}
@@ -50,8 +63,17 @@ library("CatterPlots")
 library("dplyr")
 library("sp")
 library("rgeos")
+library("leaflet")
 ```
 
+Esempio Mappa:
+```{r}
+# Background 1: NASA
+m=leaflet() %>% addTiles() %>% setView( lng = 2.34, lat = 48.85, zoom = 5 ) %>% addProviderTiles("NASAGIBS.ViirsEarthAtNight2012")
+m
+```
+
+Esempi grafici:
 ```{r}
 # Get the data from the web !
 CC <- read.table("http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-CC.txt" ,  header=TRUE)

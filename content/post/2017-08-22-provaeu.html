@@ -9,16 +9,36 @@ tags:
   - test
 ---
 
+<script src="/./rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/./rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/./rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="/./rmarkdown-libs/leaflet/leaflet.js"></script>
+<link href="/./rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<link href="/./rmarkdown-libs/leaflet-label/leaflet.label.css" rel="stylesheet" />
+<script src="/./rmarkdown-libs/leaflet-label/leaflet.label.js"></script>
+<script src="/./rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="/./rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
+<script src="/./rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+<script src="/./rmarkdown-libs/leaflet-providers/leaflet-providers.js"></script>
+<script src="/./rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
 
 
-<p>PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA</p>
+<p>PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA</p>
 <p>Pacchetti:</p>
 <pre class="r"><code>library(&quot;ggplot2&quot;)
 library(&quot;plotly&quot;)
 library(&quot;CatterPlots&quot;)
 library(&quot;dplyr&quot;)
 library(&quot;sp&quot;)
-library(&quot;rgeos&quot;)</code></pre>
+library(&quot;rgeos&quot;)
+library(&quot;leaflet&quot;)</code></pre>
+<p>Esempio Mappa:</p>
+<pre class="r"><code># Background 1: NASA
+m=leaflet() %&gt;% addTiles() %&gt;% setView( lng = 2.34, lat = 48.85, zoom = 5 ) %&gt;% addProviderTiles(&quot;NASAGIBS.ViirsEarthAtNight2012&quot;)
+m</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["NASAGIBS.ViirsEarthAtNight2012",null,null,{"errorTileUrl":"","noWrap":false,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false}]}],"setView":[[48.85,2.34],5,[]]},"evals":[],"jsHooks":[]}</script>
+<p>Esempi grafici:</p>
 <pre class="r"><code># Get the data from the web !
 CC &lt;- read.table(&quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-CC.txt&quot; ,  header=TRUE)
 nCC &lt;- read.table(&quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-nCC.txt&quot; , header=TRUE)
@@ -35,7 +55,7 @@ ggplot(data=A, aes(x=r.r500, y=sckT, ymin=sckT.lo, ymax=sckT.up, fill=type, line
  scale_y_log10() + 
  xlab(as.expression(expression( paste(&quot;Radius (&quot;, R[500], &quot;)&quot;) ))) + 
  ylab(&quot;Scaled Temperature&quot;)</code></pre>
-<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Grafici:</p>
 <pre class="r"><code># Funs --------------------------------------------------------------------
  
@@ -268,13 +288,13 @@ bb8 &lt;- ggplot(data = droid_body) +
  
  
 bb8</code></pre>
-<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code># or
 bb8 + theme_void()</code></pre>
-<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre class="r"><code>ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
     geom_point()</code></pre>
-<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>x &lt;- -10:10
 y &lt;- -x^2 + 10
 meow &lt;- multicat(xs=x, ys=rnorm(21),
@@ -282,4 +302,4 @@ meow &lt;- multicat(xs=x, ys=rnorm(21),
                  catcolor=list(c(0,0,0,1)),
                  canvas=c(-0.1,1.1, -0.1, 1.1),
                  xlab=&quot;some cats&quot;, ylab=&quot;other cats&quot;, main=&quot;Random Cats&quot;)</code></pre>
-<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/./post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
