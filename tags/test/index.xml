@@ -31,7 +31,7 @@
 
 
 &lt;p&gt;PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;C:\Users\Eustachio\Desktop\palmierieugenio.github.io\pdf\kantorovich.pdf&#34;&gt;test pdf&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://palmierieugenio.github.io/palmierieugenio/pdf/kantorovich.pdf&#34;&gt;test pdf&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Example of code highlighting
 input_string_var = input(&amp;quot;Enter some data: &amp;quot;)
 print(&amp;quot;You entered: {}&amp;quot;.format(input_string_var))&lt;/code&gt;&lt;/pre&gt;
