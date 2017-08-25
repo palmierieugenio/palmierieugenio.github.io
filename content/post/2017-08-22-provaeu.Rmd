@@ -55,6 +55,12 @@ PROVA PROVA
 PROVA PROVA
 PROVA PROVA
 
+```python
+# Example of code highlighting
+input_string_var = input("Enter some data: ")
+print("You entered: {}".format(input_string_var))
+```
+
 Pacchetti:
 ```{r, echo=T,message=FALSE,warning=FALSE, tidy=TRUE}
 library("ggplot2")
