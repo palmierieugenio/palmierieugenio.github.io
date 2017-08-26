@@ -14,9 +14,4 @@ weight = 60
 
 +++
 
-This is an example of using the *custom* widget to create your own homepage section.
-
-Non sono un professore, ma questa sezione potrebbe tornare utile in futuro:
-
-- Esempio: esempio corso
-
+Non sono un professore, ma questa sezione potrebbe tornare utile in futuro.
