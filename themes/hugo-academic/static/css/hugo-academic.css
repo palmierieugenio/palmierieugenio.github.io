@@ -444,6 +444,7 @@ article {
   font-size: 14px;
   letter-spacing: 0.03em;
   color: #888;
+  overflow: hidden;
 }
 
 .article-metadata a {
