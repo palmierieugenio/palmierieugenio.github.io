@@ -174,7 +174,7 @@
     
     <url>
     
-      <loc>/./tags/test/</loc>
+      <loc>/./categories/test/</loc>
       <lastmod>2017-08-22T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -184,7 +184,7 @@
     
     <url>
     
-      <loc>/./categories/test/</loc>
+      <loc>/./tags/test/</loc>
       <lastmod>2017-08-22T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
