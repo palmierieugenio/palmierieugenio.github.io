@@ -28,7 +28,7 @@ defaultContentLanguageInSubdir = false
   avatar = "eugenio.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
   email = "eugenio-palmieri@hotmail.it"
   address = "Firenze, Italia"
-  office_hours = "When I get up"
+ #office_hours = "When I get up"
   skype = "eugenio.palmieri92"
   telegram = "Eugenio92"
 
