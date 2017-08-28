@@ -35,4 +35,4 @@ weight = 1
 
 # Biography
 
-Eugenio Palmieri is a Master's student in statistics at Florence University.
+Eugenio Palmieri is a Master's student in Statistics at Florence University.

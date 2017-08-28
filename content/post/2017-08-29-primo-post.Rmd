@@ -1,0 +1,57 @@
+---
+title: First Post!
+author: Eugenio Palmieri
+date: '2017-08-27'
+
+slug: primo-post
+categories:
+  - comunicazioni
+tags:
+  - comunicazioni
+---
+
+## Hello World, welcome to NOME BLOG,
+
+My name is Eugenio Palmieri and I'm starting a new personal blog. I'm a Master's student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming[^1], but I'm interested also in economics, politics, urban planning, mathematics and other nerdy topics.
+
+## Feautures of the blog:
+
+### Integration with R:
+One of the main feauture of this blog is that it supports [Rmarkdown](http://rmarkdown.rstudio.com/) files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive [html widgets](http://www.htmlwidgets.org/) with R[^2], like in this graph example:
+
+```{r graficoesempio}
+library(ggplot2)
+
+data=data.frame(cond = rep(c("condition_1", "condition_2"), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
+
+ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
+geom_smooth(method=lm , color="red", se=TRUE)
+```
+
+Or in this example of interactive time-series chart:
+
+```{r seriestoriche}
+library(dygraphs)
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)%>% dyRangeSelector()
+```
+
+<br>
+
+## Support for [$\rm \LaTeX$ math expressions](https://en.wikibooks.org/wiki/LaTeX/Mathematics):
+Anothere important feauture is the support for $\rm \LaTeX$ to write equations and formulas:
+```teX
+$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
+```
+
+$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
+<br>
+
+## Build your own blog for free!
+If you are interested in building a blog like this for free, you can read the new post I've made to explain how to [create a blog with Hugo and Github](#rotto) with the [blogdown package](https://github.com/rstudio/blogdown), directly from Rstudio.
+
+<br>
+
+[^1]: I'm using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I'm intentioned to learn Python.
+
+[^2]: [R](https://www.r-project.org/) is a a free software environment for statistical computing and graphics and [Rstudio](https://www.rstudio.com) is an integrated development environment (IDE) for R.

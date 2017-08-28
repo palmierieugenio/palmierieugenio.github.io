@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comunicazioni Di Servizio on Titolo Blog</title>
+    <link>/./tags/comunicazioni-di-servizio/</link>
+    <description>Recent content in Comunicazioni Di Servizio on Titolo Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>
+    <lastBuildDate>Sun, 27 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/comunicazioni-di-servizio/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>First Post!</title>
+      <link>/./post/primo-post/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/primo-post/</guid>
+      <description>&lt;div id=&#34;hello-world-welcome-to-nome-blog&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hello World, welcome to NOME BLOG,&lt;/h2&gt;
+&lt;p&gt;My name is Eugenio Palmieri and I’m starting a new personal blog. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feautures-of-the-blog&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feautures of the blog:&lt;/h2&gt;
+&lt;div id=&#34;integration-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Integration with R:&lt;/h3&gt;
+&lt;p&gt;One of the main feauture of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+
+data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;condition_2&amp;quot;), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
+
+ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
+geom_smooth(method=lm , color=&amp;quot;red&amp;quot;, se=TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/cars-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;support-for-rm-latex-math-expressions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Support for &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; math expressions&lt;/a&gt;:&lt;/h2&gt;
+&lt;p&gt;Anothere important feauture is the support for &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; to write equations and formulas:&lt;/p&gt;
+&lt;pre class=&#34;tex&#34;&gt;&lt;code&gt;$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-your-own-blog-for-free&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Build your own blog for free!&lt;/h2&gt;
+&lt;p&gt;If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to &lt;a href=&#34;#rotto&#34;&gt;create a blog with Hugo and Github&lt;/a&gt; with the &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown package&lt;/a&gt;, directly from Rstudio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Comunicazioni</title>
+      <link>/./tags/comunicazioni/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./tags/comunicazioni/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep Learning</title>
       <link>/./tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
@@ -35,15 +44,6 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/./tags/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Test</title>
-      <link>/./tags/test/</link>
-      <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/./tags/test/</guid>
       <description></description>
     </item>
     

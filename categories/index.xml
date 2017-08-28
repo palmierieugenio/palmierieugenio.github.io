@@ -10,11 +10,11 @@
     <atom:link href="/categories/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Test</title>
-      <link>/./categories/test/</link>
-      <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
+      <title>Comunicazioni</title>
+      <link>/./categories/comunicazioni/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/./categories/test/</guid>
+      <guid>/./categories/comunicazioni/</guid>
       <description></description>
     </item>
     

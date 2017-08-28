@@ -11,309 +11,64 @@
     <atom:link href="//" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>provaEU</title>
-      <link>/./post/provaeu/</link>
-      <pubDate>Tue, 22 Aug 2017 00:00:00 +0000</pubDate>
+      <title>First Post!</title>
+      <link>/./post/primo-post/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/./post/provaeu/</guid>
+      <guid>/./post/primo-post/</guid>
       <description>&lt;script src=&#34;/././rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
 &lt;script src=&#34;/././rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/././rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/././rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/././rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;/././rmarkdown-libs/leaflet-label/leaflet.label.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/././rmarkdown-libs/leaflet-label/leaflet.label.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/././rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVAPROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA PROVA&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/palmierieugenio/palmierieugenio.github.io/blob/master/pdf/kantorovich.pdf&#34;&gt;test pdf&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;# Example of code highlighting
-input_string_var = input(&amp;quot;Enter some data: &amp;quot;)
-print(&amp;quot;You entered: {}&amp;quot;.format(input_string_var))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Pacchetti:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;quot;ggplot2&amp;quot;)
-library(&amp;quot;plotly&amp;quot;)
-library(&amp;quot;CatterPlots&amp;quot;)
-library(&amp;quot;dplyr&amp;quot;)
-library(&amp;quot;sp&amp;quot;)
-library(&amp;quot;rgeos&amp;quot;)
-library(&amp;quot;leaflet&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esempio Mappa:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Background 1: NASA
-m=leaflet() %&amp;gt;% addTiles() %&amp;gt;% setView( lng = 2.34, lat = 48.85, zoom = 5 ) %&amp;gt;% addProviderTiles(&amp;quot;NASAGIBS.ViirsEarthAtNight2012&amp;quot;)
-m&lt;/code&gt;&lt;/pre&gt;
-&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;leaflet html-widget&#34;&gt;&lt;/div&gt;
-&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;options&#34;:{&#34;crs&#34;:{&#34;crsClass&#34;:&#34;L.CRS.EPSG3857&#34;,&#34;code&#34;:null,&#34;proj4def&#34;:null,&#34;projectedBounds&#34;:null,&#34;options&#34;:{}}},&#34;calls&#34;:[{&#34;method&#34;:&#34;addTiles&#34;,&#34;args&#34;:[&#34;//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#34;,null,null,{&#34;minZoom&#34;:0,&#34;maxZoom&#34;:18,&#34;maxNativeZoom&#34;:null,&#34;tileSize&#34;:256,&#34;subdomains&#34;:&#34;abc&#34;,&#34;errorTileUrl&#34;:&#34;&#34;,&#34;tms&#34;:false,&#34;continuousWorld&#34;:false,&#34;noWrap&#34;:false,&#34;zoomOffset&#34;:0,&#34;zoomReverse&#34;:false,&#34;opacity&#34;:1,&#34;zIndex&#34;:null,&#34;unloadInvisibleTiles&#34;:null,&#34;updateWhenIdle&#34;:null,&#34;detectRetina&#34;:false,&#34;reuseTiles&#34;:false,&#34;attribution&#34;:&#34;&amp;copy; &lt;a href=\&#34;http://openstreetmap.org\&#34;&gt;OpenStreetMap&lt;\/a&gt; contributors, &lt;a href=\&#34;http://creativecommons.org/licenses/by-sa/2.0/\&#34;&gt;CC-BY-SA&lt;\/a&gt;&#34;}]},{&#34;method&#34;:&#34;addProviderTiles&#34;,&#34;args&#34;:[&#34;NASAGIBS.ViirsEarthAtNight2012&#34;,null,null,{&#34;errorTileUrl&#34;:&#34;&#34;,&#34;noWrap&#34;:false,&#34;zIndex&#34;:null,&#34;unloadInvisibleTiles&#34;:null,&#34;updateWhenIdle&#34;:null,&#34;detectRetina&#34;:false,&#34;reuseTiles&#34;:false}]}],&#34;setView&#34;:[[48.85,2.34],5,[]]},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;
-&lt;p&gt;Esempi grafici:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Get the data from the web !
-CC &amp;lt;- read.table(&amp;quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-CC.txt&amp;quot; ,  header=TRUE)
-nCC &amp;lt;- read.table(&amp;quot;http://www.sr.bham.ac.uk/~ajrs/papers/sanderson06/mean_Tprofile-nCC.txt&amp;quot; , header=TRUE)
-CC$type &amp;lt;- &amp;quot;Cool core&amp;quot;
-nCC$type &amp;lt;- &amp;quot;Non-cool core&amp;quot;
-A &amp;lt;- rbind(CC, nCC)
- 
- 
-# Make the plot
-ggplot(data=A, aes(x=r.r500, y=sckT, ymin=sckT.lo, ymax=sckT.up, fill=type, linetype=type)) + 
- geom_line() + 
- geom_ribbon(alpha=0.5) + 
- scale_x_log10() + 
- scale_y_log10() + 
- xlab(as.expression(expression( paste(&amp;quot;Radius (&amp;quot;, R[500], &amp;quot;)&amp;quot;) ))) + 
- ylab(&amp;quot;Scaled Temperature&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Grafici:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Funs --------------------------------------------------------------------
- 
-coord_circle &amp;lt;- function(centre = c(0, 0), r = 1, n = 1000) {
-  data_frame(
-    x = seq(from = 0 - r, to = 0 + r, length.out = n %/% 2),
-    y = sqrt(r^2 - x^2)
-  ) %&amp;gt;% bind_rows(., -.) %&amp;gt;%
-    mutate(x = x + centre[1], y = y + centre[2])
-}
- 
- 
-create_poly &amp;lt;- function(...) {
-  args &amp;lt;- list(...)
-  SpatialPolygons(
-    lapply(
-      X = seq_along(args),
-      FUN = function(x) {
-        Polygons(list(Polygon(as.data.frame(args[[x]]))), names(args)[x])
-      }
-    )
-  )
-}
- 
- 
-echancrure &amp;lt;- function(to_var, by_var, p = 0.1) {
-  ind &amp;lt;- which(by_var &amp;gt;= -0.08 &amp;amp; by_var &amp;lt;= 0.08 &amp;amp; to_var &amp;gt; 0)
-  to_var[ind] &amp;lt;- to_var[ind] - p
-  ind &amp;lt;- which(by_var &amp;gt;= -0.08 &amp;amp; by_var &amp;lt;= 0.08 &amp;amp; to_var &amp;lt; 0)
-  to_var[ind] &amp;lt;- to_var[ind] + p
-  return(to_var)
-}
- 
- 
- 
-# BB-8 geometries ---------------------------------------------------------
- 
- 
-# droid_body -------------------------------------------------------------------
- 
-# shape of the droid_body : two circles and a vertical line
-droid_body &amp;lt;- coord_circle(centre = c(0, 0), r = 1)
-droid_body$xvert &amp;lt;- 0
-droid_body$yvert &amp;lt;- droid_body$x
-droid_body &amp;lt;- bind_cols(
-  droid_body,
-  coord_circle(centre = c(0, 0), r = 0.35, n = nrow(droid_body)) %&amp;gt;% select(xint = x, yint = y)
-)
- 
-# grey shapes in the central inner circle
-droid_body_rect &amp;lt;- data_frame(
-  x = c(-0.5, 0.5, 0.5, -0.5, c(-0.5, 0.5, 0.5, -0.5) - 0.2, c(-0.5, 0.5, 0.5, -0.5) + 0.2),
-  y = c(-0.6, 0.4, 0.6, -0.4, c(-0.6, 0.4, 0.6, -0.4) + 0.2, c(-0.6, 0.4, 0.6, -0.4) - 0.2),
-  group = rep(1:3, each = 4)
-)
-# a polygon for calculate the intersection between the grey shapes and the inner circle
-polyrect &amp;lt;- create_poly(
-  &amp;quot;polyrect1&amp;quot; = droid_body_rect[droid_body_rect$group == 1, 1:2],
-  &amp;quot;polyrect2&amp;quot; = droid_body_rect[droid_body_rect$group == 2, 1:2],
-  &amp;quot;polyrect3&amp;quot; = droid_body_rect[droid_body_rect$group == 3, 1:2]
-)
- 
-polycircle &amp;lt;- create_poly(
-  &amp;quot;polycircle&amp;quot; = droid_body[, c(&amp;quot;xint&amp;quot;, &amp;quot;yint&amp;quot;)]
-)
-# plot(polyrect); plot(polycircle, add = TRUE)
-polyrect &amp;lt;- gIntersection(spgeom1 = polyrect, spgeom2 = polycircle)
-# plot(polyrect); plot(polycircle, add = TRUE)
- 
-# fortify the polygon for ggplot
-droid_body_rect &amp;lt;- fortify(polyrect)
- 
- 
-# Central ring (orange)
-ring &amp;lt;- coord_circle(centre = c(0, 0), r = 0.4)
-ring$y &amp;lt;- echancrure(to_var = ring$y, by_var = ring$x, p = 0.1)
-ring$x &amp;lt;- echancrure(to_var = ring$x, by_var = ring$y, p = 0.1)
-ring &amp;lt;- bind_rows(
-  ring %&amp;gt;% mutate(group = (x &amp;gt;= 0) * 1),
-  coord_circle(centre = c(0, 0), r = 0.55, n = nrow(ring)) %&amp;gt;% mutate(y = -y, group = (x &amp;gt;= 0) * 1)
-) %&amp;gt;%
-  filter(group == 1) # oups something went wrong
-ring &amp;lt;- bind_rows(ring, ring %&amp;gt;% mutate(x = -x, group = 2))
- 
- 
- 
- 
-# ring left and right
-# we make a copy of the right part of the central ring
-ring_left &amp;lt;- ring %&amp;gt;% filter(group == 1)
-# and we shift the ring center
-ring_left$x &amp;lt;- ring_left$x - 1.3
- 
-# the same ...
-ring_right &amp;lt;- ring %&amp;gt;% filter(group == 2)
-ring_right$x &amp;lt;- ring_right$x + 1.3
- 
-# we creta a polygon for the intersection with the droid_body circle
-polyring &amp;lt;- create_poly(
-  &amp;quot;polyring_g&amp;quot; = ring_left[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)],
-  &amp;quot;polyring_d&amp;quot; = ring_right[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)]
-)
- 
-polydroid_body &amp;lt;- create_poly(&amp;quot;polydroid_body&amp;quot; = droid_body[, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])
- 
-# plot(polyring); plot(polydroid_body, add = TRUE)
- 
-polyring &amp;lt;- gIntersection(spgeom1 = polyring, spgeom2 = polydroid_body)
-fort_ring &amp;lt;- fortify(polyring)
- 
- 
-# the horizontal line of the body (in two parts)
-ligne_hori &amp;lt;- data_frame(
-  x = c(-1, range(ring$x), 1),
-  y = 0,
-  group = c(1, 1, 2, 2)
-)
- 
- 
-# droid head --------------------------------------------------------------------
- 
-droid_head &amp;lt;- coord_circle(centre = c(0, 1.02), r = 0.52) %&amp;gt;%
-  filter(y &amp;gt;= 1.02) %&amp;gt;%
-  mutate(group = 1, fill = &amp;quot;white&amp;quot;, col= &amp;quot;black&amp;quot;) %&amp;gt;%
-  bind_rows(
-    data_frame(
-      x = c(-0.52, -0.4, 0.4, 0.52),
-      y = c(1.02, 0.95, 0.95, 1.02),
-      group = 2, fill = &amp;quot;white&amp;quot;, col= &amp;quot;black&amp;quot;
-    )
-  )
- 
- 
- 
-# Grey bars in droid&amp;#39;s head
-poly_head_grey &amp;lt;- create_poly(
-  &amp;quot;poly_head_grey_haut&amp;quot; = data_frame(
-    x = c(-0.52, 0.52, 0.52, -0.52),
-    y = c(1.44, 1.44, 1.51, 1.51)
-  ),
-  &amp;quot;poly_head_grey_bas&amp;quot; = data_frame(
-    x = c(-0.52, 0.52, 0.52, -0.52),
-    y = c(1.02, 1.02, 1.07, 1.07)
-  )
-)
- 
-polydroid_head &amp;lt;- create_poly(&amp;quot;polydroid_head&amp;quot; = droid_head[droid_head$group == 1, c(&amp;quot;x&amp;quot;, &amp;quot;y&amp;quot;)])
- 
-poly_head_grey &amp;lt;- gIntersection(spgeom1 = poly_head_grey, spgeom2 = polydroid_head)
-fort_droid_headrectgris &amp;lt;- fortify(poly_head_grey)
- 
- 
- 
-# orange bars
-poly_head_orange &amp;lt;- create_poly(
-  &amp;quot;poly_head_orange1&amp;quot; = data_frame(
-    x = c(-0.52, 0.52, 0.52, -0.52),
-    y = c(1.38, 1.38, 1.42, 1.42)
-  ),
-  &amp;quot;poly_head_orange2&amp;quot; = data_frame(
-    x = c(-0.35, -0.35, -0.2, -0.2),
-    y = c(1.07, 1.15, 1.15, 1.07)
-  ),
-  &amp;quot;poly_head_orange3&amp;quot; = data_frame(
-    x = c(-0.55, -0.55, -0.45, -0.45),
-    y = c(1.07, 1.15, 1.15, 1.07)
-  ),
-  &amp;quot;poly_head_orange4&amp;quot; = data_frame(
-    x = c(0.44, 0.44, 0.47, 0.47),
-    y = c(1.07, 1.15, 1.15, 1.07)
-  )
-)
- 
-poly_head_orange &amp;lt;- gIntersection(spgeom1 = poly_head_orange, spgeom2 = polydroid_head)
-fort_droid_headrectorange &amp;lt;- fortify(poly_head_orange)
- 
- 
-polygones_droid_head &amp;lt;- bind_rows(
-  fort_droid_headrectgris %&amp;gt;% select(-piece) %&amp;gt;%
-    mutate(group = as.numeric(as.character(group)), fill = &amp;quot;#8E8E9C&amp;quot;, col= &amp;quot;black&amp;quot;),
-  fort_droid_headrectorange %&amp;gt;% select(-piece) %&amp;gt;% 
-    mutate(group = as.numeric(as.character(group)) * 2, fill = &amp;quot;#DF8D5D&amp;quot;, col= &amp;quot;black&amp;quot;)
-)
- 
- 
-# Eyes
-droid_eyes &amp;lt;- bind_rows(
-  coord_circle(centre = c(0, 1.35), r = 0.14) %&amp;gt;% mutate(group = 1, fill = &amp;quot;white&amp;quot;, col = &amp;quot;white&amp;quot;),
-  coord_circle(centre = c(0, 1.35), r = 0.12) %&amp;gt;% mutate(group = 2, fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;),
-  coord_circle(centre = c(0, 1.35), r = 0.10) %&amp;gt;% mutate(group = 3, fill = &amp;quot;grey40&amp;quot;, col = &amp;quot;grey40&amp;quot;),
-  coord_circle(centre = c(0, 1.35), r = 0.08) %&amp;gt;% mutate(group = 4, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;),
-  coord_circle(centre = c(0, 1.16), r = 0.04) %&amp;gt;% mutate(group = 5, fill = &amp;quot;#76B1DE&amp;quot;, col = &amp;quot;black&amp;quot;),
-  coord_circle(centre = c(0.25, 1.20), r = 0.08) %&amp;gt;% mutate(group = 6, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;),
-  coord_circle(centre = c(0.25, 1.20), r = 0.07) %&amp;gt;% mutate(group = 7, fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;),
-  coord_circle(centre = c(0.25, 1.20), r = 0.06) %&amp;gt;% mutate(group = 8, fill = &amp;quot;grey40&amp;quot;, col = &amp;quot;grey40&amp;quot;),
-  coord_circle(centre = c(0.25, 1.20), r = 0.04) %&amp;gt;% mutate(group = 9, fill = &amp;quot;black&amp;quot;, col = &amp;quot;black&amp;quot;)
-)
- 
-eye_line &amp;lt;- data_frame(
-  x = 0,
-  y = c(1.07, 1.16-0.04)
-)
- 
-# Antennas
-antennas &amp;lt;- data_frame(
-  x = c(0.01, 0.01, 0.10, 0.10),
-  y = c(sqrt(0.52^2 - 0.01^2) + 1.02, sqrt(0.52^2 - 0.01^2) + 1.02 + 0.15,
-        sqrt(0.52^2 - 0.1^2) + 1.02, sqrt(0.52^2 - 0.1^2) + 1.02 + 0.25),
-  group = c(1, 1, 2, 2)
-)
- 
- 
-# bb-8/ggplot2 ------------------------------------------------------------
- 
-bb8 &amp;lt;- ggplot(data = droid_body) +
-  coord_fixed() +
-  geom_polygon(mapping = aes(x = x, y = y), fill = &amp;quot;white&amp;quot;, col = &amp;quot;black&amp;quot;) +
-  geom_polygon(data = droid_body_rect, mapping = aes(x = long, y = lat, group = group), fill = &amp;quot;#8E8E9C&amp;quot;) +
-  geom_path(mapping = aes(x = xvert, y = yvert)) +
-  geom_path(mapping = aes(x = xint, y = yint)) +
-  geom_polygon(data = ring, mapping = aes(x = x, y = y, group = group), fill = &amp;quot;#DF8D5D&amp;quot;, col = &amp;quot;#DF8D5D&amp;quot;) +
-  geom_path(data = ligne_hori, mapping = aes(x = x, y = y, group = group)) +
-  geom_polygon(data = fort_ring , mapping = aes(x = long, y = lat, group = group), fill = &amp;quot;#DF8D5D&amp;quot;) +
-  geom_polygon(data = droid_head, mapping = aes(x = x, y = y, group = group, fill = fill, col = col)) +
-  geom_polygon(data = polygones_droid_head, mapping = aes(x = long, y = lat, group = group, fill = fill, col = col)) +
-  geom_polygon(data = droid_eyes, mapping = aes(x = x, y = y, group = group, fill = fill, col = col)) +
-  scale_fill_identity() + scale_color_identity() +
-  geom_line(data = eye_line, mapping = aes(x = x, y = y)) +
-  geom_line(data = antennas, mapping = aes(x = x, y = y, group = group), col = &amp;quot;black&amp;quot;)
- 
- 
-bb8&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# or
-bb8 + theme_void()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) + 
-    geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- -10:10
-y &amp;lt;- -x^2 + 10
-meow &amp;lt;- multicat(xs=x, ys=rnorm(21),
-                 cat=c(1,2,3,4,5,6,7,8,9,10),
-                 catcolor=list(c(0,0,0,1)),
-                 canvas=c(-0.1,1.1, -0.1, 1.1),
-                 xlab=&amp;quot;some cats&amp;quot;, ylab=&amp;quot;other cats&amp;quot;, main=&amp;quot;Random Cats&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-22-provaeu_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;hello-world-welcome-to-nome-blog&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hello World, welcome to NOME BLOG,&lt;/h2&gt;
+&lt;p&gt;My name is Eugenio Palmieri and I’m starting a new personal blog. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feautures-of-the-blog&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feautures of the blog:&lt;/h2&gt;
+&lt;div id=&#34;integration-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Integration with R:&lt;/h3&gt;
+&lt;p&gt;One of the main feauture of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+
+data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;condition_2&amp;quot;), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
+
+ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
+geom_smooth(method=lm , color=&amp;quot;red&amp;quot;, se=TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Or in this example of interactive time-series chart:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dygraphs)
+lungDeaths &amp;lt;- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;dygraphs html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;attrs&#34;:{&#34;labels&#34;:[&#34;month&#34;,&#34;mdeaths&#34;,&#34;fdeaths&#34;],&#34;legend&#34;:&#34;auto&#34;,&#34;retainDateWindow&#34;:false,&#34;axes&#34;:{&#34;x&#34;:{&#34;pixelsPerLabel&#34;:60}},&#34;showRangeSelector&#34;:true,&#34;rangeSelectorHeight&#34;:40,&#34;rangeSelectorPlotFillColor&#34;:&#34; #A7B1C4&#34;,&#34;rangeSelectorPlotStrokeColor&#34;:&#34;#808FAB&#34;,&#34;interactionModel&#34;:&#34;Dygraph.Interaction.defaultModel&#34;},&#34;scale&#34;:&#34;monthly&#34;,&#34;annotations&#34;:[],&#34;shadings&#34;:[],&#34;events&#34;:[],&#34;format&#34;:&#34;date&#34;,&#34;data&#34;:[[&#34;1974-01-01T00:00:00.000Z&#34;,&#34;1974-02-01T00:00:00.000Z&#34;,&#34;1974-03-01T00:00:00.000Z&#34;,&#34;1974-04-01T00:00:00.000Z&#34;,&#34;1974-05-01T00:00:00.000Z&#34;,&#34;1974-06-01T00:00:00.000Z&#34;,&#34;1974-07-01T00:00:00.000Z&#34;,&#34;1974-08-01T00:00:00.000Z&#34;,&#34;1974-09-01T00:00:00.000Z&#34;,&#34;1974-10-01T00:00:00.000Z&#34;,&#34;1974-11-01T00:00:00.000Z&#34;,&#34;1974-12-01T00:00:00.000Z&#34;,&#34;1975-01-01T00:00:00.000Z&#34;,&#34;1975-02-01T00:00:00.000Z&#34;,&#34;1975-03-01T00:00:00.000Z&#34;,&#34;1975-04-01T00:00:00.000Z&#34;,&#34;1975-05-01T00:00:00.000Z&#34;,&#34;1975-06-01T00:00:00.000Z&#34;,&#34;1975-07-01T00:00:00.000Z&#34;,&#34;1975-08-01T00:00:00.000Z&#34;,&#34;1975-09-01T00:00:00.000Z&#34;,&#34;1975-10-01T00:00:00.000Z&#34;,&#34;1975-11-01T00:00:00.000Z&#34;,&#34;1975-12-01T00:00:00.000Z&#34;,&#34;1976-01-01T00:00:00.000Z&#34;,&#34;1976-02-01T00:00:00.000Z&#34;,&#34;1976-03-01T00:00:00.000Z&#34;,&#34;1976-04-01T00:00:00.000Z&#34;,&#34;1976-05-01T00:00:00.000Z&#34;,&#34;1976-06-01T00:00:00.000Z&#34;,&#34;1976-07-01T00:00:00.000Z&#34;,&#34;1976-08-01T00:00:00.000Z&#34;,&#34;1976-09-01T00:00:00.000Z&#34;,&#34;1976-10-01T00:00:00.000Z&#34;,&#34;1976-11-01T00:00:00.000Z&#34;,&#34;1976-12-01T00:00:00.000Z&#34;,&#34;1977-01-01T00:00:00.000Z&#34;,&#34;1977-02-01T00:00:00.000Z&#34;,&#34;1977-03-01T00:00:00.000Z&#34;,&#34;1977-04-01T00:00:00.000Z&#34;,&#34;1977-05-01T00:00:00.000Z&#34;,&#34;1977-06-01T00:00:00.000Z&#34;,&#34;1977-07-01T00:00:00.000Z&#34;,&#34;1977-08-01T00:00:00.000Z&#34;,&#34;1977-09-01T00:00:00.000Z&#34;,&#34;1977-10-01T00:00:00.000Z&#34;,&#34;1977-11-01T00:00:00.000Z&#34;,&#34;1977-12-01T00:00:00.000Z&#34;,&#34;1978-01-01T00:00:00.000Z&#34;,&#34;1978-02-01T00:00:00.000Z&#34;,&#34;1978-03-01T00:00:00.000Z&#34;,&#34;1978-04-01T00:00:00.000Z&#34;,&#34;1978-05-01T00:00:00.000Z&#34;,&#34;1978-06-01T00:00:00.000Z&#34;,&#34;1978-07-01T00:00:00.000Z&#34;,&#34;1978-08-01T00:00:00.000Z&#34;,&#34;1978-09-01T00:00:00.000Z&#34;,&#34;1978-10-01T00:00:00.000Z&#34;,&#34;1978-11-01T00:00:00.000Z&#34;,&#34;1978-12-01T00:00:00.000Z&#34;,&#34;1979-01-01T00:00:00.000Z&#34;,&#34;1979-02-01T00:00:00.000Z&#34;,&#34;1979-03-01T00:00:00.000Z&#34;,&#34;1979-04-01T00:00:00.000Z&#34;,&#34;1979-05-01T00:00:00.000Z&#34;,&#34;1979-06-01T00:00:00.000Z&#34;,&#34;1979-07-01T00:00:00.000Z&#34;,&#34;1979-08-01T00:00:00.000Z&#34;,&#34;1979-09-01T00:00:00.000Z&#34;,&#34;1979-10-01T00:00:00.000Z&#34;,&#34;1979-11-01T00:00:00.000Z&#34;,&#34;1979-12-01T00:00:00.000Z&#34;],[2134,1863,1877,1877,1492,1249,1280,1131,1209,1492,1621,1846,2103,2137,2153,1833,1403,1288,1186,1133,1053,1347,1545,2066,2020,2750,2283,1479,1189,1160,1113,970,999,1208,1467,2059,2240,1634,1722,1801,1246,1162,1087,1013,959,1179,1229,1655,2019,2284,1942,1423,1340,1187,1098,1004,970,1140,1110,1812,2263,1820,1846,1531,1215,1075,1056,975,940,1081,1294,1341],[901,689,827,677,522,406,441,393,387,582,578,666,830,752,785,664,467,438,421,412,343,440,531,771,767,1141,896,532,447,420,376,330,357,445,546,764,862,660,663,643,502,392,411,348,387,385,411,638,796,853,737,546,530,446,431,362,387,430,425,679,821,785,727,612,478,429,405,379,393,411,487,574]]},&#34;evals&#34;:[&#34;attrs.interactionModel&#34;],&#34;jsHooks&#34;:[]}&lt;/script&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;support-for-rm-latex-math-expressions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Support for &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; math expressions&lt;/a&gt;:&lt;/h2&gt;
+&lt;p&gt;Anothere important feauture is the support for &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; to write equations and formulas:&lt;/p&gt;
+&lt;pre class=&#34;tex&#34;&gt;&lt;code&gt;$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]&lt;/span&gt; &lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-your-own-blog-for-free&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Build your own blog for free!&lt;/h2&gt;
+&lt;p&gt;If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to &lt;a href=&#34;#rotto&#34;&gt;create a blog with Hugo and Github&lt;/a&gt; with the &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown package&lt;/a&gt;, directly from Rstudio.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </description>
     </item>
     

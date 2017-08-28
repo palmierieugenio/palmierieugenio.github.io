@@ -1,0 +1,65 @@
+---
+title: First Post!
+author: Eugenio Palmieri
+date: '2017-08-27'
+
+slug: primo-post
+categories:
+  - comunicazioni
+tags:
+  - comunicazioni
+---
+
+<script src="/./rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/./rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/./rmarkdown-libs/dygraphs/dygraph.css" rel="stylesheet" />
+<script src="/./rmarkdown-libs/dygraphs/dygraph-combined.js"></script>
+<script src="/./rmarkdown-libs/moment/moment.js"></script>
+<script src="/./rmarkdown-libs/moment-timezone/moment-timezone-with-data.js"></script>
+<script src="/./rmarkdown-libs/moment-fquarter/moment-fquarter.min.js"></script>
+<script src="/./rmarkdown-libs/dygraphs-binding/dygraphs.js"></script>
+
+
+<div id="hello-world-welcome-to-nome-blog" class="section level2">
+<h2>Hello World, welcome to NOME BLOG,</h2>
+<p>My name is Eugenio Palmieri and I’m starting a new personal blog. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.</p>
+</div>
+<div id="feautures-of-the-blog" class="section level2">
+<h2>Feautures of the blog:</h2>
+<div id="integration-with-r" class="section level3">
+<h3>Integration with R:</h3>
+<p>One of the main feauture of this blog is that it supports <a href="http://rmarkdown.rstudio.com/">Rmarkdown</a> files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive <a href="http://www.htmlwidgets.org/">html widgets</a> with R<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, like in this graph example:</p>
+<pre class="r"><code>library(ggplot2)
+
+data=data.frame(cond = rep(c(&quot;condition_1&quot;, &quot;condition_2&quot;), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
+
+ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
+geom_smooth(method=lm , color=&quot;red&quot;, se=TRUE)</code></pre>
+<p><img src="/./post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png" width="672" /></p>
+<p>Or in this example of interactive time-series chart:</p>
+<pre class="r"><code>library(dygraphs)
+lungDeaths &lt;- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)%&gt;% dyRangeSelector()</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"attrs":{"labels":["month","mdeaths","fdeaths"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}},"showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel"},"scale":"monthly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1974-01-01T00:00:00.000Z","1974-02-01T00:00:00.000Z","1974-03-01T00:00:00.000Z","1974-04-01T00:00:00.000Z","1974-05-01T00:00:00.000Z","1974-06-01T00:00:00.000Z","1974-07-01T00:00:00.000Z","1974-08-01T00:00:00.000Z","1974-09-01T00:00:00.000Z","1974-10-01T00:00:00.000Z","1974-11-01T00:00:00.000Z","1974-12-01T00:00:00.000Z","1975-01-01T00:00:00.000Z","1975-02-01T00:00:00.000Z","1975-03-01T00:00:00.000Z","1975-04-01T00:00:00.000Z","1975-05-01T00:00:00.000Z","1975-06-01T00:00:00.000Z","1975-07-01T00:00:00.000Z","1975-08-01T00:00:00.000Z","1975-09-01T00:00:00.000Z","1975-10-01T00:00:00.000Z","1975-11-01T00:00:00.000Z","1975-12-01T00:00:00.000Z","1976-01-01T00:00:00.000Z","1976-02-01T00:00:00.000Z","1976-03-01T00:00:00.000Z","1976-04-01T00:00:00.000Z","1976-05-01T00:00:00.000Z","1976-06-01T00:00:00.000Z","1976-07-01T00:00:00.000Z","1976-08-01T00:00:00.000Z","1976-09-01T00:00:00.000Z","1976-10-01T00:00:00.000Z","1976-11-01T00:00:00.000Z","1976-12-01T00:00:00.000Z","1977-01-01T00:00:00.000Z","1977-02-01T00:00:00.000Z","1977-03-01T00:00:00.000Z","1977-04-01T00:00:00.000Z","1977-05-01T00:00:00.000Z","1977-06-01T00:00:00.000Z","1977-07-01T00:00:00.000Z","1977-08-01T00:00:00.000Z","1977-09-01T00:00:00.000Z","1977-10-01T00:00:00.000Z","1977-11-01T00:00:00.000Z","1977-12-01T00:00:00.000Z","1978-01-01T00:00:00.000Z","1978-02-01T00:00:00.000Z","1978-03-01T00:00:00.000Z","1978-04-01T00:00:00.000Z","1978-05-01T00:00:00.000Z","1978-06-01T00:00:00.000Z","1978-07-01T00:00:00.000Z","1978-08-01T00:00:00.000Z","1978-09-01T00:00:00.000Z","1978-10-01T00:00:00.000Z","1978-11-01T00:00:00.000Z","1978-12-01T00:00:00.000Z","1979-01-01T00:00:00.000Z","1979-02-01T00:00:00.000Z","1979-03-01T00:00:00.000Z","1979-04-01T00:00:00.000Z","1979-05-01T00:00:00.000Z","1979-06-01T00:00:00.000Z","1979-07-01T00:00:00.000Z","1979-08-01T00:00:00.000Z","1979-09-01T00:00:00.000Z","1979-10-01T00:00:00.000Z","1979-11-01T00:00:00.000Z","1979-12-01T00:00:00.000Z"],[2134,1863,1877,1877,1492,1249,1280,1131,1209,1492,1621,1846,2103,2137,2153,1833,1403,1288,1186,1133,1053,1347,1545,2066,2020,2750,2283,1479,1189,1160,1113,970,999,1208,1467,2059,2240,1634,1722,1801,1246,1162,1087,1013,959,1179,1229,1655,2019,2284,1942,1423,1340,1187,1098,1004,970,1140,1110,1812,2263,1820,1846,1531,1215,1075,1056,975,940,1081,1294,1341],[901,689,827,677,522,406,441,393,387,582,578,666,830,752,785,664,467,438,421,412,343,440,531,771,767,1141,896,532,447,420,376,330,357,445,546,764,862,660,663,643,502,392,411,348,387,385,411,638,796,853,737,546,530,446,431,362,387,430,425,679,821,785,727,612,478,429,405,379,393,411,487,574]]},"evals":["attrs.interactionModel"],"jsHooks":[]}</script>
+<p><br></p>
+</div>
+</div>
+<div id="support-for-rm-latex-math-expressions" class="section level2">
+<h2>Support for <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics"><span class="math inline">\(\rm \LaTeX\)</span> math expressions</a>:</h2>
+<p>Anothere important feauture is the support for <span class="math inline">\(\rm \LaTeX\)</span> to write equations and formulas:</p>
+<pre class="tex"><code>$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$</code></pre>
+<p><span class="math display">\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]</span> <br></p>
+</div>
+<div id="build-your-own-blog-for-free" class="section level2">
+<h2>Build your own blog for free!</h2>
+<p>If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to <a href="#rotto">create a blog with Hugo and Github</a> with the <a href="https://github.com/rstudio/blogdown">blogdown package</a>, directly from Rstudio.</p>
+<p><br></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://www.r-project.org/">R</a> is a a free software environment for statistical computing and graphics and <a href="https://www.rstudio.com">Rstudio</a> is an integrated development environment (IDE) for R.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
