@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Comunicazioni on Titolo Blog</title>
-    <link>/./categories/comunicazioni/</link>
+    <link>/categories/comunicazioni/</link>
     <description>Recent content in Comunicazioni on Titolo Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,18 +12,18 @@
     
     <item>
       <title>First Post!</title>
-      <link>/./post/primo-post/</link>
+      <link>/post/primo-post/</link>
       <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/./post/primo-post/</guid>
-      <description>&lt;script src=&#34;/././rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/././rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/././rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
+      <guid>/post/primo-post/</guid>
+      <description>&lt;script src=&#34;/./rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/./rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/./rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/./rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/./rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/./rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/./rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/./rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;hello-world-welcome-to-nome-blog&#34; class=&#34;section level2&#34;&gt;
@@ -41,7 +41,7 @@ data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;conditio
 
 ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
 geom_smooth(method=lm , color=&amp;quot;red&amp;quot;, se=TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/./post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Or in this example of interactive time-series chart:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dygraphs)
 lungDeaths &amp;lt;- cbind(mdeaths, fdeaths)

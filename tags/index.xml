@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Titolo Blog</title>
-    <link>/./tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Titolo Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,38 +12,38 @@
     
     <item>
       <title>Content tagged as &#39;Academic&#39;</title>
-      <link>/./tags/academic/</link>
+      <link>/tags/academic/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/./tags/academic/</guid>
+      <guid>/tags/academic/</guid>
       <description>&lt;p&gt;Here is a list of all the content that has been tagged as &lt;em&gt;academic&lt;/em&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Comunicazioni</title>
-      <link>/./tags/comunicazioni/</link>
+      <link>/tags/comunicazioni/</link>
       <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/./tags/comunicazioni/</guid>
+      <guid>/tags/comunicazioni/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deep Learning</title>
-      <link>/./tags/deep-learning/</link>
+      <link>/tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/./tags/deep-learning/</guid>
+      <guid>/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Demo</title>
-      <link>/./tags/demo/</link>
+      <link>/tags/demo/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/./tags/demo/</guid>
+      <guid>/tags/demo/</guid>
       <description></description>
     </item>
     

@@ -1,4 +1,4 @@
-baseurl = "/./"
+baseurl = "https://palmierieugenio.github.io/"
 publishDir = "./"
 title = "Titolo Blog"
 copyright = "&copy; 2017 Eugenio Palmieri"

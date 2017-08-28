@@ -5,7 +5,7 @@
     
     <url>
     
-      <loc>/./post/primo-post/</loc>
+      <loc>/post/primo-post/</loc>
       <lastmod>2017-08-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -14,7 +14,7 @@
     
     <url>
     
-      <loc>/./tags/academic/</loc>
+      <loc>/tags/academic/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -23,7 +23,7 @@
     
     <url>
     
-      <loc>/./talk/example-talk/</loc>
+      <loc>/talk/example-talk/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -32,7 +32,7 @@
     
     <url>
     
-      <loc>/./post/</loc>
+      <loc>/post/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -41,7 +41,7 @@
     
     <url>
     
-      <loc>/./publication/</loc>
+      <loc>/publication/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -50,7 +50,7 @@
     
     <url>
     
-      <loc>/./talk/</loc>
+      <loc>/talk/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -59,7 +59,7 @@
     
     <url>
     
-      <loc>/./project/deep-learning/</loc>
+      <loc>/project/deep-learning/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -68,7 +68,7 @@
     
     <url>
     
-      <loc>/./project/example-external-project/</loc>
+      <loc>/project/example-external-project/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -77,7 +77,7 @@
     
     <url>
     
-      <loc>/./publication/person-re-identification/</loc>
+      <loc>/publication/person-re-identification/</loc>
       <lastmod>2015-09-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -86,7 +86,7 @@
     
     <url>
     
-      <loc>/./publication/clothing-search/</loc>
+      <loc>/publication/clothing-search/</loc>
       <lastmod>2013-07-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -95,7 +95,7 @@
     
     <url>
     
-      <loc>/./publication_types/1/</loc>
+      <loc>/publication_types/1/</loc>
       <lastmod>2013-07-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -105,7 +105,7 @@
     
     <url>
     
-      <loc>/./publication_types/2/</loc>
+      <loc>/publication_types/2/</loc>
       <lastmod>2015-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -115,7 +115,7 @@
     
     <url>
     
-      <loc>/./categories/</loc>
+      <loc>/categories/</loc>
       <priority>0</priority>
     </url>
     
@@ -124,7 +124,7 @@
     
     <url>
     
-      <loc>/./tags/comunicazioni/</loc>
+      <loc>/tags/comunicazioni/</loc>
       <lastmod>2017-08-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -134,7 +134,7 @@
     
     <url>
     
-      <loc>/./categories/comunicazioni/</loc>
+      <loc>/categories/comunicazioni/</loc>
       <lastmod>2017-08-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -144,7 +144,7 @@
     
     <url>
     
-      <loc>/./tags/deep-learning/</loc>
+      <loc>/tags/deep-learning/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -154,7 +154,7 @@
     
     <url>
     
-      <loc>/./tags/demo/</loc>
+      <loc>/tags/demo/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -164,7 +164,7 @@
     
     <url>
     
-      <loc>/./project/</loc>
+      <loc>/project/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -174,7 +174,7 @@
     
     <url>
     
-      <loc>/./publication_types/</loc>
+      <loc>/publication_types/</loc>
       <lastmod>2013-07-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -184,7 +184,7 @@
     
     <url>
     
-      <loc>/./tags/</loc>
+      <loc>/tags/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -194,7 +194,7 @@
     
     <url>
     
-      <loc>/./</loc>
+      <loc>/</loc>
       <lastmod>2016-04-20T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
