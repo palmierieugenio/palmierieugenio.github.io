@@ -1,7 +1,7 @@
 ---
 title: First Post!
 author: Eugenio Palmieri
-date: '2017-08-27'
+date: '2017-08-29'
 
 slug: primo-post
 categories:
@@ -47,7 +47,42 @@ $$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
 $$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
 <br>
 
-## Build your own blog for free!
+## Other programming languages:
+
+With the `knitr` [package](https://yihui.name/knitr/demo/engines/) is possible to use directly [from Rstudio](http://rmarkdown.rstudio.com/authoring_knitr_engines.html) chunks of code from other language engines, like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala, CSS.
+
+### C++
+This is an example of C++ code compiled through the `Rcpp`[^3] package, inside a `{r engine='Rcpp'}` code chunk:
+
+
+```{r engine='Rcpp'}
+#include <Rcpp.h>
+
+// [[Rcpp::export]]
+int fibonacci(const int x) {
+    if (x == 0 || x == 1) return(x);
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}
+```
+
+Print the values of the 'fibonacci' function (defined in C++ with the Rcpp package) inside a normal `{r}` code chunk:
+```{r}
+fibonacci(10L)
+fibonacci(20L)
+```
+
+### Python
+
+Using the Python Engine directly from Rstudio, inside a `{python}` code chunk:
+
+```{python}
+import sys
+print(sys.version)
+```
+
+It is even possible to exchange data frames from R and Python via a file system with the `feather` [package](https://blog.rstudio.com/2016/03/29/feather/).
+
+## [Build your own blog for free!](#rotto)
 If you are interested in building a blog like this for free, you can read the new post I've made to explain how to [create a blog with Hugo and Github](#rotto) with the [blogdown package](https://github.com/rstudio/blogdown), directly from Rstudio.
 
 <br>
@@ -55,3 +90,5 @@ If you are interested in building a blog like this for free, you can read the ne
 [^1]: I'm using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I'm intentioned to learn Python.
 
 [^2]: [R](https://www.r-project.org/) is a a free software environment for statistical computing and graphics and [Rstudio](https://www.rstudio.com) is an integrated development environment (IDE) for R.
+
+[^3]: The `Rcpp` is slightly different from the other languages that can use the engine directly, with something like `{python, engine.path="/Users/me/anaconda/bin/python"}`.

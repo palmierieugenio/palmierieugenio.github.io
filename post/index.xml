@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Titolo Blog</title>
-    <link>/post/</link>
+    <link>/./post/</link>
     <description>Recent content in Posts on Titolo Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -11,19 +11,29 @@
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>First Post!</title>
-      <link>/post/primo-post/</link>
-      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      <title>Create a blog with R Markdown and Hugo on Github</title>
+      <link>/./post/build-a-blog-with-hugo-github-and-blogdown/</link>
+      <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/primo-post/</guid>
-      <description>&lt;script src=&#34;/./rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/./rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/./rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/./rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/./rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/./rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/./rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/./rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
+      <guid>/./post/build-a-blog-with-hugo-github-and-blogdown/</guid>
+      <description>&lt;p&gt;Ancora ci devo lavorare.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>First Post!</title>
+      <link>/./post/primo-post/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/primo-post/</guid>
+      <description>&lt;script src=&#34;/././rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/././rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;hello-world-welcome-to-nome-blog&#34; class=&#34;section level2&#34;&gt;
@@ -41,7 +51,7 @@ data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;conditio
 
 ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
 geom_smooth(method=lm , color=&amp;quot;red&amp;quot;, se=TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/./post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Or in this example of interactive time-series chart:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dygraphs)
 lungDeaths &amp;lt;- cbind(mdeaths, fdeaths)
@@ -57,8 +67,36 @@ dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;tex&#34;&gt;&lt;code&gt;$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]&lt;/span&gt; &lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;other-programming-languages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other programming languages:&lt;/h2&gt;
+&lt;p&gt;With the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt; is possible to use directly &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_knitr_engines.html&#34;&gt;from Rstudio&lt;/a&gt; chunks of code from other language engines, like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala, CSS.&lt;/p&gt;
+&lt;div id=&#34;c&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;C++&lt;/h3&gt;
+&lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;pre class=&#34;cpp&#34;&gt;&lt;code&gt;#include &amp;lt;Rcpp.h&amp;gt;
+
+// [[Rcpp::export]]
+int fibonacci(const int x) {
+    if (x == 0 || x == 1) return(x);
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Print the values of the ‘fibonacci’ function (defined in C++ with the Rcpp package) inside a normal &lt;code&gt;{r}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fibonacci(10L)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 55&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fibonacci(20L)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 6765&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Python&lt;/h3&gt;
+&lt;p&gt;Using the Python Engine directly from Rstudio, inside a &lt;code&gt;{python}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import sys
+print(sys.version)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.5.2 |Anaconda custom (64-bit)| (default, Jul  5 2016, 11:41:13) [MSC v.1900 64 bit (AMD64)]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is even possible to exchange data frames from R and Python via a file system with the &lt;code&gt;feather&lt;/code&gt; &lt;a href=&#34;https://blog.rstudio.com/2016/03/29/feather/&#34;&gt;package&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div id=&#34;build-your-own-blog-for-free&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Build your own blog for free!&lt;/h2&gt;
+&lt;h2&gt;&lt;a href=&#34;#rotto&#34;&gt;Build your own blog for free!&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to &lt;a href=&#34;#rotto&#34;&gt;create a blog with Hugo and Github&lt;/a&gt; with the &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown package&lt;/a&gt;, directly from Rstudio.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -67,6 +105,7 @@ dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;The &lt;code&gt;Rcpp&lt;/code&gt; is slightly different from the other languages that can use the engine directly, with something like &lt;code&gt;{python, engine.path=&amp;quot;/Users/me/anaconda/bin/python&amp;quot;}&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

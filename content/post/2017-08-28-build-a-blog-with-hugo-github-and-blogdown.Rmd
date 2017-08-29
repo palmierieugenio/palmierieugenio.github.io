@@ -1,0 +1,16 @@
+---
+title: Create a blog with R Markdown and Hugo on Github
+author: Eugenio Palmieri
+date: '2017-08-30'
+slug: build-a-blog-with-hugo-github-and-blogdown
+categories:
+  - web
+tags:
+  - rmarkdown
+  - web
+---
+
+Ancora ci devo lavorare.
+
+
+

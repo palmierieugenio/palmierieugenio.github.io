@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rmarkdown on Titolo Blog</title>
+    <link>/./tags/rmarkdown/</link>
+    <description>Recent content in Rmarkdown on Titolo Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>
+    <lastBuildDate>Wed, 30 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/rmarkdown/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Create a blog with R Markdown and Hugo on Github</title>
+      <link>/./post/build-a-blog-with-hugo-github-and-blogdown/</link>
+      <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/build-a-blog-with-hugo-github-and-blogdown/</guid>
+      <description>&lt;p&gt;Ancora ci devo lavorare.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

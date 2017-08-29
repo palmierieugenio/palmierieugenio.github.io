@@ -46,13 +46,13 @@
     
   
 
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Titolo Blog">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Titolo Blog">
+  <link rel="alternate" href="/./index.xml" type="application/rss+xml" title="Titolo Blog">
+  <link rel="feed" href="/./index.xml" type="application/rss+xml" title="Titolo Blog">
 
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
 
-  <link rel="canonical" href="/post/primo-post/">
+  <link rel="canonical" href="/./post/primo-post/">
 
   
 
@@ -139,8 +139,8 @@
 <div class="article-metadata">
 
   <span class="article-date">
-    <time datetime="2017-08-27 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Sun, Aug 27, 2017
+    <time datetime="2017-08-29 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Tue, Aug 29, 2017
     </time>
   </span>
 
@@ -186,28 +186,28 @@
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=First%20Post%21&amp;url=%2fpost%2fprimo-post%2f"
+         href="https://twitter.com/intent/tweet?text=First%20Post%21&amp;url=%2f.%2fpost%2fprimo-post%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fprimo-post%2f&amp;title=First%20Post%21"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f.%2fpost%2fprimo-post%2f&amp;title=First%20Post%21"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2fprimo-post%2f&amp;title=First%20Post%21"
+         href="http://service.weibo.com/share/share.php?url=%2f.%2fpost%2fprimo-post%2f&amp;title=First%20Post%21"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=First%20Post%21&amp;body=%2fpost%2fprimo-post%2f">
+         href="mailto:?subject=First%20Post%21&amp;body=%2f.%2fpost%2fprimo-post%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -260,8 +260,36 @@ dygraph(lungDeaths)%&gt;% dyRangeSelector()</code></pre>
 <pre class="tex"><code>$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$</code></pre>
 <p><span class="math display">\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]</span> <br></p>
 </div>
+<div id="other-programming-languages" class="section level2">
+<h2>Other programming languages:</h2>
+<p>With the <code>knitr</code> <a href="https://yihui.name/knitr/demo/engines/">package</a> is possible to use directly <a href="http://rmarkdown.rstudio.com/authoring_knitr_engines.html">from Rstudio</a> chunks of code from other language engines, like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala, CSS.</p>
+<div id="c" class="section level3">
+<h3>C++</h3>
+<p>This is an example of C++ code compiled through the <code>Rcpp</code><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> package, inside a <code>{r engine='Rcpp'}</code> code chunk:</p>
+<pre class="cpp"><code>#include &lt;Rcpp.h&gt;
+
+// [[Rcpp::export]]
+int fibonacci(const int x) {
+    if (x == 0 || x == 1) return(x);
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}</code></pre>
+<p>Print the values of the ‘fibonacci’ function (defined in C++ with the Rcpp package) inside a normal <code>{r}</code> code chunk:</p>
+<pre class="r"><code>fibonacci(10L)</code></pre>
+<pre><code>## [1] 55</code></pre>
+<pre class="r"><code>fibonacci(20L)</code></pre>
+<pre><code>## [1] 6765</code></pre>
+</div>
+<div id="python" class="section level3">
+<h3>Python</h3>
+<p>Using the Python Engine directly from Rstudio, inside a <code>{python}</code> code chunk:</p>
+<pre class="python"><code>import sys
+print(sys.version)</code></pre>
+<pre><code>## 3.5.2 |Anaconda custom (64-bit)| (default, Jul  5 2016, 11:41:13) [MSC v.1900 64 bit (AMD64)]</code></pre>
+<p>It is even possible to exchange data frames from R and Python via a file system with the <code>feather</code> <a href="https://blog.rstudio.com/2016/03/29/feather/">package</a>.</p>
+</div>
+</div>
 <div id="build-your-own-blog-for-free" class="section level2">
-<h2>Build your own blog for free!</h2>
+<h2><a href="#rotto">Build your own blog for free!</a></h2>
 <p>If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to <a href="#rotto">create a blog with Hugo and Github</a> with the <a href="https://github.com/rstudio/blogdown">blogdown package</a>, directly from Rstudio.</p>
 <p><br></p>
 </div>
@@ -270,6 +298,7 @@ dygraph(lungDeaths)%&gt;% dyRangeSelector()</code></pre>
 <ol>
 <li id="fn1"><p>I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p><a href="https://www.r-project.org/">R</a> is a a free software environment for statistical computing and graphics and <a href="https://www.rstudio.com">Rstudio</a> is an integrated development environment (IDE) for R.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>The <code>Rcpp</code> is slightly different from the other languages that can use the engine directly, with something like <code>{python, engine.path=&quot;/Users/me/anaconda/bin/python&quot;}</code>.<a href="#fnref3">↩</a></p></li>
 </ol>
 </div>
 
@@ -283,6 +312,9 @@ dygraph(lungDeaths)%&gt;% dyRangeSelector()</code></pre>
   <ul class="pager">
     
 
+    
+    <li class="next"><a href="/./post/build-a-blog-with-hugo-github-and-blogdown/">Create a blog with R Markdown and Hugo on Github <span
+      aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
 </nav>

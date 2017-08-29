@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Titolo Blog</title>
-    <link>/categories/</link>
+    <link>/./categories/</link>
     <description>Recent content in Categories on Titolo Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -11,10 +11,19 @@
     
     <item>
       <title>Comunicazioni</title>
-      <link>/categories/comunicazioni/</link>
-      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      <link>/./categories/comunicazioni/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/comunicazioni/</guid>
+      <guid>/./categories/comunicazioni/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>/./categories/web/</link>
+      <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./categories/web/</guid>
       <description></description>
     </item>
     
