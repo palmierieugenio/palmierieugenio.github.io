@@ -10,7 +10,84 @@ tags:
   - web
 ---
 
-Ancora ci devo lavorare.
+### Hugo + blogdown = build sites in RStudio!
+It's possible to create a site like this with [Hugo](https://gohugo.io/), an open-source and [free software](https://gohugo.io/about/license/) static site generators, using an r package called [`blogdown`](https://github.com/rstudio/blogdown) and I am going to explain how to do it step by step.
+
+#### I suggest you to take a look also at my sources after reading this post:
+- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) (creators of blogdown)
+- [R Blogdown Setup in GiHub](https://aurora-mareviv.github.io/2017/08/r-blogdown-setup-in-gihub/) (main source)  
+- [Academic template Demo](https://sourcethemes.com/academic/) (information about my template)
 
 
+### Who should use it?
+You probably shouldn't. There are a lot of other free blog services, probably better or easier to use than this, so this method is for you mainly if you are interested in the specific features of this kind of blog (I've made a description of some of them on my [previous post](https://palmierieugenio.github.io/post/primo-post/)).
 
+My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using Rmarkdown files. It can be useful also if you are using more than one programming tool and you want to integrate them with the `knitr` [package](https://yihui.name/knitr/demo/engines/).
+
+### Choose where to deploy it
+
+>Since the website is basically a folder containing static files, it is much easier to deploy than websites that require dynamic server-side languages such as PHP or databases. All you need is to upload the files to a server, and usually your website will be up and running shortly. The key question is which web server you want to use.
+
+####[blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/deployment.html)
+
+I've choosen to deploy it on GitHub (and I'm going to explain how to do it with this approach), but you can find alternative services, for example [Netlify](https://www.netlify.com/), if you prefer: you can find more information [here](https://bookdown.org/yihui/blogdown/deployment.html).
+
+### What do you need[^1]:
+- Install [R development version](https://cran.r-project.org/bin/windows/base/rdevel.html)
+- Install [RStudio development version](https://www.rstudio.com/products/rstudio/download/preview/)
+- Install [Git](https://git-scm.com/)
+
+### Choose your template:
+Hugo supports more than one template (here a [complete list](https://themes.gohugo.io/)). The template I've used is called [hugo-academic](https://github.com/gcushen/hugo-academic), but there are more [suggested templates](https://bookdown.org/yihui/blogdown/other-themes.html) in the blogdown documentation:
+
+### Install `blogdown` in RStudio:
+
+```{r, eval=F}
+install.packages("blogdown")
+# or if it doesn't work:
+install.packages("devtools")
+devtools::install_github('rstudio/blogdown')
+```
+
+
+### Build your blog on Github
+
+- Create [a Github Account](https://github.com/) with your USERNAME[^2] as account name
+Your Github account url will be `https://github.com/USERNAME` [^3].
+
+- Create a [repository on Github](https://help.github.com/articles/create-a-repo/):
+- The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)[^4]. Initialize the repository with a README.md file (not very important, but useful).
+
+If you notice the structure of the link of my repos https://github.com/palmierieugenio/palmierieugenio.github.io, you will notice that `palmierieugenio` is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this `https://github.com/[USERNAME]/[USERNAME].github.io`.
+
+- Create an empty folder in your computer with the same name of the desired url, `USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory.
+
+- Run in the Git CMD terminal (you should have it istalled with the Git installation):
+
+```{bash eval=FALSE}
+cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
+git init # initiates repo in the directory
+git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
+git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they're downloaded
+```
+- Open RStudio and select the Menu > File > New Project:
+
+![](https://aurora-mareviv.github.io/images/tuto/tuto1.png)
+
+- Select the `Website use blogdown` command (you should have installed the `blogdown` package):
+
+![](https://bookdown.org/yihui/blogdown/images/new-project.png)
+- Choose a theme:
+I've choosen the [gcushen/hugo-academic](https://sourcethemes.com/academic/) theme, but there are other [suggested Hugo themes](https://bookdown.org/yihui/blogdown/other-themes.html):
+
+![](/img/blogdown_academic.png)
+
+- It will appear a config.toml file in the folder. It is the configuration of the blog[^5].
+![](https://aurora-mareviv.github.io/images/tuto/tuto4a.png)
+
+
+[^1]: You may need to unistall the R and Rstudio previous versions from your computer before the installations.
+[^2]: Careful when you choose your username, because it will be the url of your site, example: https://USERNAME.github.io/.
+[^3]: If you prefer to have different url names for your GitHub profile and Blog (not like my example: https://github.com/palmierieugenio and https://palmierieugenio.github.io), you can follow the note 4.
+[^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
+[^5]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).

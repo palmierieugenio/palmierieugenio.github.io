@@ -16,7 +16,98 @@
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/./post/build-a-blog-with-hugo-github-and-blogdown/</guid>
-      <description>&lt;p&gt;Ancora ci devo lavorare.&lt;/p&gt;
+      <description>&lt;div id=&#34;hugo-blogdown-build-sites-in-rstudio&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Hugo + blogdown = build sites in RStudio!&lt;/h3&gt;
+&lt;p&gt;It’s possible to create a site like this with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;, an open-source and &lt;a href=&#34;https://gohugo.io/about/license/&#34;&gt;free software&lt;/a&gt; static site generators, using an r package called &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;&lt;code&gt;blogdown&lt;/code&gt;&lt;/a&gt; and I am going to explain how to do it step by step.&lt;/p&gt;
+&lt;div id=&#34;i-suggest-you-to-take-a-look-also-at-my-sources-after-reading-this-post&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;I suggest you to take a look also at my sources after reading this post:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with R Markdown&lt;/a&gt; (creators of blogdown)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aurora-mareviv.github.io/2017/08/r-blogdown-setup-in-gihub/&#34;&gt;R Blogdown Setup in GiHub&lt;/a&gt; (main source)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic template Demo&lt;/a&gt; (information about my template)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;who-should-use-it&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Who should use it?&lt;/h3&gt;
+&lt;p&gt;You probably shouldn’t. There are a lot of other free blog services, probably better or easier to use than this, so this method is for you mainly if you are interested in the specific features of this kind of blog (I’ve made a description of some of them on my &lt;a href=&#34;https://palmierieugenio.github.io/post/primo-post/&#34;&gt;previous post&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using Rmarkdown files. It can be useful also if you are using more than one programming tool and you want to integrate them with the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choose-where-to-deploy-it&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Choose where to deploy it&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Since the website is basically a folder containing static files, it is much easier to deploy than websites that require dynamic server-side languages such as PHP or databases. All you need is to upload the files to a server, and usually your website will be up and running shortly. The key question is which web server you want to use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div id=&#34;blogdown-creating-websites-with-r-markdown&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;&lt;a href=&#34;https://bookdown.org/yihui/blogdown/deployment.html&#34;&gt;blogdown: Creating Websites with R Markdown&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;I’ve choosen to deploy it on GitHub (and I’m going to explain how to do it with this approach), but you can find alternative services, for example &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt;, if you prefer: you can find more information &lt;a href=&#34;https://bookdown.org/yihui/blogdown/deployment.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-do-you-need1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;What do you need&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://cran.r-project.org/bin/windows/base/rdevel.html&#34;&gt;R development version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/preview/&#34;&gt;RStudio development version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&#34;https://git-scm.com/&#34;&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choose-your-template&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Choose your template:&lt;/h3&gt;
+&lt;p&gt;Hugo supports more than one template (here a &lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;complete list&lt;/a&gt;). The template I’ve used is called &lt;a href=&#34;https://github.com/gcushen/hugo-academic&#34;&gt;hugo-academic&lt;/a&gt;, but there are more &lt;a href=&#34;https://bookdown.org/yihui/blogdown/other-themes.html&#34;&gt;suggested templates&lt;/a&gt; in the blogdown documentation:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-blogdown-in-rstudio&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Install &lt;code&gt;blogdown&lt;/code&gt; in RStudio:&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;blogdown&amp;quot;)
+# or if it doesn&amp;#39;t work:
+install.packages(&amp;quot;devtools&amp;quot;)
+devtools::install_github(&amp;#39;rstudio/blogdown&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-your-blog-on-github&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Build your blog on Github&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;a href=&#34;https://github.com/&#34;&gt;a Github Account&lt;/a&gt; with your USERNAME&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; as account name Your Github account url will be &lt;code&gt;https://github.com/USERNAME&lt;/code&gt; &lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Create a &lt;a href=&#34;https://help.github.com/articles/create-a-repo/&#34;&gt;repository on Github&lt;/a&gt;:&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;. Initialize the repository with a README.md file (not very important, but useful).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you notice the structure of the link of my repos &lt;a href=&#34;https://github.com/palmierieugenio/palmierieugenio.github.io&#34; class=&#34;uri&#34;&gt;https://github.com/palmierieugenio/palmierieugenio.github.io&lt;/a&gt;, you will notice that &lt;code&gt;palmierieugenio&lt;/code&gt; is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this &lt;code&gt;https://github.com/[USERNAME]/[USERNAME].github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create an empty folder in your computer with the same name of the desired url, &lt;code&gt;USERNAME.github.io&lt;/code&gt;, in my case &lt;code&gt;palmierieugenio.github.io&lt;/code&gt;, it will be your working directory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run in the Git CMD terminal (you should have it istalled with the Git installation):&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
+git init # initiates repo in the directory
+git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
+git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they&amp;#39;re downloaded&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Open RStudio and select the Menu &amp;gt; File &amp;gt; New Project:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://aurora-mareviv.github.io/images/tuto/tuto1.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Select the &lt;code&gt;Website use blogdown&lt;/code&gt; command (you should have installed the &lt;code&gt;blogdown&lt;/code&gt; package):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/new-project.png&#34; /&gt; - Choose a theme: I’ve choosen the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;gcushen/hugo-academic&lt;/a&gt; theme, but there are other &lt;a href=&#34;https://bookdown.org/yihui/blogdown/other-themes.html&#34;&gt;suggested Hugo themes&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/./img/blogdown_academic.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;It will appear a config.toml file in the folder. It is the configuration of the blog&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;. &lt;img src=&#34;https://aurora-mareviv.github.io/images/tuto/tuto4a.png&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;You may need to unistall the R and Rstudio previous versions from your computer before the installations.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Careful when you choose your username, because it will be the url of your site, example: &lt;a href=&#34;https://USERNAME.github.io/&#34; class=&#34;uri&#34;&gt;https://USERNAME.github.io/&lt;/a&gt;.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;If you prefer to have different url names for your GitHub profile and Blog (not like my example: &lt;a href=&#34;https://github.com/palmierieugenio&#34; class=&#34;uri&#34;&gt;https://github.com/palmierieugenio&lt;/a&gt; and &lt;a href=&#34;https://palmierieugenio.github.io&#34; class=&#34;uri&#34;&gt;https://palmierieugenio.github.io&lt;/a&gt;), you can follow the note 4.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;If you want to &lt;a href=&#34;https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1&#34;&gt;try with a different named repo&lt;/a&gt;, you should go to your repo URL &amp;gt; Settings &amp;gt; GitHub Pages section to activate GitHub pages for it.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </description>
     </item>
     

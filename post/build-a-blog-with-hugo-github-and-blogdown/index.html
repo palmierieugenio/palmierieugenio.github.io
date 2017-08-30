@@ -222,7 +222,98 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <p>Ancora ci devo lavorare.</p>
+      <div id="hugo-blogdown-build-sites-in-rstudio" class="section level3">
+<h3>Hugo + blogdown = build sites in RStudio!</h3>
+<p>It’s possible to create a site like this with <a href="https://gohugo.io/">Hugo</a>, an open-source and <a href="https://gohugo.io/about/license/">free software</a> static site generators, using an r package called <a href="https://github.com/rstudio/blogdown"><code>blogdown</code></a> and I am going to explain how to do it step by step.</p>
+<div id="i-suggest-you-to-take-a-look-also-at-my-sources-after-reading-this-post" class="section level4">
+<h4>I suggest you to take a look also at my sources after reading this post:</h4>
+<ul>
+<li><a href="https://bookdown.org/yihui/blogdown/">blogdown: Creating Websites with R Markdown</a> (creators of blogdown)</li>
+<li><a href="https://aurora-mareviv.github.io/2017/08/r-blogdown-setup-in-gihub/">R Blogdown Setup in GiHub</a> (main source)<br />
+</li>
+<li><a href="https://sourcethemes.com/academic/">Academic template Demo</a> (information about my template)</li>
+</ul>
+</div>
+</div>
+<div id="who-should-use-it" class="section level3">
+<h3>Who should use it?</h3>
+<p>You probably shouldn’t. There are a lot of other free blog services, probably better or easier to use than this, so this method is for you mainly if you are interested in the specific features of this kind of blog (I’ve made a description of some of them on my <a href="https://palmierieugenio.github.io/post/primo-post/">previous post</a>).</p>
+<p>My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using Rmarkdown files. It can be useful also if you are using more than one programming tool and you want to integrate them with the <code>knitr</code> <a href="https://yihui.name/knitr/demo/engines/">package</a>.</p>
+</div>
+<div id="choose-where-to-deploy-it" class="section level3">
+<h3>Choose where to deploy it</h3>
+<blockquote>
+<p>Since the website is basically a folder containing static files, it is much easier to deploy than websites that require dynamic server-side languages such as PHP or databases. All you need is to upload the files to a server, and usually your website will be up and running shortly. The key question is which web server you want to use.</p>
+</blockquote>
+<div id="blogdown-creating-websites-with-r-markdown" class="section level4">
+<h4><a href="https://bookdown.org/yihui/blogdown/deployment.html">blogdown: Creating Websites with R Markdown</a></h4>
+<p>I’ve choosen to deploy it on GitHub (and I’m going to explain how to do it with this approach), but you can find alternative services, for example <a href="https://www.netlify.com/">Netlify</a>, if you prefer: you can find more information <a href="https://bookdown.org/yihui/blogdown/deployment.html">here</a>.</p>
+</div>
+</div>
+<div id="what-do-you-need1" class="section level3">
+<h3>What do you need<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</h3>
+<ul>
+<li>Install <a href="https://cran.r-project.org/bin/windows/base/rdevel.html">R development version</a></li>
+<li>Install <a href="https://www.rstudio.com/products/rstudio/download/preview/">RStudio development version</a></li>
+<li>Install <a href="https://git-scm.com/">Git</a></li>
+</ul>
+</div>
+<div id="choose-your-template" class="section level3">
+<h3>Choose your template:</h3>
+<p>Hugo supports more than one template (here a <a href="https://themes.gohugo.io/">complete list</a>). The template I’ve used is called <a href="https://github.com/gcushen/hugo-academic">hugo-academic</a>, but there are more <a href="https://bookdown.org/yihui/blogdown/other-themes.html">suggested templates</a> in the blogdown documentation:</p>
+</div>
+<div id="install-blogdown-in-rstudio" class="section level3">
+<h3>Install <code>blogdown</code> in RStudio:</h3>
+<pre class="r"><code>install.packages(&quot;blogdown&quot;)
+# or if it doesn&#39;t work:
+install.packages(&quot;devtools&quot;)
+devtools::install_github(&#39;rstudio/blogdown&#39;)</code></pre>
+</div>
+<div id="build-your-blog-on-github" class="section level3">
+<h3>Build your blog on Github</h3>
+<ul>
+<li><p>Create <a href="https://github.com/">a Github Account</a> with your USERNAME<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> as account name Your Github account url will be <code>https://github.com/USERNAME</code> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p></li>
+<li>Create a <a href="https://help.github.com/articles/create-a-repo/">repository on Github</a>:</li>
+<li><p>The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Initialize the repository with a README.md file (not very important, but useful).</p></li>
+</ul>
+<p>If you notice the structure of the link of my repos <a href="https://github.com/palmierieugenio/palmierieugenio.github.io" class="uri">https://github.com/palmierieugenio/palmierieugenio.github.io</a>, you will notice that <code>palmierieugenio</code> is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this <code>https://github.com/[USERNAME]/[USERNAME].github.io</code>.</p>
+<ul>
+<li><p>Create an empty folder in your computer with the same name of the desired url, <code>USERNAME.github.io</code>, in my case <code>palmierieugenio.github.io</code>, it will be your working directory.</p></li>
+<li><p>Run in the Git CMD terminal (you should have it istalled with the Git installation):</p></li>
+</ul>
+<pre class="bash"><code>cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
+git init # initiates repo in the directory
+git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
+git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they&#39;re downloaded</code></pre>
+<ul>
+<li>Open RStudio and select the Menu &gt; File &gt; New Project:</li>
+</ul>
+<div class="figure">
+<img src="https://aurora-mareviv.github.io/images/tuto/tuto1.png" />
+
+</div>
+<ul>
+<li>Select the <code>Website use blogdown</code> command (you should have installed the <code>blogdown</code> package):</li>
+</ul>
+<p><img src="https://bookdown.org/yihui/blogdown/images/new-project.png" /> - Choose a theme: I’ve choosen the <a href="https://sourcethemes.com/academic/">gcushen/hugo-academic</a> theme, but there are other <a href="https://bookdown.org/yihui/blogdown/other-themes.html">suggested Hugo themes</a>:</p>
+<div class="figure">
+<img src="/img/blogdown_academic.png" />
+
+</div>
+<ul>
+<li>It will appear a config.toml file in the folder. It is the configuration of the blog<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. <img src="https://aurora-mareviv.github.io/images/tuto/tuto4a.png" /></li>
+</ul>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>You may need to unistall the R and Rstudio previous versions from your computer before the installations.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Careful when you choose your username, because it will be the url of your site, example: <a href="https://USERNAME.github.io/" class="uri">https://USERNAME.github.io/</a>.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>If you prefer to have different url names for your GitHub profile and Blog (not like my example: <a href="https://github.com/palmierieugenio" class="uri">https://github.com/palmierieugenio</a> and <a href="https://palmierieugenio.github.io" class="uri">https://palmierieugenio.github.io</a>), you can follow the note 4.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>If you want to <a href="https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1">try with a different named repo</a>, you should go to your repo URL &gt; Settings &gt; GitHub Pages section to activate GitHub pages for it.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).<a href="#fnref5">↩</a></p></li>
+</ol>
+</div>
 
     </div>
   </div>

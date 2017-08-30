@@ -82,8 +82,8 @@ print(sys.version)
 
 It is even possible to exchange data frames from R and Python via a file system with the `feather` [package](https://blog.rstudio.com/2016/03/29/feather/).
 
-## [Build your own blog for free!](#rotto)
-If you are interested in building a blog like this for free, you can read the new post I've made to explain how to [create a blog with Hugo and Github](#rotto) with the [blogdown package](https://github.com/rstudio/blogdown), directly from Rstudio.
+## [Build your own blog for free!](https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/)
+If you are interested in building a blog like this for free, you can read the new post I've made to explain how to [create a blog with Hugo and Github](https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/) with the [blogdown package](https://github.com/rstudio/blogdown), directly from Rstudio.
 
 <br>
 
