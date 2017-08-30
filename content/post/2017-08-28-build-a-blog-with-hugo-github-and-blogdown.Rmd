@@ -65,7 +65,7 @@ If you notice the structure of the link of my repos https://github.com/palmierie
 `USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory[^5].
 
 ####4. Run in the Git CMD terminal
-You should have Git CMD istalled with the Git installation:
+You should have Git CMD[^6] istalled with the Git installation:
 
 ```{bash eval=FALSE}
 cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
@@ -87,7 +87,7 @@ I've choosen the [gcushen/hugo-academic](https://sourcethemes.com/academic/) the
 ![](/img/blogdown_academic.png)
 
 ####8. It will appear a config.toml file in the folder.
-It is the configuration of the blog[^6].
+It is the configuration of the blog[^7].
 ![](https://aurora-mareviv.github.io/images/tuto/tuto4a.png)
 
 ####9. Modify your config.toml file
@@ -112,7 +112,7 @@ Open Rstudio and write in the console:
 ```{r eval=FALSE}
 blogdown::serve_site()
 ```
-Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button "Show in new window".[^7]
+Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button "Show in new window".[^8]
 
 ####10. Deploy it on GitHub
 Open the Git CMD terminal again and write:
@@ -196,5 +196,6 @@ Have fun!
 [^3]: If you prefer to have different url names for your GitHub profile and Blog (not like my example: https://github.com/palmierieugenio and https://palmierieugenio.github.io), you can follow the note 4.
 [^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
 [^5]: You need to name the folder on your computer with the long version, `USERNAME.github.io`, not the short one `USERNAME`.
-[^6]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
-[^7]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.
+[^6]: You can use also another terminal or [connect RStudio with Github](http://www.datasurg.net/2015/07/13/rstudio-and-github/).
+[^7]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
+[^8]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.
