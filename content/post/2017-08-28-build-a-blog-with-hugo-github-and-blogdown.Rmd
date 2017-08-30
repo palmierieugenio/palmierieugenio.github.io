@@ -11,7 +11,7 @@ tags:
 ---
 
 ### Hugo + blogdown = build sites in RStudio!
-It's possible to create a site like this with [Hugo](https://gohugo.io/), an open-source and [free software](https://gohugo.io/about/license/) static site generators, using an r package called [`blogdown`](https://github.com/rstudio/blogdown) and I am going to explain how to do it step by step.
+It's possible to create a site like this with [Hugo](https://gohugo.io/), an open-source and [free software](https://gohugo.io/about/license/) static site generators, using an r package called [`blogdown`](https://github.com/rstudio/blogdown). I am going to explain how to do it step by step.
 
 #### I suggest you to take a look also at my sources after reading this post:
 - [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) (creators of blogdown)
@@ -22,7 +22,7 @@ It's possible to create a site like this with [Hugo](https://gohugo.io/), an ope
 ### Who should use it?
 You probably shouldn't. There are a lot of other free blog services, probably better or easier to use than this, so this method is for you mainly if you are interested in the specific features of this kind of blog (I've made a description of some of them on my [previous post](https://palmierieugenio.github.io/post/primo-post/)).
 
-My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using Rmarkdown files. It can be useful also if you are using more than one programming tool and you want to integrate them with the `knitr` [package](https://yihui.name/knitr/demo/engines/).
+My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using [Rmarkdown files](http://rmarkdown.rstudio.com/). It can be useful also if you are using more than one programming tool and you want to integrate them with the `knitr` [package](https://yihui.name/knitr/demo/engines/).
 
 ### Choose where to deploy it
 
@@ -49,11 +49,12 @@ install.packages("devtools")
 devtools::install_github('rstudio/blogdown')
 ```
 
+With the development versions of R/RStudio you often need to install packages from GitHub, instead of the normal CRAN repository.
 
 ### Build your blog on Github
 
-####1. Create [a Github Account](https://github.com/) with your USERNAME[^2] as account name:
-Your Github account url will be `https://github.com/USERNAME` [^3].
+####1. Create [a Github Account](https://github.com/) with your desired url as USERNAME[^2]:
+Your Github account url will be `https://github.com/USERNAME` [^3], if you want your blog url to be `https://USERNAME.github.io`.
 
 ####2. Create a [repository on Github](https://help.github.com/articles/create-a-repo/):
 The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)[^4]. Initialize the repository with a README.md file (not very important, but useful).
@@ -61,10 +62,10 @@ The repository need to have the name of the desired url of the blog, [USERNAME].
 If you notice the structure of the link of my repos https://github.com/palmierieugenio/palmierieugenio.github.io, you will notice that `palmierieugenio` is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this `https://github.com/[USERNAME]/[USERNAME].github.io`.
 
 ####3. Create an empty folder in your computer with the name of the desired url:
-`USERNAME.github.io`, In my case `palmierieugenio.github.io`, it will be your working directory.
+`USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory[^5].
 
 ####4. Run in the Git CMD terminal
-You should have it istalled with the Git installation:
+You should have Git CMD istalled with the Git installation:
 
 ```{bash eval=FALSE}
 cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
@@ -72,8 +73,7 @@ git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
 git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they're downloaded
 ```
-####5. Open RStudio and select the Menu > File > New Project:
-
+####5. Open RStudio and select the Menu > File > New Project >New Directory:
 ![](https://aurora-mareviv.github.io/images/tuto/tuto1.png)
 
 ####6. Select the `Website use blogdown` command
@@ -87,7 +87,7 @@ I've choosen the [gcushen/hugo-academic](https://sourcethemes.com/academic/) the
 ![](/img/blogdown_academic.png)
 
 ####8. It will appear a config.toml file in the folder.
-It is the configuration of the blog[^5].
+It is the configuration of the blog[^6].
 ![](https://aurora-mareviv.github.io/images/tuto/tuto4a.png)
 
 ####9. Modify your config.toml file
@@ -112,7 +112,7 @@ Open Rstudio and write in the console:
 ```{r eval=FALSE}
 blogdown::serve_site()
 ```
-Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button "Show in new window".[^6]
+Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button "Show in new window".[^7]
 
 ####10. Deploy it on GitHub
 Open the Git CMD terminal again and write:
@@ -126,7 +126,7 @@ git push origin master # we push the changes from the local git repo to the remo
 Now you are online: you should be able to display your blog on  [https://[USERNAME].github.io](https://[USERNAME].github.io)!
 
 ### Create a new post locally:
-To create a post locally, you have to create a .md o .Rmd file in the `path\USERNAME.github.io\content\post` folder. A fast way to do it is with the button `New Post` in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there are post of example at the creation of the site). You can see more info in the [Academic template Demo](https://sourcethemes.com/academic/).
+To create a post locally, you have to create a .md o .Rmd file in the `path\USERNAME.github.io\content\post` folder. A fast way to do it is with the button `New Post` in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there should be already posts of example at the creation of the site in the `\content\post` folder). You can see more info in the [Academic template Demo](https://sourcethemes.com/academic/).
 
 ### Public a new post online:
 After the creation of the new post, you have to upload again on GitHub your (modified) folder, the command in the Git CMD terminal are the same:
@@ -138,11 +138,13 @@ git commit -m "Adding a new post" # adds all files to the local repo, with a com
 git push origin master
 ```
 
-We DON'T need necessarily to use these commands after `cd /Git/[USERNAME].github.io`, because we have already used them the first time:
+We DON'T necessarily need to use these commands after `cd /Git/[USERNAME].github.io`, because we have already used them the first time:
 ```{bash eval=FALSE}
 git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
 ```
+
+If you have put the wrong link in the `git remote add origin` command, you can remove it with `git remote remove origin` and use the `git remote add origin` again with the right link.
 
 ### Google Analytics and Disqus:
 It is possible to connect the blog with google Google Analytics, to check the data about your traffic, and/or with Disqus, to enable a comment section in your post.
@@ -155,10 +157,10 @@ googleAnalytics = "XX-666666666-9" # example tracking ID
                    
 The same for the comments, you have to go to the [Disqus Website](https://disqus.com/) and activate your short name, then write it on your config.toml file:
 ```{r eval=FALSE}
-disqusShortname = "esempio_disqus_shortname"
+disqusShortname = "example_disqus_shortname" # example Disqus shortname
 ```
 
-To make the changes effective, you have to upload them on GitHub with the Git CMD terminal:
+To make the changes effective online, you have to upload them on GitHub with the Git CMD terminal:
 ```{bash eval=FALSE}
 cd /Git/[USERNAME].github.io # your path to the repo may be different
 git add . # indexes all files that wil be added to the local repo
@@ -167,7 +169,7 @@ git push origin master # we push the changes from the local git repo to the remo
 ```
 
 ### A small graphic modification at the Academic template:
-I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this [conversation](https://github.com/gcushen/hugo-academic/issues/246).
+I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this [conversation](https://github.com/gcushen/hugo-academic/issues/246):
 
 >When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.
 
@@ -193,5 +195,6 @@ Have fun!
 [^2]: Careful when you choose your username, because it will be the url of your site, example: https://USERNAME.github.io/.
 [^3]: If you prefer to have different url names for your GitHub profile and Blog (not like my example: https://github.com/palmierieugenio and https://palmierieugenio.github.io), you can follow the note 4.
 [^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
-[^5]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
-[^6]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.
+[^5]: You need to name the folder on your computer with the long version, `USERNAME.github.io`, not the short one `USERNAME`.
+[^6]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
+[^7]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.

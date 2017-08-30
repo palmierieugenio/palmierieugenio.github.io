@@ -59,7 +59,7 @@ dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;other-programming-languages&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Other programming languages:&lt;/h2&gt;
-&lt;p&gt;With the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt; is possible to use directly &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_knitr_engines.html&#34;&gt;from Rstudio&lt;/a&gt; chunks of code from other language engines, like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala, CSS.&lt;/p&gt;
+&lt;p&gt;With the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt; is possible to use chunks of code from other language engines (like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala and CSS) directly &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_knitr_engines.html&#34;&gt;from Rstudio&lt;/a&gt; .&lt;/p&gt;
 &lt;div id=&#34;c&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;C++&lt;/h3&gt;
 &lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;

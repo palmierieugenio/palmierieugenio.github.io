@@ -50,7 +50,7 @@ $$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
 
 ## Other programming languages:
 
-With the `knitr` [package](https://yihui.name/knitr/demo/engines/) is possible to use directly [from Rstudio](http://rmarkdown.rstudio.com/authoring_knitr_engines.html) chunks of code from other language engines, like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala, CSS.
+With the `knitr` [package](https://yihui.name/knitr/demo/engines/) is possible to use chunks of code from other language engines (like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala and CSS) directly [from Rstudio](http://rmarkdown.rstudio.com/authoring_knitr_engines.html) .
 
 ### C++
 This is an example of C++ code compiled through the `Rcpp`[^3] package, inside a `{r engine='Rcpp'}` code chunk:

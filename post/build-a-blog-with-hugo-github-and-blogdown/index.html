@@ -224,7 +224,7 @@
     <div class="article-style" itemprop="articleBody">
       <div id="hugo-blogdown-build-sites-in-rstudio" class="section level3">
 <h3>Hugo + blogdown = build sites in RStudio!</h3>
-<p>It’s possible to create a site like this with <a href="https://gohugo.io/">Hugo</a>, an open-source and <a href="https://gohugo.io/about/license/">free software</a> static site generators, using an r package called <a href="https://github.com/rstudio/blogdown"><code>blogdown</code></a> and I am going to explain how to do it step by step.</p>
+<p>It’s possible to create a site like this with <a href="https://gohugo.io/">Hugo</a>, an open-source and <a href="https://gohugo.io/about/license/">free software</a> static site generators, using an r package called <a href="https://github.com/rstudio/blogdown"><code>blogdown</code></a>. I am going to explain how to do it step by step.</p>
 <div id="i-suggest-you-to-take-a-look-also-at-my-sources-after-reading-this-post" class="section level4">
 <h4>I suggest you to take a look also at my sources after reading this post:</h4>
 <ul>
@@ -238,7 +238,7 @@
 <div id="who-should-use-it" class="section level3">
 <h3>Who should use it?</h3>
 <p>You probably shouldn’t. There are a lot of other free blog services, probably better or easier to use than this, so this method is for you mainly if you are interested in the specific features of this kind of blog (I’ve made a description of some of them on my <a href="https://palmierieugenio.github.io/post/primo-post/">previous post</a>).</p>
-<p>My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using Rmarkdown files. It can be useful also if you are using more than one programming tool and you want to integrate them with the <code>knitr</code> <a href="https://yihui.name/knitr/demo/engines/">package</a>.</p>
+<p>My opinion is that this kind of blog is particularly useful if you are an R/RStudio user and you want to find an easy and fast way to integrate it in your Blog content, using <a href="http://rmarkdown.rstudio.com/">Rmarkdown files</a>. It can be useful also if you are using more than one programming tool and you want to integrate them with the <code>knitr</code> <a href="https://yihui.name/knitr/demo/engines/">package</a>.</p>
 </div>
 <div id="choose-where-to-deploy-it" class="section level3">
 <h3>Choose where to deploy it</h3>
@@ -268,12 +268,13 @@
 # or if it doesn&#39;t work:
 install.packages(&quot;devtools&quot;)
 devtools::install_github(&#39;rstudio/blogdown&#39;)</code></pre>
+<p>With the development versions of R/RStudio you often need to install packages from GitHub, instead of the normal CRAN repository.</p>
 </div>
 <div id="build-your-blog-on-github" class="section level3">
 <h3>Build your blog on Github</h3>
-<div id="create-a-github-account-with-your-username2-as-account-name" class="section level4">
-<h4>1. Create <a href="https://github.com/">a Github Account</a> with your USERNAME<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> as account name:</h4>
-<p>Your Github account url will be <code>https://github.com/USERNAME</code> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<div id="create-a-github-account-with-your-desired-url-as-username2" class="section level4">
+<h4>1. Create <a href="https://github.com/">a Github Account</a> with your desired url as USERNAME<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</h4>
+<p>Your Github account url will be <code>https://github.com/USERNAME</code> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>, if you want your blog url to be <code>https://USERNAME.github.io</code>.</p>
 </div>
 <div id="create-a-repository-on-github" class="section level4">
 <h4>2. Create a <a href="https://help.github.com/articles/create-a-repo/">repository on Github</a>:</h4>
@@ -282,18 +283,18 @@ devtools::install_github(&#39;rstudio/blogdown&#39;)</code></pre>
 </div>
 <div id="create-an-empty-folder-in-your-computer-with-the-name-of-the-desired-url" class="section level4">
 <h4>3. Create an empty folder in your computer with the name of the desired url:</h4>
-<p><code>USERNAME.github.io</code>, In my case <code>palmierieugenio.github.io</code>, it will be your working directory.</p>
+<p><code>USERNAME.github.io</code>, in my case <code>palmierieugenio.github.io</code>, it will be your working directory<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
 </div>
 <div id="run-in-the-git-cmd-terminal" class="section level4">
 <h4>4. Run in the Git CMD terminal</h4>
-<p>You should have it istalled with the Git installation:</p>
+<p>You should have Git CMD istalled with the Git installation:</p>
 <pre class="bash"><code>cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
 git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
 git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they&#39;re downloaded</code></pre>
 </div>
-<div id="open-rstudio-and-select-the-menu-file-new-project" class="section level4">
-<h4>5. Open RStudio and select the Menu &gt; File &gt; New Project:</h4>
+<div id="open-rstudio-and-select-the-menu-file-new-project-new-directory" class="section level4">
+<h4>5. Open RStudio and select the Menu &gt; File &gt; New Project &gt;New Directory:</h4>
 <div class="figure">
 <img src="https://aurora-mareviv.github.io/images/tuto/tuto1.png" />
 
@@ -317,7 +318,7 @@ git pull origin master # in case you have LICENSE and Readme.md files in the Git
 </div>
 <div id="it-will-appear-a-config.toml-file-in-the-folder." class="section level4">
 <h4>8. It will appear a config.toml file in the folder.</h4>
-<p>It is the configuration of the blog<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>. <img src="https://aurora-mareviv.github.io/images/tuto/tuto4a.png" /></p>
+<p>It is the configuration of the blog<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. <img src="https://aurora-mareviv.github.io/images/tuto/tuto4a.png" /></p>
 </div>
 <div id="modify-your-config.toml-file" class="section level4">
 <h4>9. Modify your config.toml file</h4>
@@ -338,7 +339,7 @@ math = true</code></pre>
 <h4>10. Build your site with <code>blogdown</code></h4>
 <p>Open Rstudio and write in the console:</p>
 <pre class="r"><code>blogdown::serve_site()</code></pre>
-<p>Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button “Show in new window”.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<p>Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button “Show in new window”.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></p>
 </div>
 <div id="deploy-it-on-github" class="section level4">
 <h4>10. Deploy it on GitHub</h4>
@@ -352,7 +353,7 @@ git push origin master # we push the changes from the local git repo to the remo
 </div>
 <div id="create-a-new-post-locally" class="section level3">
 <h3>Create a new post locally:</h3>
-<p>To create a post locally, you have to create a .md o .Rmd file in the <code>path\USERNAME.github.io\content\post</code> folder. A fast way to do it is with the button <code>New Post</code> in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there are post of example at the creation of the site). You can see more info in the <a href="https://sourcethemes.com/academic/">Academic template Demo</a>.</p>
+<p>To create a post locally, you have to create a .md o .Rmd file in the <code>path\USERNAME.github.io\content\post</code> folder. A fast way to do it is with the button <code>New Post</code> in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there should be already posts of example at the creation of the site in the <code>\content\post</code> folder). You can see more info in the <a href="https://sourcethemes.com/academic/">Academic template Demo</a>.</p>
 </div>
 <div id="public-a-new-post-online" class="section level3">
 <h3>Public a new post online:</h3>
@@ -361,9 +362,10 @@ git push origin master # we push the changes from the local git repo to the remo
 git add . # indexes all files that wil be added to the local repo
 git commit -m &quot;Adding a new post&quot; # adds all files to the local repo, with a commit message
 git push origin master</code></pre>
-<p>We DON’T need necessarily to use these commands after <code>cd /Git/[USERNAME].github.io</code>, because we have already used them the first time:</p>
+<p>We DON’T necessarily need to use these commands after <code>cd /Git/[USERNAME].github.io</code>, because we have already used them the first time:</p>
 <pre class="bash"><code>git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo</code></pre>
+<p>If you have put the wrong link in the <code>git remote add origin</code> command, you can remove it with <code>git remote remove origin</code> and use the <code>git remote add origin</code> again with the right link.</p>
 </div>
 <div id="google-analytics-and-disqus" class="section level3">
 <h3>Google Analytics and Disqus:</h3>
@@ -371,8 +373,8 @@ git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # conne
 <p>The process is quite simple and similar for both: you just have to go to <a href="https://analytics.google.com">Google Analytics</a> and activate your tracking ID and copy and paste (locally) it in your config.toml file, like this:</p>
 <pre class="r"><code>googleAnalytics = &quot;XX-666666666-9&quot; # example tracking ID</code></pre>
 <p>The same for the comments, you have to go to the <a href="https://disqus.com/">Disqus Website</a> and activate your short name, then write it on your config.toml file:</p>
-<pre class="r"><code>disqusShortname = &quot;esempio_disqus_shortname&quot;</code></pre>
-<p>To make the changes effective, you have to upload them on GitHub with the Git CMD terminal:</p>
+<pre class="r"><code>disqusShortname = &quot;example_disqus_shortname&quot; # example Disqus shortname</code></pre>
+<p>To make the changes effective online, you have to upload them on GitHub with the Git CMD terminal:</p>
 <pre class="bash"><code>cd /Git/[USERNAME].github.io # your path to the repo may be different
 git add . # indexes all files that wil be added to the local repo
 git commit -m &quot;Creating connection with Google Analytics and Disqus&quot; # adds all files to the local repo, with a commit message
@@ -380,7 +382,7 @@ git push origin master # we push the changes from the local git repo to the remo
 </div>
 <div id="a-small-graphic-modification-at-the-academic-template" class="section level3">
 <h3>A small graphic modification at the Academic template:</h3>
-<p>I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this <a href="https://github.com/gcushen/hugo-academic/issues/246">conversation</a>.</p>
+<p>I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this <a href="https://github.com/gcushen/hugo-academic/issues/246">conversation</a>:</p>
 <blockquote>
 <p>When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.</p>
 </blockquote>
@@ -409,8 +411,9 @@ git push origin master # we push the changes from the local git repo to the remo
 <li id="fn2"><p>Careful when you choose your username, because it will be the url of your site, example: <a href="https://USERNAME.github.io/" class="uri">https://USERNAME.github.io/</a>.<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>If you prefer to have different url names for your GitHub profile and Blog (not like my example: <a href="https://github.com/palmierieugenio" class="uri">https://github.com/palmierieugenio</a> and <a href="https://palmierieugenio.github.io" class="uri">https://palmierieugenio.github.io</a>), you can follow the note 4.<a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p>If you want to <a href="https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1">try with a different named repo</a>, you should go to your repo URL &gt; Settings &gt; GitHub Pages section to activate GitHub pages for it.<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).<a href="#fnref5">↩</a></p></li>
-<li id="fn6"><p>There should be a button,<code>Serve Site</code>, in RStudio for the function <code>blogdown::serve_site()</code>, in the Addins menu.<a href="#fnref6">↩</a></p></li>
+<li id="fn5"><p>You need to name the folder on your computer with the long version, <code>USERNAME.github.io</code>, not the short one <code>USERNAME</code>.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>There should be a button,<code>Serve Site</code>, in RStudio for the function <code>blogdown::serve_site()</code>, in the Addins menu.<a href="#fnref7">↩</a></p></li>
 </ol>
 </div>
 
