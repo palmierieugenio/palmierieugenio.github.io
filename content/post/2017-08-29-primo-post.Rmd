@@ -37,6 +37,7 @@ dygraph(lungDeaths)%>% dyRangeSelector()
 ```
 
 <br>
+<br>
 
 ## Support for [$\rm \LaTeX$ math expressions](https://en.wikibooks.org/wiki/LaTeX/Mathematics):
 Anothere important feauture is the support for $\rm \LaTeX$ to write equations and formulas:

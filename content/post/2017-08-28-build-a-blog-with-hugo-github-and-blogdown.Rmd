@@ -52,17 +52,19 @@ devtools::install_github('rstudio/blogdown')
 
 ### Build your blog on Github
 
-- Create [a Github Account](https://github.com/) with your USERNAME[^2] as account name
+####1. Create [a Github Account](https://github.com/) with your USERNAME[^2] as account name:
 Your Github account url will be `https://github.com/USERNAME` [^3].
 
-- Create a [repository on Github](https://help.github.com/articles/create-a-repo/):
-- The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)[^4]. Initialize the repository with a README.md file (not very important, but useful).
+####2. Create a [repository on Github](https://help.github.com/articles/create-a-repo/):
+The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)[^4]. Initialize the repository with a README.md file (not very important, but useful).
 
 If you notice the structure of the link of my repos https://github.com/palmierieugenio/palmierieugenio.github.io, you will notice that `palmierieugenio` is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this `https://github.com/[USERNAME]/[USERNAME].github.io`.
 
-- Create an empty folder in your computer with the same name of the desired url, `USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory.
+####3. Create an empty folder in your computer with the name of the desired url:
+`USERNAME.github.io`, In my case `palmierieugenio.github.io`, it will be your working directory.
 
-- Run in the Git CMD terminal (you should have it istalled with the Git installation):
+####4. Run in the Git CMD terminal
+You should have it istalled with the Git installation:
 
 ```{bash eval=FALSE}
 cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
@@ -70,24 +72,126 @@ git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
 git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they're downloaded
 ```
-- Open RStudio and select the Menu > File > New Project:
+####5. Open RStudio and select the Menu > File > New Project:
 
 ![](https://aurora-mareviv.github.io/images/tuto/tuto1.png)
 
-- Select the `Website use blogdown` command (you should have installed the `blogdown` package):
+####6. Select the `Website use blogdown` command
+It should work, if you have installed the `blogdown` package:
 
 ![](https://bookdown.org/yihui/blogdown/images/new-project.png)
-- Choose a theme:
+
+####7. Choose a theme
 I've choosen the [gcushen/hugo-academic](https://sourcethemes.com/academic/) theme, but there are other [suggested Hugo themes](https://bookdown.org/yihui/blogdown/other-themes.html):
 
 ![](/img/blogdown_academic.png)
 
-- It will appear a config.toml file in the folder. It is the configuration of the blog[^5].
+####8. It will appear a config.toml file in the folder.
+It is the configuration of the blog[^5].
 ![](https://aurora-mareviv.github.io/images/tuto/tuto4a.png)
 
+####9. Modify your config.toml file
+You can see my config.toml file as example [here](https://github.com/palmierieugenio/palmierieugenio.github.io/blob/master/config.toml).
+
+```{r eval=FALSE}
+baseurl = "/./"
+publishDir = "./"
+
+draft: false # if set to true, changes will not be published
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+enableEmoji = true
+avatar = "eugenio.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
+ 
+# Enable global LaTeX math rendering?
+# If false, you can enable it locally on a per page basis.
+math = true
+```
+
+####10. Build your site with `blogdown`
+Open Rstudio and write in the console:
+```{r eval=FALSE}
+blogdown::serve_site()
+```
+Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button "Show in new window".[^6]
+
+####10. Deploy it on GitHub
+Open the Git CMD terminal again and write:
+```{bash eval=FALSE}
+cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m "Starting my Hugo blog" # adds all files to the local repo, with a commit message
+git push origin master # we push the changes from the local git repo to the remote repo (GitHub repo)
+```
+
+Now you are online: you should be able to display your blog on  [https://[USERNAME].github.io](https://[USERNAME].github.io)!
+
+### Create a new post locally:
+To create a post locally, you have to create a .md o .Rmd file in the `path\USERNAME.github.io\content\post` folder. A fast way to do it is with the button `New Post` in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there are post of example at the creation of the site). You can see more info in the [Academic template Demo](https://sourcethemes.com/academic/).
+
+### Public a new post online:
+After the creation of the new post, you have to upload again on GitHub your (modified) folder, the command in the Git CMD terminal are the same:
+
+```{bash eval=FALSE}
+cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m "Adding a new post" # adds all files to the local repo, with a commit message
+git push origin master
+```
+
+We DON'T need necessarily to use these commands after `cd /Git/[USERNAME].github.io`, because we have already used them the first time:
+```{bash eval=FALSE}
+git init # initiates repo in the directory
+git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
+```
+
+### Google Analytics and Disqus:
+It is possible to connect the blog with google Google Analytics, to check the data about your traffic, and/or with Disqus, to enable a comment section in your post.
+
+The process is quite simple and similar for both: you just have to go to [Google Analytics](https://analytics.google.com) and activate your tracking ID and copy and paste (locally) it in your config.toml file, like this:
+
+```{r eval=FALSE}
+googleAnalytics = "XX-666666666-9" # example tracking ID
+```
+                   
+The same for the comments, you have to go to the [Disqus Website](https://disqus.com/) and activate your short name, then write it on your config.toml file:
+```{r eval=FALSE}
+disqusShortname = "esempio_disqus_shortname"
+```
+
+To make the changes effective, you have to upload them on GitHub with the Git CMD terminal:
+```{bash eval=FALSE}
+cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m "Creating connection with Google Analytics and Disqus" # adds all files to the local repo, with a commit message
+git push origin master # we push the changes from the local git repo to the remote repo (GitHub repo)
+```
+
+### A small graphic modification at the Academic template:
+I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this [conversation](https://github.com/gcushen/hugo-academic/issues/246).
+
+>When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.
+
+You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for "article-metadata" and set inside the parenthesys `overflow: hidden;`.
+
+### Final suggestions
+Now you are good to go, I suggest you to play a little bit with the template and custumise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:
+
+- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) (creators of blogdown)
+- [blogdown GitHub](https://github.com/rstudio/blogdown)
+- [Academic template Demo](https://sourcethemes.com/academic/) (information about my template)
+- [Academic GitHub](https://github.com/gcushen/hugo-academic)
+
+A good way to learn is using examples, I hope the link of my blog directory can be useful:
+
+- [My Blog on Github](https://github.com/palmierieugenio/palmierieugenio.github.io)
+
+Have fun!
+
+<br>
 
 [^1]: You may need to unistall the R and Rstudio previous versions from your computer before the installations.
 [^2]: Careful when you choose your username, because it will be the url of your site, example: https://USERNAME.github.io/.
 [^3]: If you prefer to have different url names for your GitHub profile and Blog (not like my example: https://github.com/palmierieugenio and https://palmierieugenio.github.io), you can follow the note 4.
 [^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
 [^5]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
+[^6]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.

@@ -65,38 +65,136 @@ devtools::install_github(&amp;#39;rstudio/blogdown&amp;#39;)&lt;/code&gt;&lt;/pr
 &lt;/div&gt;
 &lt;div id=&#34;build-your-blog-on-github&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Build your blog on Github&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create &lt;a href=&#34;https://github.com/&#34;&gt;a Github Account&lt;/a&gt; with your USERNAME&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; as account name Your Github account url will be &lt;code&gt;https://github.com/USERNAME&lt;/code&gt; &lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;Create a &lt;a href=&#34;https://help.github.com/articles/create-a-repo/&#34;&gt;repository on Github&lt;/a&gt;:&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;. Initialize the repository with a README.md file (not very important, but useful).&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div id=&#34;create-a-github-account-with-your-username2-as-account-name&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;1. Create &lt;a href=&#34;https://github.com/&#34;&gt;a Github Account&lt;/a&gt; with your USERNAME&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; as account name:&lt;/h4&gt;
+&lt;p&gt;Your Github account url will be &lt;code&gt;https://github.com/USERNAME&lt;/code&gt; &lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-repository-on-github&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;2. Create a &lt;a href=&#34;https://help.github.com/articles/create-a-repo/&#34;&gt;repository on Github&lt;/a&gt;:&lt;/h4&gt;
+&lt;p&gt;The repository need to have the name of the desired url of the blog, [USERNAME].github.io (in my case palmierieugenio.github.io)&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;. Initialize the repository with a README.md file (not very important, but useful).&lt;/p&gt;
 &lt;p&gt;If you notice the structure of the link of my repos &lt;a href=&#34;https://github.com/palmierieugenio/palmierieugenio.github.io&#34; class=&#34;uri&#34;&gt;https://github.com/palmierieugenio/palmierieugenio.github.io&lt;/a&gt;, you will notice that &lt;code&gt;palmierieugenio&lt;/code&gt; is repeated twice: it HAS to be in the name of my GitHub profile AND in the name of the repository, like this &lt;code&gt;https://github.com/[USERNAME]/[USERNAME].github.io&lt;/code&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create an empty folder in your computer with the same name of the desired url, &lt;code&gt;USERNAME.github.io&lt;/code&gt;, in my case &lt;code&gt;palmierieugenio.github.io&lt;/code&gt;, it will be your working directory.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Run in the Git CMD terminal (you should have it istalled with the Git installation):&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-an-empty-folder-in-your-computer-with-the-name-of-the-desired-url&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;3. Create an empty folder in your computer with the name of the desired url:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;USERNAME.github.io&lt;/code&gt;, In my case &lt;code&gt;palmierieugenio.github.io&lt;/code&gt;, it will be your working directory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;run-in-the-git-cmd-terminal&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;4. Run in the Git CMD terminal&lt;/h4&gt;
+&lt;p&gt;You should have it istalled with the Git installation:&lt;/p&gt;
 &lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
 git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
 git pull origin master # in case you have LICENSE and Readme.md files in the GitHub repo, they&amp;#39;re downloaded&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;Open RStudio and select the Menu &amp;gt; File &amp;gt; New Project:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;open-rstudio-and-select-the-menu-file-new-project&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;5. Open RStudio and select the Menu &amp;gt; File &amp;gt; New Project:&lt;/h4&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;https://aurora-mareviv.github.io/images/tuto/tuto1.png&#34; /&gt;
 
 &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;Select the &lt;code&gt;Website use blogdown&lt;/code&gt; command (you should have installed the &lt;code&gt;blogdown&lt;/code&gt; package):&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/new-project.png&#34; /&gt; - Choose a theme: I’ve choosen the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;gcushen/hugo-academic&lt;/a&gt; theme, but there are other &lt;a href=&#34;https://bookdown.org/yihui/blogdown/other-themes.html&#34;&gt;suggested Hugo themes&lt;/a&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-the-website-use-blogdown-command&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;6. Select the &lt;code&gt;Website use blogdown&lt;/code&gt; command&lt;/h4&gt;
+&lt;p&gt;It should work, if you have installed the &lt;code&gt;blogdown&lt;/code&gt; package:&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/new-project.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;choose-a-theme&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;7. Choose a theme&lt;/h4&gt;
+&lt;p&gt;I’ve choosen the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;gcushen/hugo-academic&lt;/a&gt; theme, but there are other &lt;a href=&#34;https://bookdown.org/yihui/blogdown/other-themes.html&#34;&gt;suggested Hugo themes&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/./img/blogdown_academic.png&#34; /&gt;
 
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;it-will-appear-a-config.toml-file-in-the-folder.&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;8. It will appear a config.toml file in the folder.&lt;/h4&gt;
+&lt;p&gt;It is the configuration of the blog&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;. &lt;img src=&#34;https://aurora-mareviv.github.io/images/tuto/tuto4a.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modify-your-config.toml-file&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;9. Modify your config.toml file&lt;/h4&gt;
+&lt;p&gt;You can see my config.toml file as example &lt;a href=&#34;https://github.com/palmierieugenio/palmierieugenio.github.io/blob/master/config.toml&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;baseurl = &amp;quot;/./&amp;quot;
+publishDir = &amp;quot;./&amp;quot;
+
+draft: false # if set to true, changes will not be published
+ignoreFiles = [&amp;quot;\\.Rmd$&amp;quot;, &amp;quot;\\.Rmarkdown$&amp;quot;, &amp;quot;_files$&amp;quot;, &amp;quot;_cache$&amp;quot;]
+enableEmoji = true
+avatar = &amp;quot;eugenio.jpg&amp;quot;  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
+ 
+# Enable global LaTeX math rendering?
+# If false, you can enable it locally on a per page basis.
+math = true&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-your-site-with-blogdown&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;10. Build your site with &lt;code&gt;blogdown&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Open Rstudio and write in the console:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you should see a local version of your blog in RStudio. You should be able to display it on your browser with the button “Show in new window”.&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;deploy-it-on-github&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;10. Deploy it on GitHub&lt;/h4&gt;
+&lt;p&gt;Open the Git CMD terminal again and write:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m &amp;quot;Starting my Hugo blog&amp;quot; # adds all files to the local repo, with a commit message
+git push origin master # we push the changes from the local git repo to the remote repo (GitHub repo)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you are online: you should be able to display your blog on &lt;a href=&#34;https://%5BUSERNAME%5D.github.io&#34; class=&#34;uri&#34;&gt;https://[USERNAME].github.io&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-new-post-locally&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create a new post locally:&lt;/h3&gt;
+&lt;p&gt;To create a post locally, you have to create a .md o .Rmd file in the &lt;code&gt;path\USERNAME.github.io\content\post&lt;/code&gt; folder. A fast way to do it is with the button &lt;code&gt;New Post&lt;/code&gt; in the Addins menu of RStudio, but it is possible to create a file manually or just as a copy of another article (there are post of example at the creation of the site). You can see more info in the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic template Demo&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;public-a-new-post-online&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Public a new post online:&lt;/h3&gt;
+&lt;p&gt;After the creation of the new post, you have to upload again on GitHub your (modified) folder, the command in the Git CMD terminal are the same:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m &amp;quot;Adding a new post&amp;quot; # adds all files to the local repo, with a commit message
+git push origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We DON’T need necessarily to use these commands after &lt;code&gt;cd /Git/[USERNAME].github.io&lt;/code&gt;, because we have already used them the first time:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git init # initiates repo in the directory
+git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;google-analytics-and-disqus&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Google Analytics and Disqus:&lt;/h3&gt;
+&lt;p&gt;It is possible to connect the blog with google Google Analytics, to check the data about your traffic, and/or with Disqus, to enable a comment section in your post.&lt;/p&gt;
+&lt;p&gt;The process is quite simple and similar for both: you just have to go to &lt;a href=&#34;https://analytics.google.com&#34;&gt;Google Analytics&lt;/a&gt; and activate your tracking ID and copy and paste (locally) it in your config.toml file, like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;googleAnalytics = &amp;quot;XX-666666666-9&amp;quot; # example tracking ID&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The same for the comments, you have to go to the &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus Website&lt;/a&gt; and activate your short name, then write it on your config.toml file:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;disqusShortname = &amp;quot;esempio_disqus_shortname&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To make the changes effective, you have to upload them on GitHub with the Git CMD terminal:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /Git/[USERNAME].github.io # your path to the repo may be different
+git add . # indexes all files that wil be added to the local repo
+git commit -m &amp;quot;Creating connection with Google Analytics and Disqus&amp;quot; # adds all files to the local repo, with a commit message
+git push origin master # we push the changes from the local git repo to the remote repo (GitHub repo)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-small-graphic-modification-at-the-academic-template&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A small graphic modification at the Academic template:&lt;/h3&gt;
+&lt;p&gt;I suggest you to make a small modification of the CSS, the hugo-academic.css file in your directory, as suggested in this &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues/246&#34;&gt;conversation&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for “article-metadata” and set inside the parenthesys &lt;code&gt;overflow: hidden;&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;final-suggestions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Final suggestions&lt;/h3&gt;
+&lt;p&gt;Now you are good to go, I suggest you to play a little bit with the template and custumise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;It will appear a config.toml file in the folder. It is the configuration of the blog&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;. &lt;img src=&#34;https://aurora-mareviv.github.io/images/tuto/tuto4a.png&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with R Markdown&lt;/a&gt; (creators of blogdown)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic template Demo&lt;/a&gt; (information about my template)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic&#34;&gt;Academic GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;A good way to learn is using examples, I hope the link of my blog directory can be useful:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/palmierieugenio/palmierieugenio.github.io&#34;&gt;My Blog on Github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Have fun!&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
@@ -106,6 +204,7 @@ git pull origin master # in case you have LICENSE and Readme.md files in the Git
 &lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;If you prefer to have different url names for your GitHub profile and Blog (not like my example: &lt;a href=&#34;https://github.com/palmierieugenio&#34; class=&#34;uri&#34;&gt;https://github.com/palmierieugenio&lt;/a&gt; and &lt;a href=&#34;https://palmierieugenio.github.io&#34; class=&#34;uri&#34;&gt;https://palmierieugenio.github.io&lt;/a&gt;), you can follow the note 4.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;If you want to &lt;a href=&#34;https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1&#34;&gt;try with a different named repo&lt;/a&gt;, you should go to your repo URL &amp;gt; Settings &amp;gt; GitHub Pages section to activate GitHub pages for it.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;There should be a button,&lt;code&gt;Serve Site&lt;/code&gt;, in RStudio for the function &lt;code&gt;blogdown::serve_site()&lt;/code&gt;, in the Addins menu.&lt;a href=&#34;#fnref6&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -149,7 +248,7 @@ lungDeaths &amp;lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;dygraphs html-widget&#34;&gt;&lt;/div&gt;
 &lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;attrs&#34;:{&#34;labels&#34;:[&#34;month&#34;,&#34;mdeaths&#34;,&#34;fdeaths&#34;],&#34;legend&#34;:&#34;auto&#34;,&#34;retainDateWindow&#34;:false,&#34;axes&#34;:{&#34;x&#34;:{&#34;pixelsPerLabel&#34;:60}},&#34;showRangeSelector&#34;:true,&#34;rangeSelectorHeight&#34;:40,&#34;rangeSelectorPlotFillColor&#34;:&#34; #A7B1C4&#34;,&#34;rangeSelectorPlotStrokeColor&#34;:&#34;#808FAB&#34;,&#34;interactionModel&#34;:&#34;Dygraph.Interaction.defaultModel&#34;},&#34;scale&#34;:&#34;monthly&#34;,&#34;annotations&#34;:[],&#34;shadings&#34;:[],&#34;events&#34;:[],&#34;format&#34;:&#34;date&#34;,&#34;data&#34;:[[&#34;1974-01-01T00:00:00.000Z&#34;,&#34;1974-02-01T00:00:00.000Z&#34;,&#34;1974-03-01T00:00:00.000Z&#34;,&#34;1974-04-01T00:00:00.000Z&#34;,&#34;1974-05-01T00:00:00.000Z&#34;,&#34;1974-06-01T00:00:00.000Z&#34;,&#34;1974-07-01T00:00:00.000Z&#34;,&#34;1974-08-01T00:00:00.000Z&#34;,&#34;1974-09-01T00:00:00.000Z&#34;,&#34;1974-10-01T00:00:00.000Z&#34;,&#34;1974-11-01T00:00:00.000Z&#34;,&#34;1974-12-01T00:00:00.000Z&#34;,&#34;1975-01-01T00:00:00.000Z&#34;,&#34;1975-02-01T00:00:00.000Z&#34;,&#34;1975-03-01T00:00:00.000Z&#34;,&#34;1975-04-01T00:00:00.000Z&#34;,&#34;1975-05-01T00:00:00.000Z&#34;,&#34;1975-06-01T00:00:00.000Z&#34;,&#34;1975-07-01T00:00:00.000Z&#34;,&#34;1975-08-01T00:00:00.000Z&#34;,&#34;1975-09-01T00:00:00.000Z&#34;,&#34;1975-10-01T00:00:00.000Z&#34;,&#34;1975-11-01T00:00:00.000Z&#34;,&#34;1975-12-01T00:00:00.000Z&#34;,&#34;1976-01-01T00:00:00.000Z&#34;,&#34;1976-02-01T00:00:00.000Z&#34;,&#34;1976-03-01T00:00:00.000Z&#34;,&#34;1976-04-01T00:00:00.000Z&#34;,&#34;1976-05-01T00:00:00.000Z&#34;,&#34;1976-06-01T00:00:00.000Z&#34;,&#34;1976-07-01T00:00:00.000Z&#34;,&#34;1976-08-01T00:00:00.000Z&#34;,&#34;1976-09-01T00:00:00.000Z&#34;,&#34;1976-10-01T00:00:00.000Z&#34;,&#34;1976-11-01T00:00:00.000Z&#34;,&#34;1976-12-01T00:00:00.000Z&#34;,&#34;1977-01-01T00:00:00.000Z&#34;,&#34;1977-02-01T00:00:00.000Z&#34;,&#34;1977-03-01T00:00:00.000Z&#34;,&#34;1977-04-01T00:00:00.000Z&#34;,&#34;1977-05-01T00:00:00.000Z&#34;,&#34;1977-06-01T00:00:00.000Z&#34;,&#34;1977-07-01T00:00:00.000Z&#34;,&#34;1977-08-01T00:00:00.000Z&#34;,&#34;1977-09-01T00:00:00.000Z&#34;,&#34;1977-10-01T00:00:00.000Z&#34;,&#34;1977-11-01T00:00:00.000Z&#34;,&#34;1977-12-01T00:00:00.000Z&#34;,&#34;1978-01-01T00:00:00.000Z&#34;,&#34;1978-02-01T00:00:00.000Z&#34;,&#34;1978-03-01T00:00:00.000Z&#34;,&#34;1978-04-01T00:00:00.000Z&#34;,&#34;1978-05-01T00:00:00.000Z&#34;,&#34;1978-06-01T00:00:00.000Z&#34;,&#34;1978-07-01T00:00:00.000Z&#34;,&#34;1978-08-01T00:00:00.000Z&#34;,&#34;1978-09-01T00:00:00.000Z&#34;,&#34;1978-10-01T00:00:00.000Z&#34;,&#34;1978-11-01T00:00:00.000Z&#34;,&#34;1978-12-01T00:00:00.000Z&#34;,&#34;1979-01-01T00:00:00.000Z&#34;,&#34;1979-02-01T00:00:00.000Z&#34;,&#34;1979-03-01T00:00:00.000Z&#34;,&#34;1979-04-01T00:00:00.000Z&#34;,&#34;1979-05-01T00:00:00.000Z&#34;,&#34;1979-06-01T00:00:00.000Z&#34;,&#34;1979-07-01T00:00:00.000Z&#34;,&#34;1979-08-01T00:00:00.000Z&#34;,&#34;1979-09-01T00:00:00.000Z&#34;,&#34;1979-10-01T00:00:00.000Z&#34;,&#34;1979-11-01T00:00:00.000Z&#34;,&#34;1979-12-01T00:00:00.000Z&#34;],[2134,1863,1877,1877,1492,1249,1280,1131,1209,1492,1621,1846,2103,2137,2153,1833,1403,1288,1186,1133,1053,1347,1545,2066,2020,2750,2283,1479,1189,1160,1113,970,999,1208,1467,2059,2240,1634,1722,1801,1246,1162,1087,1013,959,1179,1229,1655,2019,2284,1942,1423,1340,1187,1098,1004,970,1140,1110,1812,2263,1820,1846,1531,1215,1075,1056,975,940,1081,1294,1341],[901,689,827,677,522,406,441,393,387,582,578,666,830,752,785,664,467,438,421,412,343,440,531,771,767,1141,896,532,447,420,376,330,357,445,546,764,862,660,663,643,502,392,411,348,387,385,411,638,796,853,737,546,530,446,431,362,387,430,425,679,821,785,727,612,478,429,405,379,393,411,487,574]]},&#34;evals&#34;:[&#34;attrs.interactionModel&#34;],&#34;jsHooks&#34;:[]}&lt;/script&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt; &lt;br&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;support-for-rm-latex-math-expressions&#34; class=&#34;section level2&#34;&gt;
