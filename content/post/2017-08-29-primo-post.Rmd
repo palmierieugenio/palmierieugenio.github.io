@@ -55,21 +55,53 @@ With the `knitr` [package](https://yihui.name/knitr/demo/engines/) is possible t
 ### C++
 This is an example of C++ code compiled through the `Rcpp`[^3] package, inside a `{r engine='Rcpp'}` code chunk:
 
-
 ```{r engine='Rcpp'}
 #include <Rcpp.h>
-
 // [[Rcpp::export]]
-int fibonacci(const int x) {
-    if (x == 0 || x == 1) return(x);
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
+double sumRcpp(const Rcpp::NumericVector& x) {
+    std::size_t n = x.size();
+    double total = 0;
+    if (n > 0) {
+        for (std::size_t i = 0, k = n - 1; i < k; ++i, --k)
+            total += x[i] + x[k];
+        if (n % 2 == 1)
+            total += x[n / 2];
+    }
+    return total;
 }
 ```
 
-Print the values of the 'fibonacci' function (defined in C++ with the Rcpp package) inside a normal `{r}` code chunk:
-```{r}
-fibonacci(10L)
-fibonacci(20L)
+Compare, in a R chunk of code[^4], the new defined `sumRcpp()` function with the normal R `sum()`:
+```{r, warning=FALSE, message=F, cache = TRUE}
+library(microbenchmark)
+library(ggplot2)
+theme_set(theme_bw())
+bench <- function(..., n = 10e2 * 1:10e2, times = 100) {
+    exprs <- as.list(match.call(expand.dots = FALSE)$...)
+    nexprs <- length(exprs)
+    nout <- nexprs * times
+    out <- list(n = integer(nout),
+                expr = factor(integer(nout), levels = as.character(exprs)),
+                time = numeric(nout))
+    for (i in seq_along(n)) {
+        start <- (i - 1) * nexprs + 1
+        end <- start + nexprs - 1
+        x <- runif(n[i])
+        res <- microbenchmark(list = exprs, times = times)
+        res <- stack(lapply(split(res$time, res$expr), median.default))
+        out[["n"]][start:end] <- n[i]
+        out[["expr"]][start:end] <- res$ind
+        out[["time"]][start:end] <- res$values
+    }
+    class(out) <- "data.frame"
+    attr(out, "row.names") <- .set_row_names(length(out$n))
+    gp <- ggplot(out, aes(x = n, y = time, linetype = expr, color = expr)) +
+        geom_smooth(se = FALSE)
+    print(gp)
+    invisible(out)
+}
+
+bench(sum(x), sumRcpp(x))
 ```
 
 ### Python
@@ -93,3 +125,5 @@ If you are interested in building a blog like this for free, you can read the ne
 [^2]: [R](https://www.r-project.org/) is a a free software environment for statistical computing and graphics and [Rstudio](https://www.rstudio.com) is an integrated development environment (IDE) for R.
 
 [^3]: The `Rcpp` is slightly different from the other languages that can use the engine directly, with something like `{python, engine.path="/Users/me/anaconda/bin/python"}`.
+
+[^4]: I suggest you to use the option `cache = TRUE` in the chunk of codes that need a relatively long time to run, so it will save the output and the code won't run every time you use the `blogdown:::serve_site()` command.

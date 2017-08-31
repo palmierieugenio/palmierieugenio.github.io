@@ -58,17 +58,49 @@ dygraph(lungDeaths)%&gt;% dyRangeSelector()</code></pre>
 <h3>C++</h3>
 <p>This is an example of C++ code compiled through the <code>Rcpp</code><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> package, inside a <code>{r engine='Rcpp'}</code> code chunk:</p>
 <pre class="cpp"><code>#include &lt;Rcpp.h&gt;
-
 // [[Rcpp::export]]
-int fibonacci(const int x) {
-    if (x == 0 || x == 1) return(x);
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
+double sumRcpp(const Rcpp::NumericVector&amp; x) {
+    std::size_t n = x.size();
+    double total = 0;
+    if (n &gt; 0) {
+        for (std::size_t i = 0, k = n - 1; i &lt; k; ++i, --k)
+            total += x[i] + x[k];
+        if (n % 2 == 1)
+            total += x[n / 2];
+    }
+    return total;
 }</code></pre>
-<p>Print the values of the ‘fibonacci’ function (defined in C++ with the Rcpp package) inside a normal <code>{r}</code> code chunk:</p>
-<pre class="r"><code>fibonacci(10L)</code></pre>
-<pre><code>## [1] 55</code></pre>
-<pre class="r"><code>fibonacci(20L)</code></pre>
-<pre><code>## [1] 6765</code></pre>
+<p>Compare, in a R chunk of code<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>, the new defined <code>sumRcpp()</code> function with the normal R <code>sum()</code>:</p>
+<pre class="r"><code>library(microbenchmark)
+library(ggplot2)
+theme_set(theme_bw())
+bench &lt;- function(..., n = 10e2 * 1:10e2, times = 100) {
+    exprs &lt;- as.list(match.call(expand.dots = FALSE)$...)
+    nexprs &lt;- length(exprs)
+    nout &lt;- nexprs * times
+    out &lt;- list(n = integer(nout),
+                expr = factor(integer(nout), levels = as.character(exprs)),
+                time = numeric(nout))
+    for (i in seq_along(n)) {
+        start &lt;- (i - 1) * nexprs + 1
+        end &lt;- start + nexprs - 1
+        x &lt;- runif(n[i])
+        res &lt;- microbenchmark(list = exprs, times = times)
+        res &lt;- stack(lapply(split(res$time, res$expr), median.default))
+        out[[&quot;n&quot;]][start:end] &lt;- n[i]
+        out[[&quot;expr&quot;]][start:end] &lt;- res$ind
+        out[[&quot;time&quot;]][start:end] &lt;- res$values
+    }
+    class(out) &lt;- &quot;data.frame&quot;
+    attr(out, &quot;row.names&quot;) &lt;- .set_row_names(length(out$n))
+    gp &lt;- ggplot(out, aes(x = n, y = time, linetype = expr, color = expr)) +
+        geom_smooth(se = FALSE)
+    print(gp)
+    invisible(out)
+}
+
+bench(sum(x), sumRcpp(x))</code></pre>
+<p><img src="/./post/2017-08-29-primo-post_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="python" class="section level3">
 <h3>Python</h3>
@@ -90,5 +122,6 @@ print(sys.version)</code></pre>
 <li id="fn1"><p>I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p><a href="https://www.r-project.org/">R</a> is a a free software environment for statistical computing and graphics and <a href="https://www.rstudio.com">Rstudio</a> is an integrated development environment (IDE) for R.<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>The <code>Rcpp</code> is slightly different from the other languages that can use the engine directly, with something like <code>{python, engine.path=&quot;/Users/me/anaconda/bin/python&quot;}</code>.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>I suggest you to use the option <code>cache = TRUE</code> in the chunk of codes that need a relatively long time to run, so it will save the output and the code won’t run every time you use the <code>blogdown:::serve_site()</code> command.<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>

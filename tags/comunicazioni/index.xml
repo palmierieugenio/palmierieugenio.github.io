@@ -64,17 +64,49 @@ dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;C++&lt;/h3&gt;
 &lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;
 &lt;pre class=&#34;cpp&#34;&gt;&lt;code&gt;#include &amp;lt;Rcpp.h&amp;gt;
-
 // [[Rcpp::export]]
-int fibonacci(const int x) {
-    if (x == 0 || x == 1) return(x);
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
+double sumRcpp(const Rcpp::NumericVector&amp;amp; x) {
+    std::size_t n = x.size();
+    double total = 0;
+    if (n &amp;gt; 0) {
+        for (std::size_t i = 0, k = n - 1; i &amp;lt; k; ++i, --k)
+            total += x[i] + x[k];
+        if (n % 2 == 1)
+            total += x[n / 2];
+    }
+    return total;
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Print the values of the ‘fibonacci’ function (defined in C++ with the Rcpp package) inside a normal &lt;code&gt;{r}&lt;/code&gt; code chunk:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fibonacci(10L)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 55&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fibonacci(20L)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 6765&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Compare, in a R chunk of code&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;, the new defined &lt;code&gt;sumRcpp()&lt;/code&gt; function with the normal R &lt;code&gt;sum()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
+library(ggplot2)
+theme_set(theme_bw())
+bench &amp;lt;- function(..., n = 10e2 * 1:10e2, times = 100) {
+    exprs &amp;lt;- as.list(match.call(expand.dots = FALSE)$...)
+    nexprs &amp;lt;- length(exprs)
+    nout &amp;lt;- nexprs * times
+    out &amp;lt;- list(n = integer(nout),
+                expr = factor(integer(nout), levels = as.character(exprs)),
+                time = numeric(nout))
+    for (i in seq_along(n)) {
+        start &amp;lt;- (i - 1) * nexprs + 1
+        end &amp;lt;- start + nexprs - 1
+        x &amp;lt;- runif(n[i])
+        res &amp;lt;- microbenchmark(list = exprs, times = times)
+        res &amp;lt;- stack(lapply(split(res$time, res$expr), median.default))
+        out[[&amp;quot;n&amp;quot;]][start:end] &amp;lt;- n[i]
+        out[[&amp;quot;expr&amp;quot;]][start:end] &amp;lt;- res$ind
+        out[[&amp;quot;time&amp;quot;]][start:end] &amp;lt;- res$values
+    }
+    class(out) &amp;lt;- &amp;quot;data.frame&amp;quot;
+    attr(out, &amp;quot;row.names&amp;quot;) &amp;lt;- .set_row_names(length(out$n))
+    gp &amp;lt;- ggplot(out, aes(x = n, y = time, linetype = expr, color = expr)) +
+        geom_smooth(se = FALSE)
+    print(gp)
+    invisible(out)
+}
+
+bench(sum(x), sumRcpp(x))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;python&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Python&lt;/h3&gt;
@@ -96,6 +128,7 @@ print(sys.version)&lt;/code&gt;&lt;/pre&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;The &lt;code&gt;Rcpp&lt;/code&gt; is slightly different from the other languages that can use the engine directly, with something like &lt;code&gt;{python, engine.path=&amp;quot;/Users/me/anaconda/bin/python&amp;quot;}&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;I suggest you to use the option &lt;code&gt;cache = TRUE&lt;/code&gt; in the chunk of codes that need a relatively long time to run, so it will save the output and the code won’t run every time you use the &lt;code&gt;blogdown:::serve_site()&lt;/code&gt; command.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
