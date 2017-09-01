@@ -1,6 +1,6 @@
 baseurl = "/./"
 publishDir = "./"
-title = "Titolo Blog"
+title = "Computation Debate"
 copyright = "&copy; 2017 Eugenio Palmieri"
 theme = "hugo-academic"
 enableEmoji = true

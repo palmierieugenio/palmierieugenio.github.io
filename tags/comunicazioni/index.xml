@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Comunicazioni on Titolo Blog</title>
+    <title>Comunicazioni on Computation Debate</title>
     <link>/./tags/comunicazioni/</link>
-    <description>Recent content in Comunicazioni on Titolo Blog</description>
+    <description>Recent content in Comunicazioni on Computation Debate</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>
@@ -26,15 +26,15 @@
 &lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;div id=&#34;hello-world-welcome-to-nome-blog&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Hello World, welcome to NOME BLOG,&lt;/h2&gt;
-&lt;p&gt;My name is Eugenio Palmieri and I’m starting a new personal blog. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
+&lt;div id=&#34;hello-world-welcome-to-computation-debate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hello World, welcome to Computation Debate,&lt;/h2&gt;
+&lt;p&gt;My name is Eugenio Palmieri and I’m starting a new personal blog, &lt;em&gt;Computation Debate&lt;/em&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;feautures-of-the-blog&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Feautures of the blog:&lt;/h2&gt;
 &lt;div id=&#34;integration-with-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Integration with R:&lt;/h3&gt;
-&lt;p&gt;One of the main feauture of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
+&lt;p&gt;One of the main feauture of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 
 data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;condition_2&amp;quot;), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
@@ -62,7 +62,7 @@ dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;With the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt; is possible to use chunks of code from other language engines (like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala and CSS) directly &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_knitr_engines.html&#34;&gt;from Rstudio&lt;/a&gt; .&lt;/p&gt;
 &lt;div id=&#34;c&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;C++&lt;/h3&gt;
-&lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;
 &lt;pre class=&#34;cpp&#34;&gt;&lt;code&gt;#include &amp;lt;Rcpp.h&amp;gt;
 // [[Rcpp::export]]
 double sumRcpp(const Rcpp::NumericVector&amp;amp; x) {
@@ -76,7 +76,7 @@ double sumRcpp(const Rcpp::NumericVector&amp;amp; x) {
     }
     return total;
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Compare, in a R chunk of code&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;, the new defined &lt;code&gt;sumRcpp()&lt;/code&gt; function with the normal R &lt;code&gt;sum()&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Compare, in a R chunk of code&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;, the new defined &lt;code&gt;sumRcpp()&lt;/code&gt; function with the normal R &lt;code&gt;sum()&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
 library(ggplot2)
 theme_set(theme_bw())
@@ -125,10 +125,11 @@ print(sys.version)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;The &lt;code&gt;Rcpp&lt;/code&gt; is slightly different from the other languages that can use the engine directly, with something like &lt;code&gt;{python, engine.path=&amp;quot;/Users/me/anaconda/bin/python&amp;quot;}&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;I suggest you to use the option &lt;code&gt;cache = TRUE&lt;/code&gt; in the chunk of codes that need a relatively long time to run, so it will save the output and the code won’t run every time you use the &lt;code&gt;blogdown:::serve_site()&lt;/code&gt; command.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;The title is inspired by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Socialist_calculation_debate&#34;&gt;Socialist calculation debate&lt;/a&gt; and by Kantorovich and his works, like &lt;em&gt;Mathematical Methods of Organizing and Planning Production&lt;/em&gt;.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;The &lt;code&gt;Rcpp&lt;/code&gt; is slightly different from the other languages that can use the engine directly, with something like &lt;code&gt;{python, engine.path=&amp;quot;/Users/me/anaconda/bin/python&amp;quot;}&lt;/code&gt;.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;I suggest you to use the option &lt;code&gt;cache = TRUE&lt;/code&gt; in the chunk of codes that need a relatively long time to run, so it will save the output and the code won’t run every time you use the &lt;code&gt;blogdown:::serve_site()&lt;/code&gt; command.&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

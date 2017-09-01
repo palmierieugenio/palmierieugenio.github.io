@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on Titolo Blog</title>
+    <title>Web on Computation Debate</title>
     <link>/./categories/web/</link>
-    <description>Recent content in Web on Titolo Blog</description>
+    <description>Recent content in Web on Computation Debate</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>

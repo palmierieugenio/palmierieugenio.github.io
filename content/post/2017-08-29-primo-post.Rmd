@@ -10,14 +10,14 @@ tags:
   - comunicazioni
 ---
 
-## Hello World, welcome to NOME BLOG,
+## Hello World, welcome to Computation Debate,
 
-My name is Eugenio Palmieri and I'm starting a new personal blog. I'm a Master's student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming[^1], but I'm interested also in economics, politics, urban planning, mathematics and other nerdy topics.
+My name is Eugenio Palmieri and I'm starting a new personal blog, *Computation Debate*[^1]. I'm a Master's student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming[^2], but I'm interested also in economics, politics, urban planning, mathematics and other nerdy topics.
 
 ## Feautures of the blog:
 
 ### Integration with R:
-One of the main feauture of this blog is that it supports [Rmarkdown](http://rmarkdown.rstudio.com/) files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive [html widgets](http://www.htmlwidgets.org/) with R[^2], like in this graph example:
+One of the main feauture of this blog is that it supports [Rmarkdown](http://rmarkdown.rstudio.com/) files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive [html widgets](http://www.htmlwidgets.org/) with R[^3], like in this graph example:
 
 ```{r graficoesempio}
 library(ggplot2)
@@ -53,7 +53,7 @@ $$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$
 With the `knitr` [package](https://yihui.name/knitr/demo/engines/) is possible to use chunks of code from other language engines (like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala and CSS) directly [from Rstudio](http://rmarkdown.rstudio.com/authoring_knitr_engines.html) .
 
 ### C++
-This is an example of C++ code compiled through the `Rcpp`[^3] package, inside a `{r engine='Rcpp'}` code chunk:
+This is an example of C++ code compiled through the `Rcpp`[^4] package, inside a `{r engine='Rcpp'}` code chunk:
 
 ```{r engine='Rcpp'}
 #include <Rcpp.h>
@@ -71,7 +71,7 @@ double sumRcpp(const Rcpp::NumericVector& x) {
 }
 ```
 
-Compare, in a R chunk of code[^4], the new defined `sumRcpp()` function with the normal R `sum()`:
+Compare, in a R chunk of code[^5], the new defined `sumRcpp()` function with the normal R `sum()`:
 ```{r, warning=FALSE, message=F, cache = TRUE}
 library(microbenchmark)
 library(ggplot2)
@@ -120,10 +120,12 @@ If you are interested in building a blog like this for free, you can read the ne
 
 <br>
 
-[^1]: I'm using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I'm intentioned to learn Python.
+[^1]: The title is inspired by the [Socialist calculation debate](https://en.wikipedia.org/wiki/Socialist_calculation_debate) and by Kantorovich and his works, like *Mathematical Methods of Organizing and Planning Production*.
 
-[^2]: [R](https://www.r-project.org/) is a a free software environment for statistical computing and graphics and [Rstudio](https://www.rstudio.com) is an integrated development environment (IDE) for R.
+[^2]: I'm using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I'm intentioned to learn Python.
 
-[^3]: The `Rcpp` is slightly different from the other languages that can use the engine directly, with something like `{python, engine.path="/Users/me/anaconda/bin/python"}`.
+[^3]: [R](https://www.r-project.org/) is a a free software environment for statistical computing and graphics and [Rstudio](https://www.rstudio.com) is an integrated development environment (IDE) for R.
 
-[^4]: I suggest you to use the option `cache = TRUE` in the chunk of codes that need a relatively long time to run, so it will save the output and the code won't run every time you use the `blogdown:::serve_site()` command.
+[^4]: The `Rcpp` is slightly different from the other languages that can use the engine directly, with something like `{python, engine.path="/Users/me/anaconda/bin/python"}`.
+
+[^5]: I suggest you to use the option `cache = TRUE` in the chunk of codes that need a relatively long time to run, so it will save the output and the code won't run every time you use the `blogdown:::serve_site()` command.
