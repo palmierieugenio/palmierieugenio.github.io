@@ -26,12 +26,14 @@
 &lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;div id=&#34;hello-world-welcome-to-computation-debate&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Hello World, welcome to Computation Debate,&lt;/h2&gt;
-&lt;p&gt;My name is Eugenio Palmieri and I’m starting a new personal blog, &lt;em&gt;Computation Debate&lt;/em&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
+&lt;div id=&#34;hello-world&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hello World,&lt;/h2&gt;
+&lt;p&gt;welcome to &lt;em&gt;Computation Debate&lt;/em&gt; &lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, my new personal blog. My name is Eugenio Palmieri and I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;feautures-of-the-blog&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Feautures of the blog:&lt;/h2&gt;
+&lt;p&gt;I want to describe with some exampes the main feautures of the blog, expecially for other statistics or other R (a programming language) users like me. In my next post I am going to explain how to &lt;a href=&#34;https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/&#34;&gt;build a blog like this for free&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I don’t plan to make all my posts about programming or &lt;em&gt;topics for nerd&lt;/em&gt;, I want to make more accessible contents in the future, but, for now, if you aren’t into this kind of things, I warn you that you eyes could bleed.&lt;/p&gt;
 &lt;div id=&#34;integration-with-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Integration with R:&lt;/h3&gt;
 &lt;p&gt;One of the main feauture of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
