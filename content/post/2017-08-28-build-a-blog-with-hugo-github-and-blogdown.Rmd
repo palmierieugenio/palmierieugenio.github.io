@@ -30,7 +30,7 @@ My opinion is that this kind of blog is particularly useful if you are an R/RStu
 
 ####[blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/deployment.html)
 
-I've choosen to deploy it on GitHub (and I'm going to explain how to do it with this approach), but you can find alternative services, for example [Netlify](https://www.netlify.com/), if you prefer: you can find more information [here](https://bookdown.org/yihui/blogdown/deployment.html).
+I've chosen to deploy it on GitHub (and I'm going to explain how to do it with this approach), but you can find alternative services, for example [Netlify](https://www.netlify.com/), if you prefer: you can find more information [here](https://bookdown.org/yihui/blogdown/deployment.html).
 
 ### What do you need[^1]:
 - Install [R development version](https://cran.r-project.org/bin/windows/base/rdevel.html)
@@ -49,7 +49,7 @@ install.packages("devtools")
 devtools::install_github('rstudio/blogdown')
 ```
 
-With the development versions of R/RStudio you often need to install packages from GitHub, instead of the normal CRAN repository.
+With the development versions of R/RStudio you often need to install the packages from GitHub, instead of the normal CRAN repository.
 
 ### Build your blog on Github
 
@@ -65,7 +65,7 @@ If you notice the structure of the link of my repos https://github.com/palmierie
 `USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory[^5].
 
 ####4. Run in the Git CMD terminal
-You should have Git CMD[^6] istalled with the Git installation:
+You should have Git CMD[^6] installed with the Git installation:
 
 ```{bash eval=FALSE}
 cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
@@ -173,10 +173,10 @@ I suggest you to make a small modification of the CSS, the hugo-academic.css fil
 
 >When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.
 
-You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for "article-metadata" and set inside the parenthesys `overflow: hidden;`.
+You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for "article-metadata" and set inside the parentheses `overflow: hidden;`.
 
 ### Final suggestions
-Now you are good to go, I suggest you to play a little bit with the template and custumise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:
+Now you are good to go, I suggest you to play a little bit with the template and customise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:
 
 - [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) (creators of blogdown)
 - [blogdown GitHub](https://github.com/rstudio/blogdown)
@@ -197,5 +197,5 @@ Have fun!
 [^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
 [^5]: You need to name the folder on your computer with the long version, `USERNAME.github.io`, not the short one `USERNAME`.
 [^6]: You can use also another terminal or [connect RStudio with Github](http://www.datasurg.net/2015/07/13/rstudio-and-github/).
-[^7]: The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).
+[^7]: The picture of this config.toml file is just illustrative and it is taken from another template (theme).
 [^8]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.

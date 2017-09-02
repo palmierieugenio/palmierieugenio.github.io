@@ -41,7 +41,7 @@
 &lt;/blockquote&gt;
 &lt;div id=&#34;blogdown-creating-websites-with-r-markdown&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;&lt;a href=&#34;https://bookdown.org/yihui/blogdown/deployment.html&#34;&gt;blogdown: Creating Websites with R Markdown&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;I’ve choosen to deploy it on GitHub (and I’m going to explain how to do it with this approach), but you can find alternative services, for example &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt;, if you prefer: you can find more information &lt;a href=&#34;https://bookdown.org/yihui/blogdown/deployment.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve chosen to deploy it on GitHub (and I’m going to explain how to do it with this approach), but you can find alternative services, for example &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt;, if you prefer: you can find more information &lt;a href=&#34;https://bookdown.org/yihui/blogdown/deployment.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-do-you-need1&#34; class=&#34;section level3&#34;&gt;
@@ -62,7 +62,7 @@
 # or if it doesn&amp;#39;t work:
 install.packages(&amp;quot;devtools&amp;quot;)
 devtools::install_github(&amp;#39;rstudio/blogdown&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;With the development versions of R/RStudio you often need to install packages from GitHub, instead of the normal CRAN repository.&lt;/p&gt;
+&lt;p&gt;With the development versions of R/RStudio you often need to install the packages from GitHub, instead of the normal CRAN repository.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;build-your-blog-on-github&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Build your blog on Github&lt;/h3&gt;
@@ -81,7 +81,7 @@ devtools::install_github(&amp;#39;rstudio/blogdown&amp;#39;)&lt;/code&gt;&lt;/pr
 &lt;/div&gt;
 &lt;div id=&#34;run-in-the-git-cmd-terminal&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;4. Run in the Git CMD terminal&lt;/h4&gt;
-&lt;p&gt;You should have Git CMD&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt; istalled with the Git installation:&lt;/p&gt;
+&lt;p&gt;You should have Git CMD&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt; installed with the Git installation:&lt;/p&gt;
 &lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
 git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
@@ -180,11 +180,11 @@ git push origin master # we push the changes from the local git repo to the remo
 &lt;blockquote&gt;
 &lt;p&gt;When an article (blog post, etc) has many tags, the share-box floats to the next line and article body text wraps around it. A simple fix is to set the overflow: hidden property for article-metadata.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for “article-metadata” and set inside the parenthesys &lt;code&gt;overflow: hidden;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You just have to open the hugo-academic.css file (also from RStudio you can do it), search (Ctrl+F) for “article-metadata” and set inside the parentheses &lt;code&gt;overflow: hidden;&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;final-suggestions&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Final suggestions&lt;/h3&gt;
-&lt;p&gt;Now you are good to go, I suggest you to play a little bit with the template and custumise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:&lt;/p&gt;
+&lt;p&gt;Now you are good to go, I suggest you to play a little bit with the template and customise it, get comfortable with it, before using the blog, and to read the blogdown and Academic documentations:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with R Markdown&lt;/a&gt; (creators of blogdown)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown GitHub&lt;/a&gt;&lt;/li&gt;
@@ -207,7 +207,7 @@ git push origin master # we push the changes from the local git repo to the remo
 &lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;If you want to &lt;a href=&#34;https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1&#34;&gt;try with a different named repo&lt;/a&gt;, you should go to your repo URL &amp;gt; Settings &amp;gt; GitHub Pages section to activate GitHub pages for it.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;You need to name the folder on your computer with the long version, &lt;code&gt;USERNAME.github.io&lt;/code&gt;, not the short one &lt;code&gt;USERNAME&lt;/code&gt;.&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;You can use also another terminal or &lt;a href=&#34;http://www.datasurg.net/2015/07/13/rstudio-and-github/&#34;&gt;connect RStudio with Github&lt;/a&gt;.&lt;a href=&#34;#fnref6&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn7&#34;&gt;&lt;p&gt;The picture of this config.toml file is just illustrative and it is taken from another tamplate (theme).&lt;a href=&#34;#fnref7&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn7&#34;&gt;&lt;p&gt;The picture of this config.toml file is just illustrative and it is taken from another template (theme).&lt;a href=&#34;#fnref7&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn8&#34;&gt;&lt;p&gt;There should be a button,&lt;code&gt;Serve Site&lt;/code&gt;, in RStudio for the function &lt;code&gt;blogdown::serve_site()&lt;/code&gt;, in the Addins menu.&lt;a href=&#34;#fnref8&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

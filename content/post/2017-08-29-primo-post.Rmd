@@ -16,13 +16,13 @@ welcome to *Computation Debate* [^1], my new personal blog. My name is Eugenio P
 
 ## Feautures of the blog:
 
-I want to describe with some exampes the main feautures of the blog, expecially for other statistics or other R (a programming language) users like me. In my next post I am going to explain how to [build a blog like this for free](https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/).
+I want to describe with some examples the main features of the blog, especially  for other statistics or other R (a programming language) users like me. In my next post I am going to explain how to [build a blog like this for free](https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/).
 
-I don't plan to make all my posts about programming or *topics for nerd*, I want to make more accessible contents in the future, but, for now, if you aren't into this kind of things, I warn you that you eyes could bleed.
+I don't plan to make all my posts about programming or *topics for nerd*, I want to make more accessible contents in the future, but, for now, if you aren't into this kind of things, I warn you that your eyes could bleed.
 
 
 ### Integration with R:
-One of the main feauture of this blog is that it supports [Rmarkdown](http://rmarkdown.rstudio.com/) files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive [html widgets](http://www.htmlwidgets.org/) with R[^3], like in this graph example:
+One of the main feature of this blog is that it supports [Rmarkdown](http://rmarkdown.rstudio.com/) files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive [html widgets](http://www.htmlwidgets.org/) with R[^3], like in this graph example:
 
 ```{r graficoesempio}
 library(ggplot2)
