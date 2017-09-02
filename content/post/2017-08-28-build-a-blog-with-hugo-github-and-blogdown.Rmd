@@ -64,8 +64,8 @@ If you notice the structure of the link of my repos https://github.com/palmierie
 ####3. Create an empty folder in your computer with the name of the desired url:
 `USERNAME.github.io`, in my case `palmierieugenio.github.io`, it will be your working directory[^5].
 
-####4. Run in the Git CMD terminal
-You should have Git CMD[^6] installed with the Git installation:
+####4. Run in the command line 
+On Windows operating systems you can use the Git CMD[^6] terminal, which you should have installed with the Git installation:
 
 ```{bash eval=FALSE}
 cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
@@ -196,6 +196,6 @@ Have fun!
 [^3]: If you prefer to have different url names for your GitHub profile and Blog (not like my example: https://github.com/palmierieugenio and https://palmierieugenio.github.io), you can follow the note 4.
 [^4]: If you want to [try with a different named repo](https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1), you should go to your repo URL > Settings > GitHub Pages section to activate GitHub pages for it.
 [^5]: You need to name the folder on your computer with the long version, `USERNAME.github.io`, not the short one `USERNAME`.
-[^6]: You can use also another terminal or [connect RStudio with Github](http://www.datasurg.net/2015/07/13/rstudio-and-github/).
+[^6]: You can use also another terminal, like Git Bash in Linux and OS X (like Mac), or [connect RStudio with Github](http://www.datasurg.net/2015/07/13/rstudio-and-github/).
 [^7]: The picture of this config.toml file is just illustrative and it is taken from another template (theme).
 [^8]: There should be a button,`Serve Site`, in RStudio for the function `blogdown::serve_site()`, in the Addins menu.

@@ -303,9 +303,9 @@ devtools::install_github(&#39;rstudio/blogdown&#39;)</code></pre>
 <h4>3. Create an empty folder in your computer with the name of the desired url:</h4>
 <p><code>USERNAME.github.io</code>, in my case <code>palmierieugenio.github.io</code>, it will be your working directory<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>.</p>
 </div>
-<div id="run-in-the-git-cmd-terminal" class="section level4">
-<h4>4. Run in the Git CMD terminal</h4>
-<p>You should have Git CMD<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> installed with the Git installation:</p>
+<div id="run-in-the-command-line" class="section level4">
+<h4>4. Run in the command line</h4>
+<p>On Windows operating systems you can use the Git CMD<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> terminal, which you should have installed with the Git installation:</p>
 <pre class="bash"><code>cd /FOLDER_PATH/[USERNAME].github.io # your path may be different
 git init # initiates repo in the directory
 git remote add origin https://github.com/[USERNAME]/[USERNAME].github.io # connects git local repo to remote Github repo
@@ -430,7 +430,7 @@ git push origin master # we push the changes from the local git repo to the remo
 <li id="fn3"><p>If you prefer to have different url names for your GitHub profile and Blog (not like my example: <a href="https://github.com/palmierieugenio" class="uri">https://github.com/palmierieugenio</a> and <a href="https://palmierieugenio.github.io" class="uri">https://palmierieugenio.github.io</a>), you can follow the note 4.<a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p>If you want to <a href="https://github.com/aurora-mareviv/aurora-mareviv.github.io/issues/1">try with a different named repo</a>, you should go to your repo URL &gt; Settings &gt; GitHub Pages section to activate GitHub pages for it.<a href="#fnref4">↩</a></p></li>
 <li id="fn5"><p>You need to name the folder on your computer with the long version, <code>USERNAME.github.io</code>, not the short one <code>USERNAME</code>.<a href="#fnref5">↩</a></p></li>
-<li id="fn6"><p>You can use also another terminal or <a href="http://www.datasurg.net/2015/07/13/rstudio-and-github/">connect RStudio with Github</a>.<a href="#fnref6">↩</a></p></li>
+<li id="fn6"><p>You can use also another terminal, like Git Bash in Linux and OS X (like Mac), or <a href="http://www.datasurg.net/2015/07/13/rstudio-and-github/">connect RStudio with Github</a>.<a href="#fnref6">↩</a></p></li>
 <li id="fn7"><p>The picture of this config.toml file is just illustrative and it is taken from another template (theme).<a href="#fnref7">↩</a></p></li>
 <li id="fn8"><p>There should be a button,<code>Serve Site</code>, in RStudio for the function <code>blogdown::serve_site()</code>, in the Addins menu.<a href="#fnref8">↩</a></p></li>
 </ol>
