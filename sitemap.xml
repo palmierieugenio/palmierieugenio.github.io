@@ -143,26 +143,6 @@
     
     <url>
     
-      <loc>/./tags/comunicazioni/</loc>
-      <lastmod>2017-08-29T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/./categories/comunicazioni/</loc>
-      <lastmod>2017-08-29T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>/./tags/deep-learning/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -223,7 +203,7 @@
     
     <url>
     
-      <loc>/./tags/web/</loc>
+      <loc>/./categories/web/</loc>
       <lastmod>2017-08-30T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -233,7 +213,7 @@
     
     <url>
     
-      <loc>/./categories/web/</loc>
+      <loc>/./tags/web/</loc>
       <lastmod>2017-08-30T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>

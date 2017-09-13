@@ -214,5 +214,136 @@ git push origin master # we push the changes from the local git repo to the remo
 </description>
     </item>
     
+    <item>
+      <title>First Post!</title>
+      <link>/./post/primo-post/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/primo-post/</guid>
+      <description>&lt;script src=&#34;/././rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/././rmarkdown-libs/dygraphs/dygraph.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs/dygraph-combined.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment/moment.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-timezone/moment-timezone-with-data.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/moment-fquarter/moment-fquarter.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/././rmarkdown-libs/dygraphs-binding/dygraphs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;hello-world&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Hello World,&lt;/h2&gt;
+&lt;p&gt;welcome to &lt;em&gt;Computation Debate&lt;/em&gt; &lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, my new personal blog. My name is Eugenio Palmieri and I’m a Master’s student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, but I’m interested also in economics, politics, urban planning, mathematics and other nerdy topics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feautures-of-the-blog&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feautures of the blog:&lt;/h2&gt;
+&lt;p&gt;I want to describe with some examples the main features of the blog, especially for other statistics or other R (a programming language) users like me. In my next post I am going to explain how to &lt;a href=&#34;https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/&#34;&gt;build a blog like this for free&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I don’t plan to make all my posts about programming or &lt;em&gt;topics for nerd&lt;/em&gt;, I want to make more accessible contents in the future, but, for now, if you aren’t into this kind of things, I warn you that your eyes could bleed.&lt;/p&gt;
+&lt;div id=&#34;integration-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Integration with R:&lt;/h3&gt;
+&lt;p&gt;One of the main feature of this blog is that it supports &lt;a href=&#34;http://rmarkdown.rstudio.com/&#34;&gt;Rmarkdown&lt;/a&gt; files, which make it possible to create post from Rstudio to generate directly graphs, tables and interactive &lt;a href=&#34;http://www.htmlwidgets.org/&#34;&gt;html widgets&lt;/a&gt; with R&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;, like in this graph example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+
+data=data.frame(cond = rep(c(&amp;quot;condition_1&amp;quot;, &amp;quot;condition_2&amp;quot;), each=10), my_x = 1:100 + rnorm(100,sd=9), my_y = 1:100 + rnorm(100,sd=16) )
+
+ggplot(data, aes(x=my_x, y=my_y)) + geom_point(shape=1) +  
+geom_smooth(method=lm , color=&amp;quot;red&amp;quot;, se=TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/graficoesempio-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Or in this example of interactive time-series chart:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dygraphs)
+lungDeaths &amp;lt;- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)%&amp;gt;% dyRangeSelector()&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:672px;height:480px;&#34; class=&#34;dygraphs html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;attrs&#34;:{&#34;labels&#34;:[&#34;month&#34;,&#34;mdeaths&#34;,&#34;fdeaths&#34;],&#34;legend&#34;:&#34;auto&#34;,&#34;retainDateWindow&#34;:false,&#34;axes&#34;:{&#34;x&#34;:{&#34;pixelsPerLabel&#34;:60}},&#34;showRangeSelector&#34;:true,&#34;rangeSelectorHeight&#34;:40,&#34;rangeSelectorPlotFillColor&#34;:&#34; #A7B1C4&#34;,&#34;rangeSelectorPlotStrokeColor&#34;:&#34;#808FAB&#34;,&#34;interactionModel&#34;:&#34;Dygraph.Interaction.defaultModel&#34;},&#34;scale&#34;:&#34;monthly&#34;,&#34;annotations&#34;:[],&#34;shadings&#34;:[],&#34;events&#34;:[],&#34;format&#34;:&#34;date&#34;,&#34;data&#34;:[[&#34;1974-01-01T00:00:00.000Z&#34;,&#34;1974-02-01T00:00:00.000Z&#34;,&#34;1974-03-01T00:00:00.000Z&#34;,&#34;1974-04-01T00:00:00.000Z&#34;,&#34;1974-05-01T00:00:00.000Z&#34;,&#34;1974-06-01T00:00:00.000Z&#34;,&#34;1974-07-01T00:00:00.000Z&#34;,&#34;1974-08-01T00:00:00.000Z&#34;,&#34;1974-09-01T00:00:00.000Z&#34;,&#34;1974-10-01T00:00:00.000Z&#34;,&#34;1974-11-01T00:00:00.000Z&#34;,&#34;1974-12-01T00:00:00.000Z&#34;,&#34;1975-01-01T00:00:00.000Z&#34;,&#34;1975-02-01T00:00:00.000Z&#34;,&#34;1975-03-01T00:00:00.000Z&#34;,&#34;1975-04-01T00:00:00.000Z&#34;,&#34;1975-05-01T00:00:00.000Z&#34;,&#34;1975-06-01T00:00:00.000Z&#34;,&#34;1975-07-01T00:00:00.000Z&#34;,&#34;1975-08-01T00:00:00.000Z&#34;,&#34;1975-09-01T00:00:00.000Z&#34;,&#34;1975-10-01T00:00:00.000Z&#34;,&#34;1975-11-01T00:00:00.000Z&#34;,&#34;1975-12-01T00:00:00.000Z&#34;,&#34;1976-01-01T00:00:00.000Z&#34;,&#34;1976-02-01T00:00:00.000Z&#34;,&#34;1976-03-01T00:00:00.000Z&#34;,&#34;1976-04-01T00:00:00.000Z&#34;,&#34;1976-05-01T00:00:00.000Z&#34;,&#34;1976-06-01T00:00:00.000Z&#34;,&#34;1976-07-01T00:00:00.000Z&#34;,&#34;1976-08-01T00:00:00.000Z&#34;,&#34;1976-09-01T00:00:00.000Z&#34;,&#34;1976-10-01T00:00:00.000Z&#34;,&#34;1976-11-01T00:00:00.000Z&#34;,&#34;1976-12-01T00:00:00.000Z&#34;,&#34;1977-01-01T00:00:00.000Z&#34;,&#34;1977-02-01T00:00:00.000Z&#34;,&#34;1977-03-01T00:00:00.000Z&#34;,&#34;1977-04-01T00:00:00.000Z&#34;,&#34;1977-05-01T00:00:00.000Z&#34;,&#34;1977-06-01T00:00:00.000Z&#34;,&#34;1977-07-01T00:00:00.000Z&#34;,&#34;1977-08-01T00:00:00.000Z&#34;,&#34;1977-09-01T00:00:00.000Z&#34;,&#34;1977-10-01T00:00:00.000Z&#34;,&#34;1977-11-01T00:00:00.000Z&#34;,&#34;1977-12-01T00:00:00.000Z&#34;,&#34;1978-01-01T00:00:00.000Z&#34;,&#34;1978-02-01T00:00:00.000Z&#34;,&#34;1978-03-01T00:00:00.000Z&#34;,&#34;1978-04-01T00:00:00.000Z&#34;,&#34;1978-05-01T00:00:00.000Z&#34;,&#34;1978-06-01T00:00:00.000Z&#34;,&#34;1978-07-01T00:00:00.000Z&#34;,&#34;1978-08-01T00:00:00.000Z&#34;,&#34;1978-09-01T00:00:00.000Z&#34;,&#34;1978-10-01T00:00:00.000Z&#34;,&#34;1978-11-01T00:00:00.000Z&#34;,&#34;1978-12-01T00:00:00.000Z&#34;,&#34;1979-01-01T00:00:00.000Z&#34;,&#34;1979-02-01T00:00:00.000Z&#34;,&#34;1979-03-01T00:00:00.000Z&#34;,&#34;1979-04-01T00:00:00.000Z&#34;,&#34;1979-05-01T00:00:00.000Z&#34;,&#34;1979-06-01T00:00:00.000Z&#34;,&#34;1979-07-01T00:00:00.000Z&#34;,&#34;1979-08-01T00:00:00.000Z&#34;,&#34;1979-09-01T00:00:00.000Z&#34;,&#34;1979-10-01T00:00:00.000Z&#34;,&#34;1979-11-01T00:00:00.000Z&#34;,&#34;1979-12-01T00:00:00.000Z&#34;],[2134,1863,1877,1877,1492,1249,1280,1131,1209,1492,1621,1846,2103,2137,2153,1833,1403,1288,1186,1133,1053,1347,1545,2066,2020,2750,2283,1479,1189,1160,1113,970,999,1208,1467,2059,2240,1634,1722,1801,1246,1162,1087,1013,959,1179,1229,1655,2019,2284,1942,1423,1340,1187,1098,1004,970,1140,1110,1812,2263,1820,1846,1531,1215,1075,1056,975,940,1081,1294,1341],[901,689,827,677,522,406,441,393,387,582,578,666,830,752,785,664,467,438,421,412,343,440,531,771,767,1141,896,532,447,420,376,330,357,445,546,764,862,660,663,643,502,392,411,348,387,385,411,638,796,853,737,546,530,446,431,362,387,430,425,679,821,785,727,612,478,429,405,379,393,411,487,574]]},&#34;evals&#34;:[&#34;attrs.interactionModel&#34;],&#34;jsHooks&#34;:[]}&lt;/script&gt;
+&lt;p&gt;&lt;br&gt; &lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;support-for-rm-latex-math-expressions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Support for &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; math expressions&lt;/a&gt;:&lt;/h2&gt;
+&lt;p&gt;Anothere important feauture is the support for &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; to write equations and formulas:&lt;/p&gt;
+&lt;pre class=&#34;tex&#34;&gt;&lt;code&gt;$$\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$$&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\]&lt;/span&gt; &lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-programming-languages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other programming languages:&lt;/h2&gt;
+&lt;p&gt;With the &lt;code&gt;knitr&lt;/code&gt; &lt;a href=&#34;https://yihui.name/knitr/demo/engines/&#34;&gt;package&lt;/a&gt; is possible to use chunks of code from other language engines (like Python, C, Ruby, SQL, Bash, Rcpp, Stan, JavaScript, Perl, SAS, Scala and CSS) directly &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_knitr_engines.html&#34;&gt;from Rstudio&lt;/a&gt; .&lt;/p&gt;
+&lt;div id=&#34;c&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;C++&lt;/h3&gt;
+&lt;p&gt;This is an example of C++ code compiled through the &lt;code&gt;Rcpp&lt;/code&gt;&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; package, inside a &lt;code&gt;{r engine=&#39;Rcpp&#39;}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;pre class=&#34;cpp&#34;&gt;&lt;code&gt;#include &amp;lt;Rcpp.h&amp;gt;
+// [[Rcpp::export]]
+double sumRcpp(const Rcpp::NumericVector&amp;amp; x) {
+    std::size_t n = x.size();
+    double total = 0;
+    if (n &amp;gt; 0) {
+        for (std::size_t i = 0, k = n - 1; i &amp;lt; k; ++i, --k)
+            total += x[i] + x[k];
+        if (n % 2 == 1)
+            total += x[n / 2];
+    }
+    return total;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Compare, in a R chunk of code&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;, the new defined &lt;code&gt;sumRcpp()&lt;/code&gt; function with the normal R &lt;code&gt;sum()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
+library(ggplot2)
+theme_set(theme_bw())
+bench &amp;lt;- function(..., n = 10e2 * 1:10e2, times = 100) {
+    exprs &amp;lt;- as.list(match.call(expand.dots = FALSE)$...)
+    nexprs &amp;lt;- length(exprs)
+    nout &amp;lt;- nexprs * times
+    out &amp;lt;- list(n = integer(nout),
+                expr = factor(integer(nout), levels = as.character(exprs)),
+                time = numeric(nout))
+    for (i in seq_along(n)) {
+        start &amp;lt;- (i - 1) * nexprs + 1
+        end &amp;lt;- start + nexprs - 1
+        x &amp;lt;- runif(n[i])
+        res &amp;lt;- microbenchmark(list = exprs, times = times)
+        res &amp;lt;- stack(lapply(split(res$time, res$expr), median.default))
+        out[[&amp;quot;n&amp;quot;]][start:end] &amp;lt;- n[i]
+        out[[&amp;quot;expr&amp;quot;]][start:end] &amp;lt;- res$ind
+        out[[&amp;quot;time&amp;quot;]][start:end] &amp;lt;- res$values
+    }
+    class(out) &amp;lt;- &amp;quot;data.frame&amp;quot;
+    attr(out, &amp;quot;row.names&amp;quot;) &amp;lt;- .set_row_names(length(out$n))
+    gp &amp;lt;- ggplot(out, aes(x = n, y = time, linetype = expr, color = expr)) +
+        geom_smooth(se = FALSE)
+    print(gp)
+    invisible(out)
+}
+
+bench(sum(x), sumRcpp(x))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/././post/2017-08-29-primo-post_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;python&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Python&lt;/h3&gt;
+&lt;p&gt;Using the Python Engine directly from Rstudio, inside a &lt;code&gt;{python}&lt;/code&gt; code chunk:&lt;/p&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;import sys
+print(sys.version)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 3.5.2 |Anaconda custom (64-bit)| (default, Jul  5 2016, 11:41:13) [MSC v.1900 64 bit (AMD64)]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is even possible to exchange data frames from R and Python via a file system with the &lt;code&gt;feather&lt;/code&gt; &lt;a href=&#34;https://blog.rstudio.com/2016/03/29/feather/&#34;&gt;package&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modify-the-structure-of-the-blog-with-widgets&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Modify the structure of the blog with Widgets&lt;/h3&gt;
+&lt;p&gt;The original structure of the site after the installation is like &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;this&lt;/a&gt;. I made some modification, deleting some widgets (part of the site) I wasn’t using. If you want to know more about the widgets supported by this template, look here at the &lt;a href=&#34;https://sourcethemes.com/academic/post/widgets/&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-your-own-blog-for-free&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;a href=&#34;https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/&#34;&gt;Build your own blog for free!&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you are interested in building a blog like this for free, you can read the new post I’ve made to explain how to &lt;a href=&#34;https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdown/&#34;&gt;create a blog with Hugo and Github&lt;/a&gt; with the &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;blogdown package&lt;/a&gt;, directly from Rstudio.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;The title is inspired by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Socialist_calculation_debate&#34;&gt;Socialist calculation debate&lt;/a&gt; and by Kantorovich and his works, like &lt;em&gt;Mathematical Methods of Organizing and Planning Production&lt;/em&gt;.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;I’m using mainly R with RStudio, but I have some basic experience with Stata, Systat, GeoDa, Qgis, Markdown, Rmarkdown, LaTex and I’m intentioned to learn Python.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.r-project.org/&#34;&gt;R&lt;/a&gt; is a a free software environment for statistical computing and graphics and &lt;a href=&#34;https://www.rstudio.com&#34;&gt;Rstudio&lt;/a&gt; is an integrated development environment (IDE) for R.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;The &lt;code&gt;Rcpp&lt;/code&gt; is slightly different from the other languages that can use the engine directly, with something like &lt;code&gt;{python, engine.path=&amp;quot;/Users/me/anaconda/bin/python&amp;quot;}&lt;/code&gt;.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;I suggest you to use the option &lt;code&gt;cache = TRUE&lt;/code&gt; in the chunk of codes that need a relatively long time to run, so it will save the output and the code won’t run every time you use the &lt;code&gt;blogdown:::serve_site()&lt;/code&gt; command.&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
