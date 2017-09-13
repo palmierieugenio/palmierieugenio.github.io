@@ -98,3 +98,6 @@
 
 - id: talks
   translation: Talks
+
+- id: table_of_contents
+  translation: Table of Contents

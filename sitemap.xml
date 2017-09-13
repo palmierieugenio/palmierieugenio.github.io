@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/./post/2017-09-13-download-books-for-free/</loc>
+      <lastmod>2017-09-13T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/./post/build-a-blog-with-hugo-github-and-blogdown/</loc>
       <lastmod>2017-08-30T00:00:00+00:00</lastmod>
     </url>
@@ -163,6 +172,16 @@
     
     <url>
     
+      <loc>/./tags/pirate/</loc>
+      <lastmod>2017-09-13T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/./project/</loc>
       <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -203,7 +222,7 @@
     
     <url>
     
-      <loc>/./categories/web/</loc>
+      <loc>/./tags/web/</loc>
       <lastmod>2017-08-30T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -213,7 +232,7 @@
     
     <url>
     
-      <loc>/./tags/web/</loc>
+      <loc>/./categories/web/</loc>
       <lastmod>2017-08-30T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>

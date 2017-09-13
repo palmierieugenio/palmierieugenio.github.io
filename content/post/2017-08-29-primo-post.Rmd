@@ -14,8 +14,6 @@ summary: "An illustration of the main feautures of my new blog, Computation Deba
 ---
 
 
-
-
 ## Hello World,
 
 welcome to *Computation Debate* [^1], my new personal blog. My name is Eugenio Palmieri and I'm a Master's student in Statistics at Florence University (Italy) and I want to write mainly about statistics, informatics and programming[^2], but I'm interested also in economics, politics, urban planning, mathematics and other nerdy topics.
