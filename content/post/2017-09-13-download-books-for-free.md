@@ -139,5 +139,5 @@ privatization of knowledge - we'll make it a thing of the past. Will you join us
 <br>
 
 [^1]: If you want to suggest other sites, you can contact me or write in the comments. Some links may be temporarily or permanently broken, because of the law.
-[^2]: The courses are a little bit off topic in this post, but I think they can be usefull resourses to study.
+[^2]: The courses are a little bit off topic in this post, but I think they can be useful resourses to study.
 [^3]: You need knoledge of databases, web design and, most of all, you need to know how to stay anonymous. I don't suggest you to try, unless you know what you are doing.
