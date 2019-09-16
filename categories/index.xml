@@ -10,6 +10,24 @@
     <atom:link href="/categories/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Genetic Algorithm</title>
+      <link>/./categories/genetic-algorithm/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/./categories/genetic-algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression</title>
+      <link>/./categories/regression/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/./categories/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Web</title>
       <link>/./categories/web/</link>
       <pubDate>Wed, 30 Aug 2017 00:00:00 +0000</pubDate>

@@ -1,0 +1,309 @@
+---
+title: Regression using Genetic Algorithm
+author: Eugenio Palmieri
+date: '2019-09-14'
+slug: regression-using-genetic-algorithm
+categories:
+  - regression
+  - Genetic Algorithm
+tags:
+  - regression
+  - genetic algorithm
+header:
+  caption: ''
+  image: 'headers/evolutionary_algorithm_monkey.png'
+highlight: yes
+math: no
+
+summary: "How to approximate Ordinary Least Squares (OLS), Least Absolute Deviation (LAD), Quantile Regression, Lasso and $L0$ regularization using Genetic Algorithm (GA)."
+---
+
+The idea of this post is to solve (or at least approximate) the solution to Ordinary Least Squares (OLS), Least Absolute Deviation (LAD), Quantile Regression, Lasso and $L0$ regularization using Genetic Algorithm and the [`GA` package](https://cran.r-project.org/web/packages/GA/vignettes/GA.html).
+
+# Creating the data
+
+I create data with some X non correlated with the response Y.
+
+```{r, warning=FALSE, message=F, cache = F}
+# Packages
+library(GA)
+library(L1pack)
+library(L0Learn)
+library(quantreg)
+library(glmnet)
+
+# Problem data
+set.seed(1)
+p <- 8
+n <- 5000
+DENSITY <- 0.5   # Fraction of non-zero beta
+beta.mean<-10; intercept<-13
+beta_true <- matrix(rnorm(p, beta.mean), ncol = 1)
+idxs <- sample.int(p, size = floor((1 - DENSITY) * p), replace = FALSE)
+beta_true[idxs] <- 0
+X <- matrix(rnorm(n * p, sd = 5), nrow = n, ncol = p)
+sigma <- 20
+eps <- matrix(rnorm(n, sd = sigma), ncol = 1)
+beta_true<-c(intercept, beta_true)
+X.intercept<-cbind(1, X)
+Y <- X.intercept %*% beta_true + eps
+K <- as.numeric(ncol(X))
+m <- length(Y)
+
+X<-scale(X) # standardize for regularization techniques
+```
+
+# Ordinary Least Squares (OLS)
+
+The solution could be easily calculated in closed form using $\hat{\beta}_{OLS}= (X^T X)^{-1} X^T y$, which gives:
+
+```{r, cache = F}
+beta.ols<-function(xx=X, yy=Y){
+        xx<-cbind(1, xx)
+        beta<-solve(t(xx)%*%xx)%*%t(xx)%*%yy
+        beta<-as.numeric(beta)
+}
+
+ols.beta<-beta.ols()
+```
+
+In this case using Genetic Algorithm is defenitely inefficient and less precise. The same is true for the other models in this post: they don't have generally a solution in closed form, but they have more robust numerical methods that take advantage of the structure of the problems.
+
+To solve the problems with the package `GA` we need to specify some parameters:
+
+```{r, cache = F}
+max.iter<-2000 # max number of iteration
+max.run<-300 # number of iteration without any improvement before stopping
+theta<-rep(0,p) # empty vector of suggested parameters without intercept
+iper=0.01 # iperparameter for regularization methods
+up<-rep(100, p+1) # maximum values of parameters
+low<- -up # minimum values of parameters
+```
+
+We can solve OLS, minimizing directly the function:
+
+$$\min_{\beta} \sum_{i=1}^n (y_i - x_i^T \beta)^2 $$
+
+```{r, cache = F}
+# negative sign, since ga actually maximize the function
+ols.func<-function(beta, xx=X, yy=Y){  
+        xx<-cbind(1, xx)
+        J <- -sum((xx%*%beta- yy)^2)
+        return(J) 
+}
+GA.ols <- ga(type = "real-valued", fitness = ols.func,
+         lower = low, upper = up, suggestions = c(0,theta),
+        popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.ols<-as.numeric(summary(GA.ols)$solution)
+```
+
+# Least Absolute Deviation (LAD)
+
+The Least Absolute Deviation (LAD) doesn't have a solution in closed form, but can be solved with numerical methods, like Barrodale and Roberts algorithm (the default of the `L1pack` package used in this post) or EM:
+
+```{r, cache = F}
+# pacchetto L1pack
+lad.package<-lad(Y~X, data=list(X,Y), method = "BR")$coefficients
+```
+
+We can solve LAD, minimizing directly the function:
+
+$$\min_{\beta} \sum_{i=1}^n |y_i - x_i^T \beta| $$
+
+```{r, cache = F}
+# negative sign, since ga actually maximize the function
+lad.func<-function(beta, xx=X, yy=Y){  
+  xx<-cbind(1, xx)
+  lad<-sum(abs(yy-xx%*%beta))
+  J<- - lad
+  return(J) 
+}
+
+GA.lad <- ga(type = "real-valued", fitness = lad.func,
+               lower = low, upper =up,
+              suggestions=c(0,theta),
+               popSize = 300, maxiter = max.iter,
+             run = max.run, monitor = NULL)
+
+GA.lad<-as.numeric(summary(GA.lad)$solution)
+```
+
+# Quantile Regression
+
+Also quantile regression can be solved with several numerical methods: the default one used by `quantreg` is a modified version of the Barrodale and Roberts algorithm for l1-regression described in detail in Koenker and d'Orey (1987, 1994). For larger problems it is advantageous to use the Frisch-Newton interior point method or other variants described in detail in Portnoy and Koenker(1997).
+
+```{r, cache = F}
+quantile.fit<-rq(Y~X, data=list(X,Y), tau = c(0.05, 0.5, 0.95), method = "br")
+quantile.fit<-t(quantile.fit$coefficients)
+```
+
+The loss of quantile regression can be calculated using the *check function*:
+
+$$\rho(x, \ \tau)=
+\begin{cases}
+\tau x  & \quad \text{if } x \geq 0\\
+(1-\tau) x  & \quad \text{if } x < 0\\
+\end{cases}$$
+
+```{r, cache = F}
+check.function<-function(z, t=0.5){
+  risultato<-ifelse(z>=0, t*z, (t-1)*z)
+  risultato[z==0]<-0
+  risultato
+}
+```
+
+Then we can define the loss function of the quantile regression as:
+
+$$\min_{\beta} \frac{1}{n} \sum_{i=1}^n \rho(y_i - x_i^T \beta, \ \tau)$$
+
+Where the constant $\frac{1}{n}$ can be omitted from the optimization procedure, since it doesn't depend on $\beta$:
+
+```{r, cache = F}
+
+quant_loss <- function(beta, xx=X, yy=Y, tau=0.5) { 
+  xx<-cbind(1, xx)
+  error<-yy-xx%*%beta
+  loss<-check.function(error, t=tau)
+  -sum(loss)
+}
+
+GA.quant <- ga(type = "real-valued", fitness = quant_loss, tau=0.5,
+             lower = low, upper = up,
+             suggestions = quantile.fit[1,],
+             popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.50<-as.numeric(summary(GA.quant)$solution)
+
+GA.quant.95 <- ga(type = "real-valued", fitness = quant_loss, tau=0.95,
+               lower = low, upper =up,
+               suggestions = quantile.fit[2,],
+               popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.95<-as.numeric(summary(GA.quant.95)$solution)
+
+GA.quant.05 <- ga(type = "real-valued", fitness = quant_loss, tau=0.05,
+                  lower = low, upper = up,
+                  suggestions = quantile.fit[3,],
+                  popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.05<-as.numeric(summary(GA.quant.05)$solution)
+```
+
+# Lasso - $L1$ Penalization
+
+The Least Absoulute Shrinkage and Selection Operator (Lasso) problem can be solved with the `glmnet` package that uses cyclical coordinate descent algorithms, which successively optimizes the objective function over each parameter with others fixed, and cycles repeatedly until convergence:
+
+```{r, cache = F}
+fit.glmnet.lasso<-glmnet(X, Y, family ="gaussian", lambda = iper)
+lasso.glmnet<-as.numeric(coef(fit.glmnet.lasso))
+```
+
+The loss can be minimized directly:
+
+$$\min_\beta \frac{1}{2n} \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p x_{ij} \beta_j )^2 + \lambda \sum_{j=1}^p |\beta_j|$$
+
+
+```{r, cache = F}
+lasso.loss<-function(beta, xx=X, yy=Y, lambda=iper){  
+        const<-1/(length(yy)*2)
+        # xx<-scale(xx) # already normalized previously!
+        ols<-sum((yy-xx%*%beta)^2)
+        J <- -((const*ols)+(lambda*sum(abs(beta)) ))
+        return(J) 
+}
+```
+
+The X must standardized before optimizing the function. The intercept is not used in the optimization procedure and it's estimated using:
+
+$$\hat{\beta}_0= \bar{y} -  \sum_{j=1}^p \bar{x}_j \hat{\beta}_j$$
+
+```{r}
+intercept.mean<-function(beta, xx=X, yy=Y){
+  intercept<-mean(yy)-apply(xx,2,mean)%*%beta
+  intercept
+}
+```
+
+So the full solution is give by:
+
+```{r, cache = F}
+GA.lasso <- ga(type = "real-valued", fitness = lasso.loss,
+               lower = low[-1], upper = up[-1],
+               suggestions=rbind(theta, lasso.glmnet[-1]),
+               popSize = 300, maxiter = max.iter,
+               run = max.run, monitor = NULL)
+
+
+GA.lasso<-as.numeric(summary(GA.lasso)$solution)
+GA.lasso<-c(intercept.mean(GA.lasso), GA.lasso)
+```
+
+# Zero Norm L0 Regularization
+
+The L0 regularization is very similar, but it penalizes the $\beta \neq 0$:
+
+$$\min_\beta \frac{1}{2n} \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p x_{ij} \beta_j )^2 + \lambda \sum_{j=1}^p I_{\beta_j \neq 0}(\beta_j)$$
+
+Where $I_{beta_j \neq 0}(x)$ returns 1 if $\beta_j \neq 0$ and 0 otherwise.
+
+The problem can be solved with the package `L0Learn` which uses a variant of cyclic coordinate descent as default or a local combinatorial search on top of coordinate descent (typically achieves higher quality solutions at the expense of increased running time).
+
+```{r, cache = F}
+# L0 regularization L0Learn package
+fit.L0<-L0Learn.fit(X, Y, penalty="L0", autoLambda=FALSE, lambdaGrid=list(iper),
+                    loss="SquaredError", algorithm = "CD")
+L0.package<-as.numeric(coef(fit.L0))
+```
+
+The loss can be minimized directly using `GA`:
+```{r, cache = F}
+L0.loss<-function(beta, xx=X, yy=Y, lambda=iper){  
+  const<-1/length(yy)
+  ols<-sum((yy-xx%*%beta)^2)
+  J <- -((const*ols)+(lambda*sum(beta!=0) ))
+  return(J) 
+}
+
+GA.zero.norm <- ga(type = "real-valued", fitness = L0.loss,
+             lower = low[-1], upper = up[-1],
+             suggestions=rbind(theta, lasso.glmnet[-1], L0.package[-1]),
+             popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.zero.norm<-as.numeric(summary(GA.zero.norm)$solution)
+GA.zero.norm<-c(intercept.mean(GA.zero.norm), GA.zero.norm)
+```
+
+
+# Results
+
+We can compare the results of `GA` with the true beta (since we know the data generation process) and with theier packages counterpart:
+
+```{r}
+beta.problema<-rbind(beta_true=beta_true,
+                     ols.beta=ols.beta,
+                     GA.ols=GA.ols,
+                     lad.package=lad.package,
+                     GA.lad=GA.lad,
+                     quantile.fit,
+                     GA.quant.05=GA.quant.05,
+                     GA.quant.50=GA.quant.50,
+                     GA.quant.95=GA.quant.95,
+                     lasso.glmnet=lasso.glmnet,
+                     GA.lasso=GA.lasso,
+                     L0.package=L0.package,
+                     GA.zero.norm=GA.zero.norm)
+
+round(beta.problema,2)
+```
+
+All the results of `GA` are close to their package counterpart, exluded the zero norm and the package `L0Learn`, that tends to have a more sparse solution. This could be due to a numerical approximation or just a different parametrization, since the package authors didn't write the full mathematical formula used in the package. If that is the case, we are optimizing different functions, where the iperparamer $\lambda$ may have a different meaning.
+
+# Conclusion
+
+Genetic Algorithms can be very useful when we don't have a solution in closed form or when we can't employ other more consistent numerical methods (expecially for non-convex problems). This article is mostly an exercise to the use of Genetic Algorithm in regression, but the real advantage of `GA` can appear with less trivial losses to minimize.
+
+At the same time, we have shown that `GA` can give a good approximation of other numerical methods, but it is very slow and it is generally better to employ more *smart* solutions.
+
+Genetic Algorithms can be a useful first step to try to solve problems we don't fully understand, a smart use of brute force.

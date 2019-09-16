@@ -13,18 +13,19 @@ weight = 1
 [interests]
   interests = [
     "Econometrics",
-    "Statistics",
     "Economic Policy",
+    "Causal Inference",
     "Urban Planning",
     "Data Science",
-    "Communism"
+    "Communism",
+    "Multivariate Statistics"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
   course = "Master's degree in Statistics, Actuarial and Financial Sciences"
   institution = "Florence University"
-  year = 2065
+  year = 2019
 
 [[education.courses]]
   course = "Bachelor in Development Economics and International Cooperation"
