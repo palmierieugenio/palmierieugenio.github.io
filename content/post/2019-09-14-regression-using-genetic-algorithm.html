@@ -6,9 +6,11 @@ slug: regression-using-genetic-algorithm
 categories:
   - regression
   - Genetic Algorithm
+  - r
 tags:
   - regression
   - genetic algorithm
+  - r
 header:
   caption: ''
   image: 'headers/evolutionary_algorithm_monkey.png'
@@ -23,13 +25,14 @@ summary: "How to approximate Ordinary Least Squares (OLS), Least Absolute Deviat
 <p>The idea of this post is to solve (or at least approximate) the solution to Ordinary Least Squares (OLS), Least Absolute Deviation (LAD), Quantile Regression, Lasso and <span class="math inline">\(L0\)</span> regularization using Genetic Algorithm and the <a href="https://cran.r-project.org/web/packages/GA/vignettes/GA.html"><code>GA</code> package</a>.</p>
 <div id="creating-the-data" class="section level1">
 <h1>Creating the data</h1>
-<p>I create data with some X non correlated with the response Y.</p>
+<p>I create data with some X not correlated with the response Y.</p>
 <pre class="r"><code># Packages
 library(GA)
 library(L1pack)
 library(L0Learn)
 library(quantreg)
 library(glmnet)
+library(knitr)
 
 # Problem data
 set.seed(1)
@@ -61,16 +64,17 @@ X&lt;-scale(X) # standardize for regularization techniques</code></pre>
 }
 
 ols.beta&lt;-beta.ols()</code></pre>
-<p>In this case using Genetic Algorithm is defenitely inefficient and less precise. The same is true for the other models in this post: they don’t have generally a solution in closed form, but they have more robust numerical methods that take advantage of the structure of the problems.</p>
+<p>In this case using Genetic Algorithm is definitely inefficient and less precise. The same is true for the other models in this post: they don’t have generally a solution in closed form, but they have more robust numerical methods that take advantage of the structure of the problems.</p>
 <p>To solve the problems with the package <code>GA</code> we need to specify some parameters:</p>
-<pre class="r"><code>max.iter&lt;-2000 # max number of iteration
-max.run&lt;-300 # number of iteration without any improvement before stopping
+<pre class="r"><code>max.iter&lt;-10000 # max number of iteration
+max.run&lt;-1000 # number of iteration without any improvement before stopping
 theta&lt;-rep(0,p) # empty vector of suggested parameters without intercept
 iper=0.01 # iperparameter for regularization methods
 up&lt;-rep(100, p+1) # maximum values of parameters
 low&lt;- -up # minimum values of parameters</code></pre>
 <p>We can solve OLS, minimizing directly the function:</p>
-<p><span class="math display">\[\min_{\beta} \sum_{i=1}^n (y_i - x_i^T \beta)^2 \]</span></p>
+<p><span class="math display">\[\min_{\beta} \sum_{i=1}^n (y_i - x_i^T \beta)^2 \]</span>
+And maximize it, given lower and upper bounds for the parameters, in this case a vector <span class="math inline">\((-100, \dots, -100)\)</span> and a vector <span class="math inline">\((100, \dots, 100)\)</span>, and an optional vector of the suggested initial solution, in this case a vector <span class="math inline">\((0, \dots, 0)\)</span>.</p>
 <pre class="r"><code># negative sign, since ga actually maximize the function
 ols.func&lt;-function(beta, xx=X, yy=Y){  
         xx&lt;-cbind(1, xx)
@@ -134,21 +138,21 @@ quantile.fit&lt;-t(quantile.fit$coefficients)</code></pre>
 
 GA.quant &lt;- ga(type = &quot;real-valued&quot;, fitness = quant_loss, tau=0.5,
              lower = low, upper = up,
-             suggestions = quantile.fit[1,],
+             suggestions = c(0,theta), # quantile.fit[1,],
              popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
 
 GA.quant.50&lt;-as.numeric(summary(GA.quant)$solution)
 
 GA.quant.95 &lt;- ga(type = &quot;real-valued&quot;, fitness = quant_loss, tau=0.95,
                lower = low, upper =up,
-               suggestions = quantile.fit[2,],
+               suggestions = c(0,theta), #quantile.fit[2,],
                popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
 
 GA.quant.95&lt;-as.numeric(summary(GA.quant.95)$solution)
 
 GA.quant.05 &lt;- ga(type = &quot;real-valued&quot;, fitness = quant_loss, tau=0.05,
                   lower = low, upper = up,
-                  suggestions = quantile.fit[3,],
+                  suggestions = c(0,theta),#  quantile.fit[3,],
                   popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
 
 GA.quant.05&lt;-as.numeric(summary(GA.quant.05)$solution)</code></pre>
@@ -167,16 +171,16 @@ lasso.glmnet&lt;-as.numeric(coef(fit.glmnet.lasso))</code></pre>
         J &lt;- -((const*ols)+(lambda*sum(abs(beta)) ))
         return(J) 
 }</code></pre>
-<p>The X must standardized before optimizing the function. The intercept is not used in the optimization procedure and it’s estimated using:</p>
+<p>The X must be standardized before optimizing the function. The intercept is not used in the optimization procedure and it’s estimated using:</p>
 <p><span class="math display">\[\hat{\beta}_0= \bar{y} -  \sum_{j=1}^p \bar{x}_j \hat{\beta}_j\]</span></p>
 <pre class="r"><code>intercept.mean&lt;-function(beta, xx=X, yy=Y){
   intercept&lt;-mean(yy)-apply(xx,2,mean)%*%beta
   intercept
 }</code></pre>
-<p>So the full solution is give by:</p>
+<p>So the full solution is given by:</p>
 <pre class="r"><code>GA.lasso &lt;- ga(type = &quot;real-valued&quot;, fitness = lasso.loss,
                lower = low[-1], upper = up[-1],
-               suggestions=rbind(theta, lasso.glmnet[-1]),
+               suggestions=theta, # rbind(theta, lasso.glmnet[-1]),
                popSize = 300, maxiter = max.iter,
                run = max.run, monitor = NULL)
 
@@ -204,7 +208,7 @@ L0.package&lt;-as.numeric(coef(fit.L0))</code></pre>
 
 GA.zero.norm &lt;- ga(type = &quot;real-valued&quot;, fitness = L0.loss,
              lower = low[-1], upper = up[-1],
-             suggestions=rbind(theta, lasso.glmnet[-1], L0.package[-1]),
+             suggestions=theta,# rbind(theta, lasso.glmnet[-1], L0.package[-1]),
              popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
 
 GA.zero.norm&lt;-as.numeric(summary(GA.zero.norm)$solution)
@@ -212,7 +216,7 @@ GA.zero.norm&lt;-c(intercept.mean(GA.zero.norm), GA.zero.norm)</code></pre>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>We can compare the results of <code>GA</code> with the true beta (since we know the data generation process) and with theier packages counterpart:</p>
+<p>We can compare the results of <code>GA</code> with the true beta (since we know the data generation process) and with their packages counterpart:</p>
 <pre class="r"><code>beta.problema&lt;-rbind(beta_true=beta_true,
                      ols.beta=ols.beta,
                      GA.ols=GA.ols,
@@ -227,28 +231,286 @@ GA.zero.norm&lt;-c(intercept.mean(GA.zero.norm), GA.zero.norm)</code></pre>
                      L0.package=L0.package,
                      GA.zero.norm=GA.zero.norm)
 
-round(beta.problema,2)</code></pre>
-<pre><code>##              (Intercept)    X1    X2    X3    X4    X5    X6    X7    X8
-## beta_true          13.00  0.00  0.00  9.16 11.60 10.33  0.00 10.49  0.00
-## ols.beta           11.30  0.43 -0.10 46.21 57.34 53.04 -0.24 52.34  0.09
-## GA.ols             11.33  0.37 -0.10 46.14 57.31 52.85 -0.28 52.25  0.13
-## lad.package        10.99  0.41 -0.48 46.42 57.20 52.83 -0.37 52.65  0.12
-## GA.lad             10.94  0.41 -0.45 46.44 57.16 52.74 -0.36 52.64  0.15
-## tau= 0.05         -22.26  1.40  0.59 45.40 57.32 53.27 -0.53 52.32 -0.65
-## tau= 0.50          10.99  0.41 -0.48 46.42 57.20 52.83 -0.37 52.65  0.12
-## tau= 0.95          44.48 -0.10  0.15 45.98 56.80 52.67  0.04 51.87  0.93
-## GA.quant.05       -22.28  1.37  0.58 45.23 57.26 53.34 -0.46 52.23 -0.71
-## GA.quant.50        11.00  0.41 -0.47 46.42 57.18 52.81 -0.35 52.63  0.13
-## GA.quant.95        44.47 -0.06  0.16 45.87 56.77 52.62  0.03 51.86  0.96
-## lasso.glmnet       11.30  0.42 -0.09 46.20 57.33 53.03 -0.23 52.33  0.08
-## GA.lasso           11.30  0.42 -0.09 46.20 57.33 53.03 -0.23 52.33  0.08
-## L0.package         11.30  0.00  0.00 46.20 57.34 53.04  0.00 52.34  0.00
-## GA.zero.norm       11.30  0.42 -0.10 46.19 57.33 53.03 -0.23 52.33  0.08</code></pre>
-<p>All the results of <code>GA</code> are close to their package counterpart, exluded the zero norm and the package <code>L0Learn</code>, that tends to have a more sparse solution. This could be due to a numerical approximation or just a different parametrization, since the package authors didn’t write the full mathematical formula used in the package. If that is the case, we are optimizing different functions, where the iperparamer <span class="math inline">\(\lambda\)</span> may have a different meaning.</p>
+kable(round(beta.problema,2))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">(Intercept)</th>
+<th align="right">X1</th>
+<th align="right">X2</th>
+<th align="right">X3</th>
+<th align="right">X4</th>
+<th align="right">X5</th>
+<th align="right">X6</th>
+<th align="right">X7</th>
+<th align="right">X8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta_true</td>
+<td align="right">13.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">9.16</td>
+<td align="right">11.60</td>
+<td align="right">10.33</td>
+<td align="right">0.00</td>
+<td align="right">10.49</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td>ols.beta</td>
+<td align="right">11.30</td>
+<td align="right">0.43</td>
+<td align="right">-0.10</td>
+<td align="right">46.21</td>
+<td align="right">57.34</td>
+<td align="right">53.04</td>
+<td align="right">-0.24</td>
+<td align="right">52.34</td>
+<td align="right">0.09</td>
+</tr>
+<tr class="odd">
+<td>GA.ols</td>
+<td align="right">11.32</td>
+<td align="right">0.40</td>
+<td align="right">-0.07</td>
+<td align="right">46.14</td>
+<td align="right">57.31</td>
+<td align="right">53.03</td>
+<td align="right">-0.23</td>
+<td align="right">52.26</td>
+<td align="right">0.09</td>
+</tr>
+<tr class="even">
+<td>lad.package</td>
+<td align="right">10.99</td>
+<td align="right">0.41</td>
+<td align="right">-0.48</td>
+<td align="right">46.42</td>
+<td align="right">57.20</td>
+<td align="right">52.83</td>
+<td align="right">-0.37</td>
+<td align="right">52.65</td>
+<td align="right">0.12</td>
+</tr>
+<tr class="odd">
+<td>GA.lad</td>
+<td align="right">10.98</td>
+<td align="right">0.39</td>
+<td align="right">-0.47</td>
+<td align="right">46.43</td>
+<td align="right">57.18</td>
+<td align="right">52.81</td>
+<td align="right">-0.36</td>
+<td align="right">52.66</td>
+<td align="right">0.14</td>
+</tr>
+<tr class="even">
+<td>tau= 0.05</td>
+<td align="right">-22.26</td>
+<td align="right">1.40</td>
+<td align="right">0.59</td>
+<td align="right">45.40</td>
+<td align="right">57.32</td>
+<td align="right">53.27</td>
+<td align="right">-0.53</td>
+<td align="right">52.32</td>
+<td align="right">-0.65</td>
+</tr>
+<tr class="odd">
+<td>tau= 0.50</td>
+<td align="right">10.99</td>
+<td align="right">0.41</td>
+<td align="right">-0.48</td>
+<td align="right">46.42</td>
+<td align="right">57.20</td>
+<td align="right">52.83</td>
+<td align="right">-0.37</td>
+<td align="right">52.65</td>
+<td align="right">0.12</td>
+</tr>
+<tr class="even">
+<td>tau= 0.95</td>
+<td align="right">44.48</td>
+<td align="right">-0.10</td>
+<td align="right">0.15</td>
+<td align="right">45.98</td>
+<td align="right">56.80</td>
+<td align="right">52.67</td>
+<td align="right">0.04</td>
+<td align="right">51.87</td>
+<td align="right">0.93</td>
+</tr>
+<tr class="odd">
+<td>GA.quant.05</td>
+<td align="right">-22.22</td>
+<td align="right">1.46</td>
+<td align="right">0.51</td>
+<td align="right">45.35</td>
+<td align="right">57.27</td>
+<td align="right">53.31</td>
+<td align="right">-0.48</td>
+<td align="right">52.21</td>
+<td align="right">-0.70</td>
+</tr>
+<tr class="even">
+<td>GA.quant.50</td>
+<td align="right">10.99</td>
+<td align="right">0.42</td>
+<td align="right">-0.47</td>
+<td align="right">46.44</td>
+<td align="right">57.18</td>
+<td align="right">52.79</td>
+<td align="right">-0.37</td>
+<td align="right">52.66</td>
+<td align="right">0.14</td>
+</tr>
+<tr class="odd">
+<td>GA.quant.95</td>
+<td align="right">44.53</td>
+<td align="right">-0.14</td>
+<td align="right">0.18</td>
+<td align="right">45.79</td>
+<td align="right">56.70</td>
+<td align="right">52.53</td>
+<td align="right">0.05</td>
+<td align="right">51.84</td>
+<td align="right">0.91</td>
+</tr>
+<tr class="even">
+<td>lasso.glmnet</td>
+<td align="right">11.30</td>
+<td align="right">0.42</td>
+<td align="right">-0.09</td>
+<td align="right">46.20</td>
+<td align="right">57.33</td>
+<td align="right">53.03</td>
+<td align="right">-0.23</td>
+<td align="right">52.33</td>
+<td align="right">0.08</td>
+</tr>
+<tr class="odd">
+<td>GA.lasso</td>
+<td align="right">11.30</td>
+<td align="right">0.42</td>
+<td align="right">-0.09</td>
+<td align="right">46.20</td>
+<td align="right">57.27</td>
+<td align="right">53.02</td>
+<td align="right">-0.22</td>
+<td align="right">52.28</td>
+<td align="right">0.06</td>
+</tr>
+<tr class="even">
+<td>L0.package</td>
+<td align="right">11.30</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">46.20</td>
+<td align="right">57.34</td>
+<td align="right">53.04</td>
+<td align="right">0.00</td>
+<td align="right">52.34</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td>GA.zero.norm</td>
+<td align="right">11.30</td>
+<td align="right">0.42</td>
+<td align="right">-0.12</td>
+<td align="right">46.17</td>
+<td align="right">57.31</td>
+<td align="right">52.94</td>
+<td align="right">-0.22</td>
+<td align="right">52.24</td>
+<td align="right">0.09</td>
+</tr>
+</tbody>
+</table>
+<p>All the results of <code>GA</code> are close to their package counterpart, excluded the zero norm and the package <code>L0Learn</code>, which tends to have a more sparse solution. This could be due to a numerical approximation or just a different parametrization since the package authors didn’t write the full mathematical formula used in the package. If that is the case, we are optimizing different functions, where the iperparamer <span class="math inline">\(\lambda\)</span> may have a different meaning.</p>
+<p>It’s possible to calculate the predictions and errors from the <span class="math inline">\(\beta\)</span>:</p>
+<pre class="r"><code>predictions&lt;-X.intercept%*%t(beta.problema)
+errors&lt;-apply(predictions, 2, function(x) Y-x)
+mae&lt;-apply(errors, 2, function(x) mean(abs(x)))
+kable(mae, col.names = &quot;MAE&quot;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta_true</td>
+<td align="right">16.11658</td>
+</tr>
+<tr class="even">
+<td>ols.beta</td>
+<td align="right">331.65362</td>
+</tr>
+<tr class="odd">
+<td>GA.ols</td>
+<td align="right">331.30705</td>
+</tr>
+<tr class="even">
+<td>lad.package</td>
+<td align="right">331.88195</td>
+</tr>
+<tr class="odd">
+<td>GA.lad</td>
+<td align="right">331.84284</td>
+</tr>
+<tr class="even">
+<td>tau= 0.05</td>
+<td align="right">332.02116</td>
+</tr>
+<tr class="odd">
+<td>tau= 0.50</td>
+<td align="right">331.88195</td>
+</tr>
+<tr class="even">
+<td>tau= 0.95</td>
+<td align="right">329.40789</td>
+</tr>
+<tr class="odd">
+<td>GA.quant.05</td>
+<td align="right">331.70249</td>
+</tr>
+<tr class="even">
+<td>GA.quant.50</td>
+<td align="right">331.81229</td>
+</tr>
+<tr class="odd">
+<td>GA.quant.95</td>
+<td align="right">328.50262</td>
+</tr>
+<tr class="even">
+<td>lasso.glmnet</td>
+<td align="right">331.57432</td>
+</tr>
+<tr class="odd">
+<td>GA.lasso</td>
+<td align="right">331.33601</td>
+</tr>
+<tr class="even">
+<td>L0.package</td>
+<td align="right">331.66200</td>
+</tr>
+<tr class="odd">
+<td>GA.zero.norm</td>
+<td align="right">331.12767</td>
+</tr>
+</tbody>
+</table>
+<p>The regularized methods don’t outperform the others, since I haven’t chosen the iperparameter <span class="math inline">\(\lambda\)</span> by validation: I have just chosen one to replicate the results of the packages.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<p>Genetic Algorithms can be very useful when we don’t have a solution in closed form or when we can’t employ other more consistent numerical methods (expecially for non-convex problems). This article is mostly an exercise to the use of Genetic Algorithm in regression, but the real advantage of <code>GA</code> can appear with less trivial losses to minimize.</p>
+<p>Genetic Algorithms can be very useful when we don’t have a solution in closed form or when we can’t employ other more consistent numerical methods (especially for non-convex problems). This article is mostly an exercise to the use of Genetic Algorithm in regression, but the real advantage of <code>GA</code> can appear with less trivial losses to minimize.</p>
 <p>At the same time, we have shown that <code>GA</code> can give a good approximation of other numerical methods, but it is very slow and it is generally better to employ more <em>smart</em> solutions.</p>
 <p>Genetic Algorithms can be a useful first step to try to solve problems we don’t fully understand, a smart use of brute force.</p>
 </div>

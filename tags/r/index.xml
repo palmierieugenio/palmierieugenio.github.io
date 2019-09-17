@@ -7,8 +7,509 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Eugenio Palmieri</copyright>
-    <lastBuildDate>Wed, 30 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/r/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Regression using Genetic Algorithm</title>
+      <link>/./post/regression-using-genetic-algorithm/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/./post/regression-using-genetic-algorithm/</guid>
+      <description>&lt;p&gt;The idea of this post is to solve (or at least approximate) the solution to Ordinary Least Squares (OLS), Least Absolute Deviation (LAD), Quantile Regression, Lasso and &lt;span class=&#34;math inline&#34;&gt;\(L0\)&lt;/span&gt; regularization using Genetic Algorithm and the &lt;a href=&#34;https://cran.r-project.org/web/packages/GA/vignettes/GA.html&#34;&gt;&lt;code&gt;GA&lt;/code&gt; package&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;creating-the-data&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Creating the data&lt;/h1&gt;
+&lt;p&gt;I create data with some X not correlated with the response Y.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Packages
+library(GA)
+library(L1pack)
+library(L0Learn)
+library(quantreg)
+library(glmnet)
+library(knitr)
+
+# Problem data
+set.seed(1)
+p &amp;lt;- 8
+n &amp;lt;- 5000
+DENSITY &amp;lt;- 0.5   # Fraction of non-zero beta
+beta.mean&amp;lt;-10; intercept&amp;lt;-13
+beta_true &amp;lt;- matrix(rnorm(p, beta.mean), ncol = 1)
+idxs &amp;lt;- sample.int(p, size = floor((1 - DENSITY) * p), replace = FALSE)
+beta_true[idxs] &amp;lt;- 0
+X &amp;lt;- matrix(rnorm(n * p, sd = 5), nrow = n, ncol = p)
+sigma &amp;lt;- 20
+eps &amp;lt;- matrix(rnorm(n, sd = sigma), ncol = 1)
+beta_true&amp;lt;-c(intercept, beta_true)
+X.intercept&amp;lt;-cbind(1, X)
+Y &amp;lt;- X.intercept %*% beta_true + eps
+K &amp;lt;- as.numeric(ncol(X))
+m &amp;lt;- length(Y)
+
+X&amp;lt;-scale(X) # standardize for regularization techniques&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ordinary-least-squares-ols&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Ordinary Least Squares (OLS)&lt;/h1&gt;
+&lt;p&gt;The solution could be easily calculated in closed form using &lt;span class=&#34;math inline&#34;&gt;\(\hat{\beta}_{OLS}= (X^T X)^{-1} X^T y\)&lt;/span&gt;, which gives:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta.ols&amp;lt;-function(xx=X, yy=Y){
+        xx&amp;lt;-cbind(1, xx)
+        beta&amp;lt;-solve(t(xx)%*%xx)%*%t(xx)%*%yy
+        beta&amp;lt;-as.numeric(beta)
+}
+
+ols.beta&amp;lt;-beta.ols()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case using Genetic Algorithm is definitely inefficient and less precise. The same is true for the other models in this post: they don’t have generally a solution in closed form, but they have more robust numerical methods that take advantage of the structure of the problems.&lt;/p&gt;
+&lt;p&gt;To solve the problems with the package &lt;code&gt;GA&lt;/code&gt; we need to specify some parameters:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;max.iter&amp;lt;-10000 # max number of iteration
+max.run&amp;lt;-1000 # number of iteration without any improvement before stopping
+theta&amp;lt;-rep(0,p) # empty vector of suggested parameters without intercept
+iper=0.01 # iperparameter for regularization methods
+up&amp;lt;-rep(100, p+1) # maximum values of parameters
+low&amp;lt;- -up # minimum values of parameters&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can solve OLS, minimizing directly the function:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\min_{\beta} \sum_{i=1}^n (y_i - x_i^T \beta)^2 \]&lt;/span&gt;
+And maximize it, given lower and upper bounds for the parameters, in this case a vector &lt;span class=&#34;math inline&#34;&gt;\((-100, \dots, -100)\)&lt;/span&gt; and a vector &lt;span class=&#34;math inline&#34;&gt;\((100, \dots, 100)\)&lt;/span&gt;, and an optional vector of the suggested initial solution, in this case a vector &lt;span class=&#34;math inline&#34;&gt;\((0, \dots, 0)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# negative sign, since ga actually maximize the function
+ols.func&amp;lt;-function(beta, xx=X, yy=Y){  
+        xx&amp;lt;-cbind(1, xx)
+        J &amp;lt;- -sum((xx%*%beta- yy)^2)
+        return(J) 
+}
+GA.ols &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = ols.func,
+         lower = low, upper = up, suggestions = c(0,theta),
+        popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.ols&amp;lt;-as.numeric(summary(GA.ols)$solution)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;least-absolute-deviation-lad&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Least Absolute Deviation (LAD)&lt;/h1&gt;
+&lt;p&gt;The Least Absolute Deviation (LAD) doesn’t have a solution in closed form, but can be solved with numerical methods, like Barrodale and Roberts algorithm (the default of the &lt;code&gt;L1pack&lt;/code&gt; package used in this post) or EM:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# pacchetto L1pack
+lad.package&amp;lt;-lad(Y~X, data=list(X,Y), method = &amp;quot;BR&amp;quot;)$coefficients&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can solve LAD, minimizing directly the function:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\min_{\beta} \sum_{i=1}^n |y_i - x_i^T \beta| \]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# negative sign, since ga actually maximize the function
+lad.func&amp;lt;-function(beta, xx=X, yy=Y){  
+  xx&amp;lt;-cbind(1, xx)
+  lad&amp;lt;-sum(abs(yy-xx%*%beta))
+  J&amp;lt;- - lad
+  return(J) 
+}
+
+GA.lad &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = lad.func,
+               lower = low, upper =up,
+              suggestions=c(0,theta),
+               popSize = 300, maxiter = max.iter,
+             run = max.run, monitor = NULL)
+
+GA.lad&amp;lt;-as.numeric(summary(GA.lad)$solution)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quantile-regression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Quantile Regression&lt;/h1&gt;
+&lt;p&gt;Also quantile regression can be solved with several numerical methods: the default one used by &lt;code&gt;quantreg&lt;/code&gt; is a modified version of the Barrodale and Roberts algorithm for l1-regression described in detail in Koenker and d’Orey (1987, 1994). For larger problems it is advantageous to use the Frisch-Newton interior point method or other variants described in detail in Portnoy and Koenker(1997).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quantile.fit&amp;lt;-rq(Y~X, data=list(X,Y), tau = c(0.05, 0.5, 0.95), method = &amp;quot;br&amp;quot;)
+quantile.fit&amp;lt;-t(quantile.fit$coefficients)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The loss of quantile regression can be calculated using the &lt;em&gt;check function&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\rho(x, \ \tau)=
+\begin{cases}
+\tau x  &amp;amp; \quad \text{if } x \geq 0\\
+(1-\tau) x  &amp;amp; \quad \text{if } x &amp;lt; 0\\
+\end{cases}\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;check.function&amp;lt;-function(z, t=0.5){
+  risultato&amp;lt;-ifelse(z&amp;gt;=0, t*z, (t-1)*z)
+  risultato[z==0]&amp;lt;-0
+  risultato
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we can define the loss function of the quantile regression as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\min_{\beta} \frac{1}{n} \sum_{i=1}^n \rho(y_i - x_i^T \beta, \ \tau)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where the constant &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{n}\)&lt;/span&gt; can be omitted from the optimization procedure, since it doesn’t depend on &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quant_loss &amp;lt;- function(beta, xx=X, yy=Y, tau=0.5) { 
+  xx&amp;lt;-cbind(1, xx)
+  error&amp;lt;-yy-xx%*%beta
+  loss&amp;lt;-check.function(error, t=tau)
+  -sum(loss)
+}
+
+GA.quant &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = quant_loss, tau=0.5,
+             lower = low, upper = up,
+             suggestions = c(0,theta), # quantile.fit[1,],
+             popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.50&amp;lt;-as.numeric(summary(GA.quant)$solution)
+
+GA.quant.95 &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = quant_loss, tau=0.95,
+               lower = low, upper =up,
+               suggestions = c(0,theta), #quantile.fit[2,],
+               popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.95&amp;lt;-as.numeric(summary(GA.quant.95)$solution)
+
+GA.quant.05 &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = quant_loss, tau=0.05,
+                  lower = low, upper = up,
+                  suggestions = c(0,theta),#  quantile.fit[3,],
+                  popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.quant.05&amp;lt;-as.numeric(summary(GA.quant.05)$solution)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lasso---l1-penalization&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Lasso - &lt;span class=&#34;math inline&#34;&gt;\(L1\)&lt;/span&gt; Penalization&lt;/h1&gt;
+&lt;p&gt;The Least Absoulute Shrinkage and Selection Operator (Lasso) problem can be solved with the &lt;code&gt;glmnet&lt;/code&gt; package that uses cyclical coordinate descent algorithms, which successively optimizes the objective function over each parameter with others fixed, and cycles repeatedly until convergence:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fit.glmnet.lasso&amp;lt;-glmnet(X, Y, family =&amp;quot;gaussian&amp;quot;, lambda = iper)
+lasso.glmnet&amp;lt;-as.numeric(coef(fit.glmnet.lasso))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The loss can be minimized directly:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\min_\beta \frac{1}{2n} \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p x_{ij} \beta_j )^2 + \lambda \sum_{j=1}^p |\beta_j|\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lasso.loss&amp;lt;-function(beta, xx=X, yy=Y, lambda=iper){  
+        const&amp;lt;-1/(length(yy)*2)
+        # xx&amp;lt;-scale(xx) # already normalized previously!
+        ols&amp;lt;-sum((yy-xx%*%beta)^2)
+        J &amp;lt;- -((const*ols)+(lambda*sum(abs(beta)) ))
+        return(J) 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The X must be standardized before optimizing the function. The intercept is not used in the optimization procedure and it’s estimated using:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\hat{\beta}_0= \bar{y} -  \sum_{j=1}^p \bar{x}_j \hat{\beta}_j\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;intercept.mean&amp;lt;-function(beta, xx=X, yy=Y){
+  intercept&amp;lt;-mean(yy)-apply(xx,2,mean)%*%beta
+  intercept
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So the full solution is given by:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;GA.lasso &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = lasso.loss,
+               lower = low[-1], upper = up[-1],
+               suggestions=theta, # rbind(theta, lasso.glmnet[-1]),
+               popSize = 300, maxiter = max.iter,
+               run = max.run, monitor = NULL)
+
+
+GA.lasso&amp;lt;-as.numeric(summary(GA.lasso)$solution)
+GA.lasso&amp;lt;-c(intercept.mean(GA.lasso), GA.lasso)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;zero-norm-l0-regularization&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Zero Norm L0 Regularization&lt;/h1&gt;
+&lt;p&gt;The L0 regularization is very similar, but it penalizes the &lt;span class=&#34;math inline&#34;&gt;\(\beta \neq 0\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\min_\beta \frac{1}{2n} \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p x_{ij} \beta_j )^2 + \lambda \sum_{j=1}^p I_{\beta_j \neq 0}(\beta_j)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(I_{beta_j \neq 0}(x)\)&lt;/span&gt; returns 1 if &lt;span class=&#34;math inline&#34;&gt;\(\beta_j \neq 0\)&lt;/span&gt; and 0 otherwise.&lt;/p&gt;
+&lt;p&gt;The problem can be solved with the package &lt;code&gt;L0Learn&lt;/code&gt; which uses a variant of cyclic coordinate descent as default or a local combinatorial search on top of coordinate descent (typically achieves higher quality solutions at the expense of increased running time).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# L0 regularization L0Learn package
+fit.L0&amp;lt;-L0Learn.fit(X, Y, penalty=&amp;quot;L0&amp;quot;, autoLambda=FALSE, lambdaGrid=list(iper),
+                    loss=&amp;quot;SquaredError&amp;quot;, algorithm = &amp;quot;CD&amp;quot;)
+L0.package&amp;lt;-as.numeric(coef(fit.L0))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The loss can be minimized directly using &lt;code&gt;GA&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;L0.loss&amp;lt;-function(beta, xx=X, yy=Y, lambda=iper){  
+  const&amp;lt;-1/length(yy)
+  ols&amp;lt;-sum((yy-xx%*%beta)^2)
+  J &amp;lt;- -((const*ols)+(lambda*sum(beta!=0) ))
+  return(J) 
+}
+
+GA.zero.norm &amp;lt;- ga(type = &amp;quot;real-valued&amp;quot;, fitness = L0.loss,
+             lower = low[-1], upper = up[-1],
+             suggestions=theta,# rbind(theta, lasso.glmnet[-1], L0.package[-1]),
+             popSize = 300, maxiter = max.iter, run = max.run, monitor = NULL)
+
+GA.zero.norm&amp;lt;-as.numeric(summary(GA.zero.norm)$solution)
+GA.zero.norm&amp;lt;-c(intercept.mean(GA.zero.norm), GA.zero.norm)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;results&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Results&lt;/h1&gt;
+&lt;p&gt;We can compare the results of &lt;code&gt;GA&lt;/code&gt; with the true beta (since we know the data generation process) and with their packages counterpart:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;beta.problema&amp;lt;-rbind(beta_true=beta_true,
+                     ols.beta=ols.beta,
+                     GA.ols=GA.ols,
+                     lad.package=lad.package,
+                     GA.lad=GA.lad,
+                     quantile.fit,
+                     GA.quant.05=GA.quant.05,
+                     GA.quant.50=GA.quant.50,
+                     GA.quant.95=GA.quant.95,
+                     lasso.glmnet=lasso.glmnet,
+                     GA.lasso=GA.lasso,
+                     L0.package=L0.package,
+                     GA.zero.norm=GA.zero.norm)
+
+kable(round(beta.problema,2))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;(Intercept)&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X4&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X5&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X6&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X7&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;X8&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;beta_true&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.16&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.60&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.49&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;ols.beta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.34&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.34&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.09&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.ols&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.40&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.07&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.03&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.09&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;lad.package&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.99&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.41&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.83&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.lad&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.98&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.39&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.47&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.81&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.36&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.14&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;tau= 0.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-22.26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.40&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.59&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.40&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.53&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.65&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;tau= 0.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.99&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.41&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.83&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;tau= 0.95&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44.48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.15&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.98&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;56.80&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.67&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;51.87&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.93&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.quant.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-22.22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.51&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.35&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.70&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;GA.quant.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.99&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.47&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.44&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.79&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.14&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.quant.95&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44.53&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.79&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;56.70&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.53&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;51.84&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.91&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;lasso.glmnet&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.09&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.03&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.08&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.lasso&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.09&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.02&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.06&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;L0.package&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.34&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;53.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.34&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.zero.norm&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46.17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.94&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.09&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;All the results of &lt;code&gt;GA&lt;/code&gt; are close to their package counterpart, excluded the zero norm and the package &lt;code&gt;L0Learn&lt;/code&gt;, which tends to have a more sparse solution. This could be due to a numerical approximation or just a different parametrization since the package authors didn’t write the full mathematical formula used in the package. If that is the case, we are optimizing different functions, where the iperparamer &lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt; may have a different meaning.&lt;/p&gt;
+&lt;p&gt;It’s possible to calculate the predictions and errors from the &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;predictions&amp;lt;-X.intercept%*%t(beta.problema)
+errors&amp;lt;-apply(predictions, 2, function(x) Y-x)
+mae&amp;lt;-apply(errors, 2, function(x) mean(abs(x)))
+kable(mae, col.names = &amp;quot;MAE&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;MAE&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;beta_true&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.11658&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;ols.beta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.65362&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.ols&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.30705&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;lad.package&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.88195&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.lad&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.84284&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;tau= 0.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;332.02116&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;tau= 0.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.88195&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;tau= 0.95&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;329.40789&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.quant.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.70249&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;GA.quant.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.81229&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.quant.95&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;328.50262&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;lasso.glmnet&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.57432&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.lasso&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.33601&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;L0.package&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.66200&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;GA.zero.norm&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;331.12767&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The regularized methods don’t outperform the others, since I haven’t chosen the iperparameter &lt;span class=&#34;math inline&#34;&gt;\(\lambda\)&lt;/span&gt; by validation: I have just chosen one to replicate the results of the packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Genetic Algorithms can be very useful when we don’t have a solution in closed form or when we can’t employ other more consistent numerical methods (especially for non-convex problems). This article is mostly an exercise to the use of Genetic Algorithm in regression, but the real advantage of &lt;code&gt;GA&lt;/code&gt; can appear with less trivial losses to minimize.&lt;/p&gt;
+&lt;p&gt;At the same time, we have shown that &lt;code&gt;GA&lt;/code&gt; can give a good approximation of other numerical methods, but it is very slow and it is generally better to employ more &lt;em&gt;smart&lt;/em&gt; solutions.&lt;/p&gt;
+&lt;p&gt;Genetic Algorithms can be a useful first step to try to solve problems we don’t fully understand, a smart use of brute force.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Create a blog with R Markdown and Hugo on Github</title>

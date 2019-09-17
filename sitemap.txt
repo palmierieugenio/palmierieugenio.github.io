@@ -4,3 +4,5 @@ https://palmierieugenio.github.io/post/build-a-blog-with-hugo-github-and-blogdow
 https://palmierieugenio.github.io
 https://palmierieugenio.github.io/#posts
 https://palmierieugenio.github.io/#contact
+https://palmierieugenio.github.io/post/regression-using-genetic-algorithm/
+https://palmierieugenio.github.io/tags/r/
