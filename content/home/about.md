@@ -17,7 +17,6 @@ weight = 1
     "Causal Inference",
     "Urban Planning",
     "Data Science",
-    "Communism",
     "Multivariate Statistics"
   ]
 
